@@ -195,28 +195,11 @@
     
 
 
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn">
-        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_bullet -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_bullet">
         <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
         <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_hand_that_feeds_one -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_hand_that_feeds_one">
-        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
-        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3"/>
     </owl:NamedIndividual>
     
 
@@ -286,30 +269,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
-        <v-idiomv2:Có_bối_cảnh rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn"/>
-        <v-idiomv2:Có_mục_đích rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Không_hài_lòng_với_thứ_mình_có -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Không_hài_lòng_với_thứ_mình_có"/>
-    
-
-
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung">
-        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_TImLuaChonMoi -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_TImLuaChonMoi">
@@ -344,26 +303,11 @@
     
 
 
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Trải_qua_khó_khăn -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Trải_qua_khó_khăn"/>
-    
-
-
     <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Weather_the_storm -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Weather_the_storm">
         <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
         <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Ăn_cháo_đá_bát -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Ăn_cháo_đá_bát">
-        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom"/>
-        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3"/>
     </owl:NamedIndividual>
     
 
