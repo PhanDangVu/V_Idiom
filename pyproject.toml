@@ -1,0 +1,19 @@
+[project]
+name = "onto-python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "PhanDangVu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "owlready2>=0.51",
+]
+
+[project.scripts]
+onto-python = "onto_python:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"

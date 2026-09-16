@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2/"
+     xml:base="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:v-idiom="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiom#"
+     xmlns:v-idiomv2="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_bối_cảnh -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_bối_cảnh">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_hành_động -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_hành_động">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_khung -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_khung">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Là_khung_của"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Idiom"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_kết_quả -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_kết_quả">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_mục_đích -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_mục_đích">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_nghĩa -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_nghĩa">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Có_khung"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Là_khung_của"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Là_khung_của -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Là_khung_của"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Idiom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Idiom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Idiom"/>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen"/>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_nghĩa_đen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Idiom"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TamLySoSanh -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TamLySoSanh">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TinhHuongKhoKhan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TinhHuongKhoKhan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_bullet -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_bullet">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_hand_that_feeds_one -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bite_the_hand_that_feeds_one">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Cắn_răng_chịu_đựng -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Cắn_răng_chịu_đựng">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_ChiuDungKhoKhan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_ChiuDungKhoKhan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_SoSanh -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_SoSanh">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_BatMan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_BatMan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_DatMucTieu -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_DatMucTieu">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <v-idiomv2:Có_bối_cảnh rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TamLySoSanh"/>
+        <v-idiomv2:Có_hành_động rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_SoSanh"/>
+        <v-idiomv2:Có_kết_quả rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_BatMan"/>
+        <v-idiomv2:Có_mục_đích rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_TImLuaChonMoi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <v-idiomv2:Có_bối_cảnh rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_TinhHuongKhoKhan"/>
+        <v-idiomv2:Có_hành_động rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#HD_ChiuDungKhoKhan"/>
+        <v-idiomv2:Có_kết_quả rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#KQ_DatMucTieu"/>
+        <v-idiomv2:Có_mục_đích rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_VuotQuaGianTruan"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung_Bản_Thể_học"/>
+        <v-idiomv2:Có_bối_cảnh rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#BC_VoOn"/>
+        <v-idiomv2:Có_mục_đích rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Không_hài_lòng_với_thứ_mình_có -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Không_hài_lòng_với_thứ_mình_có"/>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_LoiDung">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_TImLuaChonMoi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_TImLuaChonMoi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_VuotQuaGianTruan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#MD_VuotQuaGianTruan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Nếm_mật_nằm_gai -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Nếm_mật_nằm_gai">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#The_grass_is_greener_from_the_other_side -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#The_grass_is_greener_from_the_other_side">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Trải_qua_khó_khăn -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Trải_qua_khó_khăn"/>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Weather_the_storm -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Weather_the_storm">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#English_Idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Ăn_cháo_đá_bát -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Ăn_cháo_đá_bát">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Đứng_núi_này_trông_núi_nọ -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Đứng_núi_này_trông_núi_nọ">
+        <rdf:type rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Vietnamese_idiom"/>
+        <v-idiomv2:Có_khung rdf:resource="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Khung1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Bối_cảnh"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Hành_động"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Kết_quả"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#Mục_đích"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
