@@ -1,0 +1,1996 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2"
+         xmlns="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2"/>
+
+<owl:ObjectProperty rdf:about="#Có_bối_cảnh">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <rdfs:domain rdf:resource="#Khung_Bản_Thể_học"/>
+  <rdfs:range rdf:resource="#Bối_cảnh"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Có_hành_động">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <rdfs:domain rdf:resource="#Khung_Bản_Thể_học"/>
+  <rdfs:range rdf:resource="#Hành_động"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Có_khung">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <owl:inverseOf rdf:resource="#Là_khung_của"/>
+  <rdfs:domain rdf:resource="#Idiom"/>
+  <rdfs:range rdf:resource="#Khung_Bản_Thể_học"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Là_khung_của"/>
+
+<owl:ObjectProperty rdf:about="#Có_kết_quả">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <rdfs:domain rdf:resource="#Khung_Bản_Thể_học"/>
+  <rdfs:range rdf:resource="#Kết_quả"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Có_mục_đích">
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <rdfs:domain rdf:resource="#Khung_Bản_Thể_học"/>
+  <rdfs:range rdf:resource="#Mục_đích"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Có_nghĩa">
+  <owl:propertyChainAxiom>
+    <rdf:Description>
+      <rdf:first rdf:resource="#Có_khung"/>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first rdf:resource="#Là_khung_của"/>
+          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </owl:propertyChainAxiom>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Khung_Bản_Thể_học"/>
+
+<owl:Class rdf:about="#Bối_cảnh">
+  <rdfs:subClassOf rdf:resource="#Khung_nghĩa_đen"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Hành_động">
+  <rdfs:subClassOf rdf:resource="#Khung_nghĩa_đen"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Idiom"/>
+
+<owl:Class rdf:about="#Kết_quả">
+  <rdfs:subClassOf rdf:resource="#Khung_nghĩa_đen"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mục_đích">
+  <rdfs:subClassOf rdf:resource="#Khung_nghĩa_đen"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Khung_nghĩa_đen"/>
+
+<owl:Class rdf:about="#English_Idiom">
+  <rdfs:subClassOf rdf:resource="#Idiom"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Vietnamese_idiom">
+  <rdfs:subClassOf rdf:resource="#Idiom"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#BC_TamLySoSanh">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_TinhHuongKhoKhan">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bite_the_bullet">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung7"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung2">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_TinhHuongKhoKhan"/>
+  <Có_hành_động rdf:resource="#HD_ChiuDungKhoKhan"/>
+  <Có_kết_quả rdf:resource="#KQ_DatMucTieu"/>
+  <Có_mục_đích rdf:resource="#MD_VuotQuaGianTruan"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cắn_răng_chịu_đựng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung7"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_ChiuDungKhoKhan">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_SoSanh">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_BatMan">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_DatMucTieu">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung1">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_TamLySoSanh"/>
+  <Có_hành_động rdf:resource="#HD_SoSanh"/>
+  <Có_kết_quả rdf:resource="#KQ_BatMan"/>
+  <Có_mục_đích rdf:resource="#MD_TImLuaChonMoi"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_TImLuaChonMoi">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_VuotQuaGianTruan">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nếm_mật_nằm_gai">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung8"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_grass_is_greener_from_the_other_side">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung1"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Weather_the_storm">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung2"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đứng_núi_này_trông_núi_nọ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung5"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung4">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_hành_động rdf:resource="#HD_Lợi_dụng"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Đối_nhân_xử_thế">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Lợi_dụng">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Mất_quan_hệ">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Ăn_cháo_đá_bát">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung4"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bite_the_hand_that_feeds_one">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung4"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung5">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cảm_xúc"/>
+  <Có_hành_động rdf:resource="#HD_So_sánh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Cảm_xúc">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_So_sánh">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_grass_is_always_greener_on_the_other_side">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung5"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung6">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Nắm_bắt"/>
+  <Có_kết_quả rdf:resource="#KQ_Tối_ưu_hóa"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Thực_thi_mục_tiêu">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Nắm_bắt">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tối_ưu_hóa">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Giải_quyết_vấn_đề">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Một_mũi_tên_trúng_hai_đích">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung6"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#To_kill_two_birds_with_one_stone">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung6"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung7">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nguy_hiểm"/>
+  <Có_hành_động rdf:resource="#HD_Đối_mặt"/>
+  <Có_mục_đích rdf:resource="#MD_Bảo_vệ_bản_thân"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Nguy_hiểm">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Đối_mặt">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Bảo_vệ_bản_thân">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung8">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Kiên_nhẫn"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Kiên_nhẫn">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Thành_công">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bide_one's_time_in_hardship">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung8"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung9">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Rủi_ro"/>
+  <Có_hành_động rdf:resource="#HD_Tham_lam"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thất_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Rủi_ro">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Tham_lam">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tổn_thất_tài_sản">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thả_mồi_bắt_bóng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung9"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Grasp_all_lose_all">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung47"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung10">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Xung_đột"/>
+  <Có_kết_quả rdf:resource="#KQ_Bị_khống_chế"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Xung_đột">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Bị_khống_chế">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vỏ_quýt_dày_có_móng_tay_nhọn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung10"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Diamond_cut_diamond">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung10"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung11">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Rủi_ro"/>
+  <Có_hành_động rdf:resource="#HD_Liều_lĩnh"/>
+  <Có_kết_quả rdf:resource="#KQ_Gieo_tai_họa"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Liều_lĩnh">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Gieo_tai_họa">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đi_đêm_lắm_có_ngày_gặp_ma">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung11"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_pitcher_goes_so_often_to_the_well_that_it_is_broken_at_last">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung11"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung12">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Sinh_hoạt"/>
+  <Có_hành_động rdf:resource="#HD_Trì_hoãn"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Sinh_hoạt">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Trì_hoãn">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Mưa_nào_mát_mặt_bấy_giờ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung12"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Live_from_hand_to_mouth">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung12"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung13">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Bảo_mật"/>
+  <Có_kết_quả rdf:resource="#KQ_Lộ_tẩy"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Bảo_mật">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Lộ_tẩy">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cháy_nhà_ra_mặt_chuột">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung13"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Truth_will_out">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung13"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung14">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_hành_động rdf:resource="#HD_Bắt_chước"/>
+  <Có_kết_quả rdf:resource="#KQ_Hình_thành_nhân_cách"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Bắt_chước">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Hình_thành_nhân_cách">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Gần_mực_thì_đen_gần_đèn_thì_rạng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung14"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#He_who_touches_pitch_shall_be_defiled">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung14"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung15">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Hậu_quả"/>
+  <Có_hành_động rdf:resource="#HD_Trì_hoãn"/>
+  <Có_kết_quả rdf:resource="#KQ_Thất_bại"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Hậu_quả">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Thất_bại">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nước_đến_chân_mới_nhảy">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung15"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Lock_the_stable_door_after_the_horse_is_stolen">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung15"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung16">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thất_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Thương_mại">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Của_thiên_trả_địa">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung16"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Easy_come_easy_go">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung16"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung17">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Gia_đình"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Gia_đình">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Gắn_kết">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Một_giọt_máu_đào_hơn_ao_nước_lã">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung17"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Blood_is_thicker_than_water">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung17"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung18">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_hành_động rdf:resource="#HD_Đối_mặt"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Lấy_độc_trị_độc">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung18"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Take_a_hair_of_the_dog_that_bit_you">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung18"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung19">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Bảo_mật"/>
+  <Có_hành_động rdf:resource="#HD_Che_giấu"/>
+  <Có_mục_đích rdf:resource="#MD_Che_đậy"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Che_giấu">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Che_đậy">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Sống_để_bụng_chết_mang_theo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung19"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Take_a_secret_to_the_grave">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung19"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung20">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đánh_giá"/>
+  <Có_hành_động rdf:resource="#HD_Đánh_giá_sai"/>
+  <Có_kết_quả rdf:resource="#KQ_Nhầm_lẫn"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Đánh_giá">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Đánh_giá_sai">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Nhầm_lẫn">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Suy_bụng_ta_ra_bụng_người">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung20"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Measure_another's_corn_by_one's_own_bushel">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung20"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung21">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_hành_động rdf:resource="#HD_Thổi_phồng"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Giao_tiếp">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Thổi_phồng">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thùng_rỗng_kêu_to">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung21"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Empty_vessels_make_the_most_noise">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung21"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung22">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_hành_động rdf:resource="#HD_Tham_lam"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Được_đằng_chân_lân_đằng_đầu">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung22"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Give_him_an_inch_and_he_will_take_an_ell">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung22"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Múa_rìu_qua_mắt_thợ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung21"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Teach_fish_to_swim">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung21"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung23">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nguy_hiểm"/>
+  <Có_hành_động rdf:resource="#HD_Né_tránh"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thương"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Né_tránh">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tổn_thương">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tránh_vỏ_dưa_gặp_vỏ_dừa">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung23"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Out_of_the_frying_pan_into_the_fire">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung23"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung24">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Lao_động"/>
+  <Có_hành_động rdf:resource="#HD_Nỗ_lực"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Lao_động">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Nỗ_lực">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Có_công_mài_sắt_có_ngày_nên_kim">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung24"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Practice_makes_perfect">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung24"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung25">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Xung_đột"/>
+  <Có_hành_động rdf:resource="#HD_Tấn_công"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+  <Có_mục_đích rdf:resource="#MD_Hạ_bệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Tấn_công">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Hạ_bệ">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Hoàn_toàn_đánh_bại">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung25"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Beat_somebody_hollow">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung25"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung26">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Một_mình_một_ngựa">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung26"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Play_a_lone_hand">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung26"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung27">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_hành_động rdf:resource="#HD_Tiêu_xài_hoang_phí"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thất_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Tiêu_xài_hoang_phí">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vung_tiền_qua_cửa_sổ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung27"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Spend_money_like_water">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung27"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung28">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Sinh_hoạt"/>
+  <Có_kết_quả rdf:resource="#KQ_Bình_yên"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Bình_yên">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Chăn_ấm_gối_êm">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bed_of_roses">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung29">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nói_một_đằng_làm_một_nẻo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung29"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Talk_one_way_and_act_another">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung29"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung30">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_kết_quả rdf:resource="#KQ_Tương_xứng_giá_trị"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tương_xứng_giá_trị">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tiền_nào_của_ấy">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung30"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#You_get_what_you_pay_for">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung30"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung31">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Môi_trường_mới"/>
+  <Có_hành_động rdf:resource="#HD_Thích_ứng"/>
+  <Có_kết_quả rdf:resource="#KQ_Hòa_nhập"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Môi_trường_mới">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Thích_ứng">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Hòa_nhập">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nhập_gia_tùy_tục">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung31"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#When_in_Rome_do_as_the_Romans_do">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung31"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung32">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đạo_đức"/>
+  <Có_hành_động rdf:resource="#HD_Tấn_công"/>
+  <Có_kết_quả rdf:resource="#KQ_Gieo_tai_họa"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Đạo_đức">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Gieo_gió_gặp_bão">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung32"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Sow_the_wind_reap_the_whirlwind">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung32"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung33">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_kết_quả rdf:resource="#KQ_Gặp_trở_ngại"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Gặp_trở_ngại">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vạn_sự_khởi_đầu_nan">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung33"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_first_step_is_always_the_hardest">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung33"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung34">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_mục_đích rdf:resource="#MD_Trân_trọng_thời_gian"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Cuộc_sống">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Trân_trọng_thời_gian">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thời_gian_là_vàng_bạc">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung34"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Time_is_money">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung34"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung35">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_hành_động rdf:resource="#HD_Đối_mặt"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thà_trễ_còn_hơn_không">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung35"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Better_late_than_never">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung35"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung36">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nguy_hiểm"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thương"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Họa_vô_đơn_chí">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung36"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Misfortunes_never_come_singly">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung36"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung37">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_hành_động rdf:resource="#HD_Đánh_giá_sai"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thất_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cả_tin_mất_tiền">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung37"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_fool_and_his_money_are_soon_parted">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung37"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung38">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đồng_bệnh_tương_lân">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung38"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Misery_loves_company">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung38"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung39">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_hành_động rdf:resource="#HD_Kìm_nén_cảm_xúc"/>
+  <Có_kết_quả rdf:resource="#KQ_An_toàn"/>
+  <Có_mục_đích rdf:resource="#MD_Bảo_vệ_bản_thân"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Kìm_nén_cảm_xúc">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_An_toàn">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Im_lặng_là_vàng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung39"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Silence_is_golden">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung39"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung40">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nhận_thức"/>
+  <Có_kết_quả rdf:resource="#KQ_Xác_nhận_sự_thật"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Nhận_thức">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Xác_nhận_sự_thật">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thấy_mới_tin">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung40"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Seeing_is_believing">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung40"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung41">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_kết_quả rdf:resource="#KQ_Hối_hận"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Hối_hận">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Lời_nói_đã_thốt_ra_như_mũi_tên_đã_bắn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_word_spoken_is_past_recalling">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung42">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đánh_giá"/>
+  <Có_kết_quả rdf:resource="#KQ_Tích_lũy_kinh_nghiệm"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tích_lũy_kinh_nghiệm">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Gừng_càng_già_càng_cay">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung42"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Experience_is_the_mother_of_wisdom">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung42"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung43">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_mục_đích rdf:resource="#MD_Bảo_vệ_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Bảo_vệ_tài_sản">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đồng_tiền_liền_khúc_ruột">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung43"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Charity_begins_at_home">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung43"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung44">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_hành_động rdf:resource="#HD_Đồng_lòng"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HD_Đồng_lòng">
+  <rdf:type rdf:resource="#Hành_động"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đoàn_kết_là_sức_mạnh">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung44"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#United_we_stand_divided_we_fall">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung44"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bút_sa_gà_chết">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#What_is_written_remains">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung45">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Xung_đột"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Biết_người_biết_ta_trăm_trận_trăm_thắng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung45"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Know_yourself_and_know_your_enemy">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung45"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung46">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Kiên_nhẫn"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Chậm_mà_chắc">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung46"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Slow_and_steady_wins_the_race">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung46"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung47">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cảm_xúc"/>
+  <Có_hành_động rdf:resource="#HD_Tham_lam"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thất_tài_sản"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tham_thì_thâm">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung47"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung48">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Gia_đình"/>
+  <Có_hành_động rdf:resource="#HD_Bắt_chước"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tre_già_măng_mọc">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung48"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#As_the_old_cock_crows_the_young_cock_learns">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung48"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung49">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đạo_đức"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Uống_nước_nhớ_nguồn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung49"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Never_forget_the_well_you_drank_from">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung49"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung50">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Nỗ_lực"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Có_chí_thì_nên">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung50"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Where_there's_a_will_there's_a_way">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung50"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung51">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Xung_đột"/>
+  <Có_hành_động rdf:resource="#HD_Liều_lĩnh"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đốt_cầu_rút_ván">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung51"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Burn_one's_bridges">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung51"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung52">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Lao_động"/>
+  <Có_kết_quả rdf:resource="#KQ_Tích_lũy_tri_thức"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tích_lũy_tri_thức">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đi_một_ngày_đàng_học_một_sàng_khôn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung52"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Travel_broadens_the_mind">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung52"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Ác_giả_ác_báo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung32"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#What_goes_around_comes_around">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung32"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung53">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_kết_quả rdf:resource="#KQ_Kết_thúc"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Kết_thúc">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Không_có_gì_là_mãi_mãi">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung53"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#All_good_things_must_come_to_an_end">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung53"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung54">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đánh_giá"/>
+  <Có_kết_quả rdf:resource="#KQ_Trân_trọng_bản_chất"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Trân_trọng_bản_chất">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tốt_gỗ_hơn_tốt_nước_sơn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung54"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Beauty_is_only_skin_deep">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung54"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Không_làm_mà_đòi_có_ăn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung24"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#No_pain_no_gain">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung24"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung55">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_hành_động rdf:resource="#HD_Kìm_nén_cảm_xúc"/>
+  <Có_kết_quả rdf:resource="#KQ_Đạt_được_thỏa_thuận"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Đạt_được_thỏa_thuận">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Lạt_mềm_buộc_chặt">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung55"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_soft_answer_turneth_away_wrath">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung55"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung56">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Sự_kiện_hiếm"/>
+  <Có_kết_quả rdf:resource="#KQ_May_mắn"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Sự_kiện_hiếm">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_May_mắn">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Mèo_mù_vớ_cá_rán">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung56"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Even_a_blind_squirrel_finds_a_nut_once_in_a_while">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung56"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Ăn_quả_nhớ_kẻ_trồng_cây">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung49"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Show_gratitude_to_your_benefactors">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung49"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung57">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cảm_xúc"/>
+  <Có_hành_động rdf:resource="#HD_Tham_lam"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Được_mùa_chê_khoai">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung57"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#When_good_times_come_don't_forget_hard_times">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung57"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Sài_tiền_như_nước">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung27"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung58">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_kết_quả rdf:resource="#KQ_Bình_yên"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khổ_tận_cam_lai">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung58"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#After_a_storm_comes_a_calm">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung58"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung59">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Lao_động"/>
+  <Có_kết_quả rdf:resource="#KQ_Thất_bại"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Chưa_học_bò_đã_lo_học_chạy">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung59"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#You_must_walk_before_you_can_run">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung59"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bệnh_từ_miệng_vào_họa_từ_miệng_ra">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung39"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_close_mouth_catches_no_flies">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung39"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nói_thì_dễ_làm_thì_khó">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung33"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Easier_said_than_done">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung33"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung60">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cơ_hội"/>
+  <Có_hành_động rdf:resource="#HD_Nắm_bắt"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Cơ_hội">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nhất_cự_cụ_nhất_thời">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung60"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Strike_while_the_iron_is_hot">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung60"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung61">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đầu_xuôi_đuôi_lọt">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung61"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_good_beginning_makes_a_good_ending">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung61"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung62">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_kết_quả rdf:resource="#KQ_Hình_thành_nhân_cách"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Hoàn_cảnh_tạo_nên_con_người">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung62"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Circumstances_make_the_man">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung62"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung63">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Xa_mặt_cách_lòng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung63"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Out_of_sight_out_of_mind">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung63"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cẩn_thận_khi_phát_ngôn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Think_today_speak_tomorrow">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung41"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung64">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Rủi_ro"/>
+  <Có_hành_động rdf:resource="#HD_Liều_lĩnh"/>
+  <Có_kết_quả rdf:resource="#KQ_Tổn_thương"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Trèo_cao_ngã_đau">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung64"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_higher_you_climb_the_harder_you_fall">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung64"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung65">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_kết_quả rdf:resource="#KQ_Khác_biệt_quan_điểm"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Khác_biệt_quan_điểm">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Mỗi_người_mỗi_ý">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung65"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#So_many_men_so_many_minds">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung65"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Kẻ_cắp_gặp_bà_già_bằng_mới">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung10"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Có_mới_nới_cũ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung4"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Out_with_the_old_in_with_the_new">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung4"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung66">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Lao_động"/>
+  <Có_hành_động rdf:resource="#HD_Kiên_nhẫn"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tích_tiểu_thành_đại">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung66"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Many_a_little_makes_a_mickle">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung66"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cha_nào_con_nấy">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung48"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Like_father_like_son">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung48"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung67">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đạo_đức"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+  <Có_mục_đích rdf:resource="#MD_Hòa_giải"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Hòa_giải">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đánh_kẻ_chạy_đi_không_ai_đánh_người_chạy_lại">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung67"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#To_err_is_human_to_forgive_divine">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung67"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung68">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_kết_quả rdf:resource="#KQ_Tồn_tại_khuyết_điểm"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Tồn_tại_khuyết_điểm">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Không_ai_hoàn_hảo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung68"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nobody's_perfect">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung68"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung69">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thương_mại"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tiền_rải_phong_bì">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung69"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Money_talks">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung69"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung70">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nguy_hiểm"/>
+  <Có_hành_động rdf:resource="#HD_Đối_mặt"/>
+  <Có_kết_quả rdf:resource="#KQ_An_toàn"/>
+  <Có_mục_đích rdf:resource="#MD_Bảo_vệ_bản_thân"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cẩn_tắc_vô_ưu">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung70"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Better_safe_than_sorry">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung70"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung71">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đạo_đức"/>
+  <Có_kết_quả rdf:resource="#KQ_Lưu_danh_hậu_thế"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Lưu_danh_hậu_thế">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Hùm_chết_để_da_người_ta_chết_để_tiếng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung71"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#A_good_name_is_better_than_riches">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung71"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Mười_người_mười_ý">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung65"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#There's_no_accounting_for_tastes">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung65"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung72">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_kết_quả rdf:resource="#KQ_Đối_mặt_thực_tế"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Đối_mặt_thực_tế">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Đời_không_như_là_mơ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung72"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Life_is_not_a_bed_of_roses">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung72"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung73">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Bệnh_tật"/>
+  <Có_kết_quả rdf:resource="#KQ_An_toàn"/>
+  <Có_mục_đích rdf:resource="#MD_Bảo_vệ_bản_thân"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BC_Bệnh_tật">
+  <rdf:type rdf:resource="#Bối_cảnh"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Phòng_bệnh_hơn_chữa_bệnh">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung73"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Prevention_is_better_than_cure">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung73"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thất_bại_là_mẹ_thành_công">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung61"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Failure_is_the_mother_of_success">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung61"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Của_rẻ_là_của_ôi">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung16"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cheap_things_are_not_good">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung16"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung74">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Giao_tiếp"/>
+  <Có_hành_động rdf:resource="#HD_Lợi_dụng"/>
+  <Có_kết_quả rdf:resource="#KQ_Mất_quan_hệ"/>
+  <Có_mục_đích rdf:resource="#MD_Né_tránh_trách_nhiệm"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Né_tránh_trách_nhiệm">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Gắp_lửa_bỏ_bàn_tay_người">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung74"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Shift_the_blame_to_others">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung74"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#An_cư_lạc_nghiệp">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Settle_down_and_thrive">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung75">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Kiên_nhẫn"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Chớ_thấy_sóng_cả_mà_ngã_tay_chèo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung75"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Don't_give_up_the_ship">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung75"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung76">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Xung_đột"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Kẻ_thù_của_kẻ_thù_là_bạn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung76"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_enemy_of_my_enemy_is_my_friend">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung76"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung77">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_kết_quả rdf:resource="#KQ_Gắn_kết"/>
+  <Có_mục_đích rdf:resource="#MD_Giao_hảo"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MD_Giao_hảo">
+  <rdf:type rdf:resource="#Mục_đích"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Lời_chào_cao_hơn_mâm_cỗ">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung77"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Politeness_costs_nothing_and_gains_everything">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung77"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung78">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Thực_thi_mục_tiêu"/>
+  <Có_hành_động rdf:resource="#HD_Liều_lĩnh"/>
+  <Có_mục_đích rdf:resource="#MD_Giải_quyết_vấn_đề"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bào_chữa_cho_hành_vi">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung78"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#The_end_justifies_the_means">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung78"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung79">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Rủi_ro"/>
+  <Có_hành_động rdf:resource="#HD_Thổi_phồng"/>
+  <Có_kết_quả rdf:resource="#KQ_Thất_bại"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nói_trước_bước_không_qua">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung79"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Don't_count_your_chickens_before_they're_hatched">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung79"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung80">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đạo_đức"/>
+  <Có_kết_quả rdf:resource="#KQ_Gieo_tai_họa"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Ai_làm_nấy_chịu">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung80"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#As_you_make_your_bed_so_you_must_lie_on_it">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung80"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung81">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Gia_đình"/>
+  <Có_hành_động rdf:resource="#HD_Đồng_lòng"/>
+  <Có_kết_quả rdf:resource="#KQ_Thành_công"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Thuận_vợ_thuận_chồng_tát_biển_đông_cũng_cạn">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung81"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Harmony_in_the_family_brings_success">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung81"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung82">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Đối_nhân_xử_thế"/>
+  <Có_hành_động rdf:resource="#HD_Lợi_dụng"/>
+  <Có_kết_quả rdf:resource="#KQ_Gieo_tai_họa"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nuôi_ong_tay_áo">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung82"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nourish_a_viper_in_one's_bosom">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung82"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khéo_ăn_thì_no_khéo_co_thì_ấm">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cut_your_coat_according_to_your_cloth">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung28"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung83">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Nguy_hiểm"/>
+  <Có_hành_động rdf:resource="#HD_Đối_mặt"/>
+  <Có_kết_quả rdf:resource="#KQ_An_toàn"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vào_sinh_ra_tử">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung83"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Go_through_fire_and_water">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung83"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tiền_vào_như_nước">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung69"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Pour_in_money">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung69"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung84">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Sự_kiện_hiếm"/>
+  <Có_kết_quả rdf:resource="#KQ_Ngoại_cảnh_chi_phối"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KQ_Ngoại_cảnh_chi_phối">
+  <rdf:type rdf:resource="#Kết_quả"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Nắng_mưa_là_bệnh_của_trời">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung84"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Weather_is_unpredictable">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung84"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Khung85">
+  <rdf:type rdf:resource="#Khung_Bản_Thể_học"/>
+  <Có_bối_cảnh rdf:resource="#BC_Cuộc_sống"/>
+  <Có_hành_động rdf:resource="#HD_Nỗ_lực"/>
+  <Có_kết_quả rdf:resource="#KQ_Bình_yên"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Sống_mỗi_ngày_như_ngày_cuối_cùng">
+  <rdf:type rdf:resource="#Vietnamese_idiom"/>
+  <Có_khung rdf:resource="#Khung85"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Live_each_day_as_if_it_were_your_last">
+  <rdf:type rdf:resource="#English_Idiom"/>
+  <Có_khung rdf:resource="#Khung85"/>
+</owl:NamedIndividual>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Bối_cảnh"/>
+    <rdf:Description rdf:about="#Hành_động"/>
+    <rdf:Description rdf:about="#Kết_quả"/>
+    <rdf:Description rdf:about="#Mục_đích"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>

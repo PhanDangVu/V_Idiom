@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "owlready2>=0.51",
+    "pandas>=3.0.5",
 ]
 
 [project.scripts]
