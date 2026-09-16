@@ -1,0 +1,101 @@
+﻿STT,Thành_ngữ_Tiếng_Việt,Thành_ngữ_Tiếng_Anh,Bối_cảnh,Hành_động,Kết_quả,Mục_đích,Giải_thích_nghĩa
+1,Ăn_cháo_đá_bát,Bite_the_hand_that_feeds_one,BC_Đối_nhân_xử_thế,HD_Lợi_dụng,KQ_Mất_quan_hệ,,"Phản bội, đối xử tệ bạc với người đã cưu mang, giúp đỡ mình."
+2,Đứng_núi_này_trông_núi_nọ,The_grass_is_always_greener_on_the_other_side,BC_Cảm_xúc,HD_So_sánh,,,"Bất mãn với hoàn cảnh hiện tại, luôn nghĩ hoàn cảnh người khác tốt hơn."
+3,Một_mũi_tên_trúng_hai_đích,To_kill_two_birds_with_one_stone,BC_Thực_thi_mục_tiêu,HD_Nắm_bắt,KQ_Tối_ưu_hóa,MD_Giải_quyết_vấn_đề,Hoàn thành hai công việc cùng một lúc chỉ bằng một hành động.
+4,Cắn_răng_chịu_đựng,Bite_the_bullet,BC_Nguy_hiểm,HD_Đối_mặt,,MD_Bảo_vệ_bản_thân,"Dũng cảm chấp nhận đối mặt với hoàn cảnh đau đớn, khó khăn không thể né tránh."
+5,Nếm_mật_nằm_gai,Bide_one's_time_in_hardship,BC_Thực_thi_mục_tiêu,HD_Kiên_nhẫn,KQ_Thành_công,MD_Giải_quyết_vấn_đề,"Tự nguyện chịu đựng gian khổ kéo dài để nuôi chí lớn, chờ thời cơ."
+6,Thả_mồi_bắt_bóng,Grasp_all_lose_all,BC_Rủi_ro,HD_Tham_lam,KQ_Tổn_thất_tài_sản,,"Bỏ mất cái thực có trong tay để chạy theo cái hư ảo, cuối cùng mất sạch."
+7,Vỏ_quýt_dày_có_móng_tay_nhọn,Diamond_cut_diamond,BC_Xung_đột,,KQ_Bị_khống_chế,,Kẻ ghê gớm đến đâu cũng sẽ có người cao tay hơn trừng trị.
+8,Đi_đêm_lắm_có_ngày_gặp_ma,The_pitcher_goes_so_often_to_the_well_that_it_is_broken_at_last,BC_Rủi_ro,HD_Liều_lĩnh,KQ_Gieo_tai_họa,,Làm điều sai trái lén lút nhiều lần thì thế nào cũng có ngày gặp tai họa.
+9,Mưa_nào_mát_mặt_bấy_giờ,Live_from_hand_to_mouth,BC_Sinh_hoạt,HD_Trì_hoãn,,,"Sống tạm bợ, ăn xổi ở thì, được lúc nào hay lúc đó chứ không biết lo xa."
+10,Cháy_nhà_ra_mặt_chuột,Truth_will_out,BC_Bảo_mật,,KQ_Lộ_tẩy,,"Khi có biến cố xảy ra, bản chất xấu xa hay sự dối giấu giếm sẽ phơi bày."
+11,Gần_mực_thì_đen_gần_đèn_thì_rạng,He_who_touches_pitch_shall_be_defiled,BC_Đối_nhân_xử_thế,HD_Bắt_chước,KQ_Hình_thành_nhân_cách,,"Môi trường sống và bạn bè xung quanh ảnh hưởng trực tiếp đến đạo đức, tính cách con người."
+12,Nước_đến_chân_mới_nhảy,Lock_the_stable_door_after_the_horse_is_stolen,BC_Hậu_quả,HD_Trì_hoãn,KQ_Thất_bại,,Chờ sự việc quá sát hoặc hậu quả xảy ra rồi mới vội vã đối phó.
+13,Của_thiên_trả_địa,Easy_come_easy_go,BC_Thương_mại,,KQ_Tổn_thất_tài_sản,,Của cải có được dễ dàng hay bất chính thì cũng mau chóng mất đi.
+14,Một_giọt_máu_đào_hơn_ao_nước_lã,Blood_is_thicker_than_water,BC_Gia_đình,,KQ_Gắn_kết,,Tình cảm ruột thịt thân thiết và quan trọng hơn người ngoài.
+15,Lấy_độc_trị_độc,Take_a_hair_of_the_dog_that_bit_you,,HD_Đối_mặt,,MD_Giải_quyết_vấn_đề,Dùng chính yếu tố nguy hại để khống chế hoặc chữa trị tác hại do nó gây ra.
+16,Sống_để_bụng_chết_mang_theo,Take_a_secret_to_the_grave,BC_Bảo_mật,HD_Che_giấu,,MD_Che_đậy,"Giữ kín bí mật hoặc mối thù sâu sắc đến suốt đời, không tiết lộ."
+17,Suy_bụng_ta_ra_bụng_người,Measure_another's_corn_by_one's_own_bushel,BC_Đánh_giá,HD_Đánh_giá_sai,KQ_Nhầm_lẫn,,"Lấy suy nghĩ chủ quan của bản thân để áp đặt, phán xét người khác."
+18,Thùng_rỗng_kêu_to,Empty_vessels_make_the_most_noise,BC_Giao_tiếp,HD_Thổi_phồng,,,"Kẻ ít hiểu biết lại thường hay khoe khoang, nói nhiều."
+19,Được_đằng_chân_lân_đằng_đầu,Give_him_an_inch_and_he_will_take_an_ell,BC_Đối_nhân_xử_thế,HD_Tham_lam,KQ_Mất_quan_hệ,,"Được nhượng bộ một chút thì lại càng lấn tới, đòi hỏi nhiều hơn."
+20,Múa_rìu_qua_mắt_thợ,Teach_fish_to_swim,BC_Giao_tiếp,HD_Thổi_phồng,,,"Phô trương hiểu biết trước mặt người am hiểu, giỏi giang hơn mình."
+21,Tránh_vỏ_dưa_gặp_vỏ_dừa,Out_of_the_frying_pan_into_the_fire,BC_Nguy_hiểm,HD_Né_tránh,KQ_Tổn_thương,,Tránh được nguy cơ này lại gặp phải nguy cơ khác tồi tệ hơn.
+22,Có_công_mài_sắt_có_ngày_nên_kim,Practice_makes_perfect,BC_Lao_động,HD_Nỗ_lực,KQ_Thành_công,,"Nhẫn nại, kiên trì rèn luyện thì việc khó đến mấy cũng thành công."
+23,Hoàn_toàn_đánh_bại,Beat_somebody_hollow,BC_Xung_đột,HD_Tấn_công,KQ_Thành_công,MD_Hạ_bệ,"Đánh bại đối thủ một cách áp đảo, triệt để."
+24,Một_mình_một_ngựa,Play_a_lone_hand,BC_Thực_thi_mục_tiêu,,,MD_Giải_quyết_vấn_đề,"Đơn độc gánh vác, giải quyết công việc mà không cần sự giúp đỡ."
+25,Vung_tiền_qua_cửa_sổ,Spend_money_like_water,BC_Thương_mại,HD_Tiêu_xài_hoang_phí,KQ_Tổn_thất_tài_sản,,"Tiêu xài tiền bạc phung phí, không biết tiếc của."
+26,Chăn_ấm_gối_êm,Bed_of_roses,BC_Sinh_hoạt,,KQ_Bình_yên,,"Cuộc sống gia đình, hôn nhân êm ấm, hạnh phúc, đầy đủ."
+27,Nói_một_đằng_làm_một_nẻo,Talk_one_way_and_act_another,BC_Giao_tiếp,,KQ_Mất_quan_hệ,,"Lời nói và hành động bất nhất, dối trá."
+28,Tiền_nào_của_ấy,You_get_what_you_pay_for,BC_Thương_mại,,KQ_Tương_xứng_giá_trị,,Giá tiền bỏ ra tương ứng với chất lượng hàng hóa.
+29,Nhập_gia_tùy_tục,When_in_Rome_do_as_the_Romans_do,BC_Môi_trường_mới,HD_Thích_ứng,KQ_Hòa_nhập,,"Đến môi trường mới thì tuân theo quy định, phong tục ở đó."
+30,Gieo_gió_gặp_bão,Sow_the_wind_reap_the_whirlwind,BC_Đạo_đức,HD_Tấn_công,KQ_Gieo_tai_họa,,"Làm điều ác, gây hại cho người khác thì sẽ nhận lại hậu quả thảm khốc."
+31,Vạn_sự_khởi_đầu_nan,The_first_step_is_always_the_hardest,BC_Thực_thi_mục_tiêu,,KQ_Gặp_trở_ngại,,Bất kỳ công việc nào khi mới bắt đầu cũng gặp nhiều khó khăn.
+32,Thời_gian_là_vàng_bạc,Time_is_money,BC_Cuộc_sống,,,MD_Trân_trọng_thời_gian,"Thời gian vô cùng quý giá, cần biết trân trọng và sử dụng hiệu quả."
+33,Thà_trễ_còn_hơn_không,Better_late_than_never,,HD_Đối_mặt,KQ_Thành_công,,Muộn còn hơn là không bao giờ làm.
+34,Họa_vô_đơn_chí,Misfortunes_never_come_singly,BC_Nguy_hiểm,,KQ_Tổn_thương,,Tai họa không xảy ra riêng lẻ mà thường liên tiếp kéo đến.
+35,Cả_tin_mất_tiền,A_fool_and_his_money_are_soon_parted,BC_Thương_mại,HD_Đánh_giá_sai,KQ_Tổn_thất_tài_sản,,"Người khờ dại, nhẹ dãi thì dễ bị lừa gạt mất hết tiền bạc."
+36,Đồng_bệnh_tương_lân,Misery_loves_company,BC_Đối_nhân_xử_thế,,KQ_Gắn_kết,,"Những người cùng cảnh ngộ khó khăn thường dễ cảm thông, tìm đến nhau."
+37,Im_lặng_là_vàng,Silence_is_golden,BC_Giao_tiếp,HD_Kìm_nén_cảm_xúc,KQ_An_toàn,MD_Bảo_vệ_bản_thân,Giữ im lặng trong nhiều tình huống là cách ứng xử khôn khéo và an toàn nhất.
+38,Thấy_mới_tin,Seeing_is_believing,BC_Nhận_thức,,KQ_Xác_nhận_sự_thật,,Tận mắt chứng kiến thì mới tin là có thật.
+39,Lời_nói_đã_thốt_ra_như_mũi_tên_đã_bắn,A_word_spoken_is_past_recalling,BC_Giao_tiếp,,KQ_Hối_hận,,"Lời nói đã thốt ra thì không thể rút lại, cần suy nghĩ kỹ trước khi nói."
+40,Gừng_càng_già_càng_cay,Experience_is_the_mother_of_wisdom,BC_Đánh_giá,,KQ_Tích_lũy_kinh_nghiệm,,"Người càng có tuổi, càng nhiều kinh nghiệm thì càng khôn khéo, sắc sảo."
+41,Đồng_tiền_liền_khúc_ruột,Charity_begins_at_home,BC_Thương_mại,,,MD_Bảo_vệ_tài_sản,Tiền bạc do chính sức mình làm ra luôn gắn liền với tâm huyết và sự trân trọng.
+42,Đoàn_kết_là_sức_mạnh,United_we_stand_divided_we_fall,BC_Đối_nhân_xử_thế,HD_Đồng_lòng,KQ_Thành_công,,"Hợp lực đoàn kết thì sẽ vững mạnh, chia rẽ thì sẽ thất bại."
+43,Bút_sa_gà_chết,What_is_written_remains,BC_Giao_tiếp,,KQ_Hối_hận,,"Giấy trắng mực đen đã ký/viết ra thì có giá trị ràng buộc, không thể chối bỏ."
+44,Biết_người_biết_ta_trăm_trận_trăm_thắng,Know_yourself_and_know_your_enemy,BC_Xung_đột,,KQ_Thành_công,MD_Giải_quyết_vấn_đề,Hiểu rõ năng lực của bản thân và đối thủ thì làm việc gì cũng thành công.
+45,Chậm_mà_chắc,Slow_and_steady_wins_the_race,BC_Thực_thi_mục_tiêu,HD_Kiên_nhẫn,KQ_Thành_công,,"Làm việc kiên trì, vững chắc dù chậm vẫn tốt hơn vội vã mà hỏng việc."
+46,Tham_thì_thâm,Grasp_all_lose_all,BC_Cảm_xúc,HD_Tham_lam,KQ_Tổn_thất_tài_sản,,"Quá tham lam, muốn chiếm trọn mọi thứ thì kết cục lại mất trắng."
+47,Tre_già_măng_mọc,As_the_old_cock_crows_the_young_cock_learns,BC_Gia_đình,HD_Bắt_chước,,,Thế hệ trước già đi thì thế hệ sau kế thừa và phát triển.
+48,Uống_nước_nhớ_nguồn,Never_forget_the_well_you_drank_from,BC_Đạo_đức,,KQ_Gắn_kết,,"Luôn nhớ ơn và trân trọng những người đã giúp đỡ, tạo dựng thành quả cho mình."
+49,Có_chí_thì_nên,Where_there's_a_will_there's_a_way,BC_Thực_thi_mục_tiêu,HD_Nỗ_lực,KQ_Thành_công,,Có quyết tâm và ý chí kiên cường thì mọi khó khăn đều tìm ra giải pháp.
+50,Đốt_cầu_rút_ván,Burn_one's_bridges,BC_Xung_đột,HD_Liều_lĩnh,KQ_Mất_quan_hệ,,Tự cắt đứt đường lùi hoặc phá hỏng mối quan hệ khiến không thể quay lại.
+51,Đi_một_ngày_đàng_học_một_sàng_khôn,Travel_broadens_the_mind,BC_Lao_động,,KQ_Tích_lũy_tri_thức,,"Đi nhiều nơi, trải nghiệm nhiều giúp mở rộng tầm mắt và hiểu biết."
+52,Ác_giả_ác_báo,What_goes_around_comes_around,BC_Đạo_đức,HD_Tấn_công,KQ_Gieo_tai_họa,,Hành vi xấu xa hay độc ác rồi sẽ quay lại gây hậu quả cho chính mình.
+53,Không_có_gì_là_mãi_mãi,All_good_things_must_come_to_an_end,BC_Cuộc_sống,,KQ_Kết_thúc,,Mọi điều tốt đẹp hay sự việc trên đời đều có lúc kết thúc.
+54,Tốt_gỗ_hơn_tốt_nước_sơn,Beauty_is_only_skin_deep,BC_Đánh_giá,,KQ_Trân_trọng_bản_chất,,Giá trị đạo đức và phẩm chất bên trong quan trọng hơn vẻ bề ngoài.
+55,Không_làm_mà_đòi_có_ăn,No_pain_no_gain,BC_Lao_động,HD_Nỗ_lực,KQ_Thành_công,,Muốn có thành quả thì phải bỏ sức lao động và chấp nhận gian khổ.
+56,Lạt_mềm_buộc_chặt,A_soft_answer_turneth_away_wrath,BC_Giao_tiếp,HD_Kìm_nén_cảm_xúc,KQ_Đạt_được_thỏa_thuận,MD_Giải_quyết_vấn_đề,"Ứng xử mềm mỏng, nhẫn nại thường đạt hiệu quả cao hơn cứng rắn."
+57,Mèo_mù_vớ_cá_rán,Even_a_blind_squirrel_finds_a_nut_once_in_a_while,BC_Sự_kiện_hiếm,,KQ_May_mắn,,May mắn bất ngờ đạt được thành quả mà không do năng lực.
+58,Ăn_quả_nhớ_kẻ_trồng_cây,Show_gratitude_to_your_benefactors,BC_Đạo_đức,,KQ_Gắn_kết,,Hưởng thành quả thì phải ghi nhớ và biết ơn người đã tạo ra nó.
+59,Được_mùa_chê_khoai,When_good_times_come_don't_forget_hard_times,BC_Cảm_xúc,HD_Tham_lam,,,Khi kiêu ngạo sung túc thì coi thường những thứ bình dị đã giúp mình vượt khó.
+60,Sài_tiền_như_nước,Spend_money_like_water,BC_Thương_mại,HD_Tiêu_xài_hoang_phí,KQ_Tổn_thất_tài_sản,,Tiêu xài phung phí tiền bạc không tính toán.
+61,Khổ_tận_cam_lai,After_a_storm_comes_a_calm,BC_Cuộc_sống,,KQ_Bình_yên,,"Hết giai đoạn gian khổ cực nhọc sẽ đến lúc sung sướng, bình yên."
+62,Chưa_học_bò_đã_lo_học_chạy,You_must_walk_before_you_can_run,BC_Lao_động,,KQ_Thất_bại,,Phải nắm vững kiến thức cơ bản trước khi làm việc nâng cao.
+63,Bệnh_từ_miệng_vào_họa_từ_miệng_ra,A_close_mouth_catches_no_flies,BC_Giao_tiếp,HD_Kìm_nén_cảm_xúc,KQ_An_toàn,MD_Bảo_vệ_bản_thân,"Nói năng thiếu suy nghĩ dễ gây tai họa, ăn uống không cẩn thận dễ sinh bệnh."
+64,Nói_thì_dễ_làm_thì_khó,Easier_said_than_done,BC_Thực_thi_mục_tiêu,,KQ_Gặp_trở_ngại,,"Việc phát ngôn hay đưa ý kiến thì dễ, nhưng khi thực hiện mới thấy nhiều trở ngại."
+65,Nhất_cự_cụ_nhất_thời,Strike_while_the_iron_is_hot,BC_Cơ_hội,HD_Nắm_bắt,KQ_Thành_công,,Hãy hành động ngay khi cơ hội tốt xuất hiện.
+66,Đầu_xuôi_đuôi_lọt,A_good_beginning_makes_a_good_ending,BC_Thực_thi_mục_tiêu,,KQ_Thành_công,,Chặng đầu khởi sự thuận lợi thì các bước sau cũng dễ dàng hoàn thành.
+67,Hoàn_cảnh_tạo_nên_con_người,Circumstances_make_the_man,BC_Cuộc_sống,,KQ_Hình_thành_nhân_cách,,"Môi trường và hoàn cảnh sống rèn luyện nên tính cách, bản lĩnh con người."
+68,Xa_mặt_cách_lòng,Out_of_sight_out_of_mind,BC_Đối_nhân_xử_thế,,KQ_Mất_quan_hệ,,Không gặp nhau thường xuyên thì tình cảm dễ phai nhạt.
+69,Cẩn_thận_khi_phát_ngôn,Think_today_speak_tomorrow,BC_Giao_tiếp,,KQ_Hối_hận,,Cần cẩn trọng suy nghĩ kỹ trước khi quyết định viết hoặc phát ngôn.
+70,Trèo_cao_ngã_đau,The_higher_you_climb_the_harder_you_fall,BC_Rủi_ro,HD_Liều_lĩnh,KQ_Tổn_thương,,Càng tham vọng leo cao quá sức thì khi thất bại càng chịu thiệt hại nặng nề.
+71,Mỗi_người_mỗi_ý,So_many_men_so_many_minds,BC_Giao_tiếp,,KQ_Khác_biệt_quan_điểm,,"Mỗi người có một góc nhìn, suy nghĩ và quan điểm riêng."
+72,Kẻ_cắp_gặp_bà_già_bằng_mới,Diamond_cut_diamond,BC_Xung_đột,,KQ_Bị_khống_chế,,Kẻ ranh ma lọc lõi gặp đối thủ còn cao tay hơn mình.
+73,Có_mới_nới_cũ,Out_with_the_old_in_with_the_new,BC_Đối_nhân_xử_thế,HD_Lợi_dụng,KQ_Mất_quan_hệ,,"Có cái mới, bạn mới thì bỏ rơi, lạnh nhạt với cái cũ, người cũ."
+74,Tích_tiểu_thành_đại,Many_a_little_makes_a_mickle,BC_Lao_động,HD_Kiên_nhẫn,KQ_Thành_công,,Gom góp những thứ nhỏ nhặt lâu dần sẽ thành thành quả lớn.
+75,Cha_nào_con_nấy,Like_father_like_son,BC_Gia_đình,HD_Bắt_chước,,,"Con cái thường thừa hưởng tính cách, thói quen từ cha."
+76,Đánh_kẻ_chạy_đi_không_ai_đánh_người_chạy_lại,To_err_is_human_to_forgive_divine,BC_Đạo_đức,,KQ_Gắn_kết,MD_Hòa_giải,"Bao dung, vị tha với người biết nhận lỗi và sửa chữa sai lầm."
+77,Không_ai_hoàn_hảo,Nobody's_perfect,BC_Cuộc_sống,,KQ_Tồn_tại_khuyết_điểm,,"Con người ai cũng có sai sót, không ai hoàn toàn hoàn hảo."
+78,Tiền_rải_phong_bì,Money_talks,BC_Thương_mại,,KQ_Thành_công,,Tiền bạc có sức ảnh hưởng và quyền lực tác động mạnh mẽ.
+79,Cẩn_tắc_vô_ưu,Better_safe_than_sorry,BC_Nguy_hiểm,HD_Đối_mặt,KQ_An_toàn,MD_Bảo_vệ_bản_thân,Cẩn thận phòng ngừa trước thì không phải lo lắng hay hối hận về sau.
+80,Hùm_chết_để_da_người_ta_chết_để_tiếng,A_good_name_is_better_than_riches,BC_Đạo_đức,,KQ_Lưu_danh_hậu_thế,,Danh tiếng và nhân cách tốt đẹp sẽ còn lưu lại mãi sau khi qua đời.
+81,Mười_người_mười_ý,There's_no_accounting_for_tastes,BC_Giao_tiếp,,KQ_Khác_biệt_quan_điểm,,"Sở thích và gu thẩm mỹ của mỗi người rất đa dạng, không ai giống ai."
+82,Đời_không_như_là_mơ,Life_is_not_a_bed_of_roses,BC_Cuộc_sống,,KQ_Đối_mặt_thực_tế,,"Thực tế cuộc sống có nhiều khó khăn, chông gai chứ không toàn màu hồng."
+83,Phòng_bệnh_hơn_chữa_bệnh,Prevention_is_better_than_cure,BC_Bệnh_tật,,KQ_An_toàn,MD_Bảo_vệ_bản_thân,Chủ động phòng ngừa nguy cơ tốt hơn là đợi sự việc xảy ra mới đi cứu chữa.
+84,Thất_bại_là_mẹ_thành_công,Failure_is_the_mother_of_success,BC_Thực_thi_mục_tiêu,,KQ_Thành_công,,Rút kinh nghiệm từ những lần thất bại sẽ giúp tiến tới thành công.
+85,Của_rẻ_là_của_ôi,Cheap_things_are_not_good,BC_Thương_mại,,KQ_Tổn_thất_tài_sản,,Hàng hóa quá rẻ thường đi kèm với chất lượng kém.
+86,Gắp_lửa_bỏ_bàn_tay_người,Shift_the_blame_to_others,BC_Giao_tiếp,HD_Lợi_dụng,KQ_Mất_quan_hệ,MD_Né_tránh_trách_nhiệm,"Vu khống, đổ tội lỗi hay khó khăn của mình sang cho người khác chịu."
+87,An_cư_lạc_nghiệp,Settle_down_and_thrive,BC_Sinh_hoạt,,KQ_Bình_yên,,Ổn định chỗ ở và cuộc sống gia đình thì mới tập trung phát triển sự nghiệp.
+88,Chớ_thấy_sóng_cả_mà_ngã_tay_chèo,Don't_give_up_the_ship,BC_Thực_thi_mục_tiêu,HD_Kiên_nhẫn,,,"Không được nản lòng, buông xuôi khi gặp sóng gió hay thử thách lớn."
+89,Kẻ_thù_của_kẻ_thù_là_bạn,The_enemy_of_my_enemy_is_my_friend,BC_Xung_đột,,KQ_Gắn_kết,,Những người cùng có chung một đối thủ thì dễ liên minh hợp tác.
+90,Lời_chào_cao_hơn_mâm_cỗ,Politeness_costs_nothing_and_gains_everything,BC_Đối_nhân_xử_thế,,KQ_Gắn_kết,MD_Giao_hảo,"Lễ độ, lịch sự trong ứng xử quý giá hơn vật chất dâng cúng."
+91,Bào_chữa_cho_hành_vi,The_end_justifies_the_means,BC_Thực_thi_mục_tiêu,HD_Liều_lĩnh,,MD_Giải_quyết_vấn_đề,Dùng bất kỳ thủ đoạn nào miễn là đạt được mục đích cuối cùng.
+92,Nói_trước_bước_không_qua,Don't_count_your_chickens_before_they're_hatched,BC_Rủi_ro,HD_Thổi_phồng,KQ_Thất_bại,,Không nên vội vã đắc ý hay khẳng định kết quả khi công việc chưa hoàn thành.
+93,Ai_làm_nấy_chịu,As_you_make_your_bed_so_you_must_lie_on_it,BC_Đạo_đức,,KQ_Gieo_tai_họa,,Bản thân gây ra quyết định hay lỗi lầm nào thì phải tự gánh chịu hậu quả.
+94,Thuận_vợ_thuận_chồng_tát_biển_đông_cũng_cạn,Harmony_in_the_family_brings_success,BC_Gia_đình,HD_Đồng_lòng,KQ_Thành_công,,"Vợ chồng đồng lòng, hòa thuận thì việc khó khăn mấy cũng vượt qua."
+95,Nuôi_ong_tay_áo,Nourish_a_viper_in_one's_bosom,BC_Đối_nhân_xử_thế,HD_Lợi_dụng,KQ_Gieo_tai_họa,,"Cưu mang, giúp đỡ kẻ phản trác để rồi bị nó quay lại gây hại."
+96,Khéo_ăn_thì_no_khéo_co_thì_ấm,Cut_your_coat_according_to_your_cloth,BC_Sinh_hoạt,,KQ_Bình_yên,,"Biết liệu sức, chi tiêu và thu vén khéo léo theo đúng hoàn cảnh của mình."
+97,Vào_sinh_ra_tử,Go_through_fire_and_water,BC_Nguy_hiểm,HD_Đối_mặt,KQ_An_toàn,,"Cùng trải qua nhiều gian nan, hiểm nguy tính mạng bên nhau."
+98,Tiền_vào_như_nước,Pour_in_money,BC_Thương_mại,,KQ_Thành_công,,"Tiền bạc, tài lộc thu về nhiều và liên tục."
+99,Nắng_mưa_là_bệnh_của_trời,Weather_is_unpredictable,BC_Sự_kiện_hiếm,,KQ_Ngoại_cảnh_chi_phối,,Hiện tượng tự nhiên biến đổi thất thường là quy luật ngoài tầm kiểm soát.
+100,Sống_mỗi_ngày_như_ngày_cuối_cùng,Live_each_day_as_if_it_were_your_last,BC_Cuộc_sống,HD_Nỗ_lực,KQ_Bình_yên,,"Sống trọn vẹn, ý nghĩa từng khoảnh khắc không để hoãng phí thời gian."
