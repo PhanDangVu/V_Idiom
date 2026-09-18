@@ -14,7 +14,7 @@ Bản cập nhật **v3** nâng cấp toàn bộ hệ thống phân loại thàn
 
 ## Danh Mục Bể Tiêu Chí Đầy Đủ v3
 
-### 1. Bối Cảnh (Contexts) - Ký hiệu: `BC_`
+### 1. Bối Cảnh (Contexts) - Ký hiệu: `BC_` (21)
 
 | Individual (ID)          | Ý nghĩa                                                  | Trạng thái |
 | :----------------------- | :------------------------------------------------------- | :--------- |
@@ -35,14 +35,14 @@ Bản cập nhật **v3** nâng cấp toàn bộ hệ thống phân loại thàn
 | **BC_Đối_nhân_xử_thế**   | Giao tiếp xã hội, ứng xử giữa người với người.           | Gốc        |
 | **BC_Bệnh_tật**          | Tình trạng sức khỏe kém, bệnh tật.                       | Gốc        |
 | **BC_Cuộc_sống**         | Quy luật đời sống, thực tế xã hội.                       | Mới v2     |
-| **BC*Gia*đình**          | Quan hệ huyết thống, gia tộc, cha con, anh em.           | Mới v2     |
-| **BC*Lao*động**          | Quá trình học tập, rèn luyện, lao động sản xuất.         | Mới v2     |
-| **BC*Đạo*đức**           | Chuẩn mực đạo đức, nhân cách, lòng biết ơn.              | Mới v2     |
+| **BC\_*Gia*đình**        | Quan hệ huyết thống, gia tộc, cha con, anh em.           | Mới v2     |
+| **BC\_*Lao*động**        | Quá trình học tập, rèn luyện, lao động sản xuất.         | Mới v2     |
+| **BC\_*Đạo*đức**         | Chuẩn mực đạo đức, nhân cách, lòng biết ơn.              | Mới v2     |
 | **BC_Môi_trường_mới**    | Hoàn cảnh sống hoặc môi trường văn hóa mới.              | Mới v2     |
 
 ---
 
-### 2. Hành Động (Actions) - Ký hiệu: `HD_`
+### 2. Hành Động (Actions) - Ký hiệu: `HD_` (19)
 
 | Individual (ID)           | Ý nghĩa                                            | Trạng thái |
 | :------------------------ | :------------------------------------------------- | :--------- |
@@ -61,14 +61,14 @@ Bản cập nhật **v3** nâng cấp toàn bộ hệ thống phân loại thàn
 | **HD_Kiên_nhẫn**          | Nhẫn nại, kiên trì chịu đựng.                      | Gốc        |
 | **HD_Tiêu_xài_hoang_phí** | Tiêu tốn tiền bạc không tiếc của.                  | Gốc        |
 | **HD_Kìm_nén_cảm_xúc**    | Giữ bình tĩnh, ứng xử mềm mỏng.                    | Gốc        |
-| **HD*Thích*ứng**          | Hòa nhập, điều chỉnh theo môi trường mới.          | Mới v2     |
+| **HD\_*Thích*ứng**        | Hòa nhập, điều chỉnh theo môi trường mới.          | Mới v2     |
 | **HD_Bắt_chước**          | Kế thừa, mô phỏng hoặc bị ảnh hưởng thói quen.     | Mới v2     |
 | **HD_Đồng_lòng**          | Đoàn kết, hợp lực cùng nhau.                       | Mới v2     |
 | **HD_So_sánh**            | Nhìn nhận và ảo tưởng về hoàn cảnh người khác.     | Mới v2     |
 
 ---
 
-### 3. Kết Quả (Results) - Ký hiệu: `KQ_`
+### 3. Kết Quả (Results) - Ký hiệu: `KQ_` (30)
 
 | Individual (ID)             | Ý nghĩa                                                | Trạng thái |
 | :-------------------------- | :----------------------------------------------------- | :--------- |
@@ -105,7 +105,7 @@ Bản cập nhật **v3** nâng cấp toàn bộ hệ thống phân loại thàn
 
 ---
 
-### 4. Mục Đích (Purposes) - Ký hiệu: `MD_`
+### 4. Mục Đích (Purposes) - Ký hiệu: `MD_` (9)
 
 | Individual (ID)             | Ý nghĩa                                   | Trạng thái |
 | :-------------------------- | :---------------------------------------- | :--------- |
