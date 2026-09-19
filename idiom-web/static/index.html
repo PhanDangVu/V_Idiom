@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V-Idiom — Tra cứu & Thêm Thành Ngữ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0f1a;
+      --surface:  #151829;
+      --card:     #1c2038;
+      --border:   #2a3050;
+      --accent:   #6c63ff;
+      --accent2:  #48d1cc;
+      --green:    #4ade80;
+      --red:      #f87171;
+      --text:     #e2e8f0;
+      --muted:    #94a3b8;
+      --radius:   14px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p { color: var(--muted); margin-top: .4rem; font-size: .95rem; }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    /* ── Search ── */
+    .search-box {
+      display: flex; gap: .6rem; margin-bottom: 1.8rem;
+    }
+    .search-box input {
+      flex: 1;
+      padding: .85rem 1.2rem;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box input::placeholder { color: var(--muted); }
+
+    button {
+      padding: .85rem 1.4rem;
+      border: none;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+    }
+    button:active { transform: scale(.97); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-success { background: var(--green); color: #0d0f1a; }
+    .btn-primary:hover, .btn-success:hover { opacity: .88; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.2rem;
+      animation: fadeIn .3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 6px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .badge-vn  { background: rgba(74,222,128,.15); color: var(--green); }
+    .badge-en  { background: rgba(108,99,255,.2);  color: #a5b4fc; }
+    .badge-csv { background: rgba(251,191,36,.15); color: #fbbf24; }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+      margin: .8rem 0;
+    }
+    .crit-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .5rem .8rem;
+      font-size: .82rem;
+    }
+    .crit-label { color: var(--muted); font-size: .72rem; margin-bottom: .1rem; }
+    .crit-value { color: var(--accent2); font-weight: 500; }
+
+    .synonym-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .synonym-list li {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: .45rem .8rem;
+      font-size: .9rem;
+    }
+    .synonym-list li.en-item { border-left-color: var(--accent2); }
+
+    /* ── Add form ── */
+    .add-form { display: flex; flex-direction: column; gap: .8rem; }
+    .form-row { display: flex; flex-direction: column; gap: .3rem; }
+    .form-row label { font-size: .82rem; color: var(--muted); font-weight: 500; }
+
+    .add-form input, .add-form select {
+      padding: .7rem 1rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: .92rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .add-form select option { background: var(--surface); }
+    .add-form input:focus, .add-form select:focus { border-color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: .5rem; }
+    .lang-toggle label {
+      flex: 1; text-align: center;
+      padding: .6rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: all .2s;
+      color: var(--muted);
+    }
+    .lang-toggle input[type=radio] { display: none; }
+    .lang-toggle input:checked + label {
+      border-color: var(--accent);
+      background: rgba(108,99,255,.15);
+      color: var(--text);
+    }
+
+    .msg {
+      padding: .7rem 1rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    .msg-ok  { background: rgba(74,222,128,.12); color: var(--green); }
+    .msg-err { background: rgba(248,113,113,.12); color: var(--red);   }
+
+    #result { display: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>📖 V-Idiom</h1>
+    <p>Tra cứu & Thêm thành ngữ Anh — Việt</p>
+  </header>
+
+  <!-- Search -->
+  <div class="search-box">
+    <input id="q" type="text" placeholder="Nhập thành ngữ cần tra cứu (VD: Mất bò mới lo làm chuồng)..." autocomplete="off">
+    <button class="btn-primary" onclick="search()">🔍 Tra cứu</button>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+let criteria = {};
+let criteriaLabels = {};
+
+async function loadCriteria() {
+  const [r1, r2] = await Promise.all([
+    fetch('/api/criteria'),
+    fetch('/api/criteria-labels'),
+  ]);
+  criteria = await r1.json();
+  criteriaLabels = await r2.json();
+}
+loadCriteria();
+
+document.getElementById('q').addEventListener('keydown', e => { if (e.key === 'Enter') search(); });
+
+
+async function search() {
+  const q = document.getElementById('q').value.trim();
+  if (!q) return;
+  const res = document.getElementById('result');
+  res.style.display = 'block';
+  res.innerHTML = `<div class="card"><p style="color:var(--muted)">Đang tìm kiếm...</p></div>`;
+
+  const r = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+  const data = await r.json();
+
+  if (data.found) {
+    const langBadge = data.language === 'vn'
+      ? `<span class="badge badge-vn">&#x1F1FB;&#x1F1F3; Tiếng Việt</span>`
+      : `<span class="badge badge-en">&#x1F1EC;&#x1F1E7; Tiếng Anh</span>`;
+    const srcBadge = data.source === 'csv'
+      ? `<span class="badge badge-csv">📋 Mới thêm</span>` : '';
+
+    const crit = data.criteria;
+    const critHTML = `
+      <div class="criteria-grid">
+        ${crit.bc ? `<div class="crit-item"><div class="crit-label">Bối cảnh</div><div class="crit-value">${criteriaLabels[crit.bc] || crit.bc}</div></div>` : ''}
+        ${crit.hd ? `<div class="crit-item"><div class="crit-label">Hành động</div><div class="crit-value">${criteriaLabels[crit.hd] || crit.hd}</div></div>` : ''}
+        ${crit.kq ? `<div class="crit-item"><div class="crit-label">Kết quả</div><div class="crit-value">${criteriaLabels[crit.kq] || crit.kq}</div></div>` : ''}
+        ${crit.md ? `<div class="crit-item"><div class="crit-label">Mục đích</div><div class="crit-value">${criteriaLabels[crit.md] || crit.md}</div></div>` : ''}
+      </div>`;
+
+
+    const vns = (data.synonyms_vn || []).map(s => `<li>&#x1F1FB;&#x1F1F3; ${s}</li>`).join('');
+    const ens = (data.synonyms_en || []).map(s => `<li class="en-item">&#x1F1EC;&#x1F1E7; ${s}</li>`).join('');
+    const synHTML = (vns || ens)
+      ? `<div style="margin-top:1rem"><p style="color:var(--muted);font-size:.85rem;margin-bottom:.5rem">Các câu đồng nghĩa:</p><ul class="synonym-list">${vns}${ens}</ul></div>`
+      : `<p style="color:var(--muted);font-size:.85rem;margin-top:.8rem">Chưa có câu đồng nghĩa nào.</p>`;
+
+    let meaningHTML = '';
+    if (data.source === 'ontology') {
+      if (data.meaning_vn) {
+        meaningHTML += `<div style="margin-top:1rem"><p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">&#x1F1FB;&#x1F1F3; Ý nghĩa Tiếng Việt:</p><p style="color:white;font-size:0.9rem;font-style:italic;margin-bottom:.6rem">"${data.meaning_vn}"</p></div>`;
+      }
+      if (data.meaning_en) {
+        meaningHTML += `<div style="margin-top:.5rem"><p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">&#x1F1EC;&#x1F1E7; Nghĩa Tiếng Anh (English Meaning):</p><p style="color:white;font-size:0.9rem;font-style:italic;">"${data.meaning_en}"</p></div>`;
+      }
+    } else {
+      // Đối với CSV mới thêm thủ công
+      if (data.meaning) {
+        meaningHTML = `<div style="margin-top:1rem"><p style="color:var(--muted);font-size:.85rem;margin-bottom:.5rem">Ý nghĩa:</p><p style="color:white;font-size:0.9rem;font-style:italic;">"${data.meaning}"</p></div>`;
+      }
+    }
+
+    const note = data.note ? `<p style="color:#fbbf24;font-size:.82rem;margin-top:.8rem">⚠️ ${data.note}</p>` : '';
+
+    res.innerHTML = `
+      <div class="card">
+        <div class="card-title">✅ ${data.name.replace(/_/g,' ')} ${langBadge} ${srcBadge}</div>
+        ${data.frame ? `<p style="color:var(--muted);font-size:.82rem;margin-bottom:.5rem">Khung: <b style="color:var(--accent)">${data.frame}</b></p>` : ''}
+        ${meaningHTML}
+        ${critHTML}${synHTML}${note}
+      </div>`;
+  } else {
+    res.innerHTML = `
+      <div class="card">
+        <div class="card-title">❌ Không tìm thấy "<em>${data.query}</em>"</div>
+        <p style="color:var(--muted);margin-bottom:1.2rem;font-size:.9rem">Bạn có muốn thêm câu thành ngữ này vào hệ thống?</p>
+        ${buildAddForm(data.query)}
+      </div>`;
+  }
+}
+
+function buildAddForm(prefill) {
+  const makeSelect = (key, label) => {
+    const opts = (criteria[key] || []).map(v => {
+      const displayLabel = criteriaLabels[v] || v;
+      return `<option value="${v}">${displayLabel}</option>`;
+    }).join('');
+    return `
+      <div class="form-row">
+        <label>${label}</label>
+        <select id="f_${key}" onchange="previewSynonyms()">
+          <option value="">(Không chọn)</option>
+          ${opts}
+        </select>
+      </div>`;
+  };
+
+  return `
+    <div class="add-form">
+      <div class="form-row">
+        <label>Tên thành ngữ (dùng dấu _ thay khoảng trắng)</label>
+        <input id="f_name" value="${prefill.replace(/ /g,'_')}" placeholder="Ví dụ: Mất_bò_mới_lo_làm_chuồng">
+      </div>
+      <div class="form-row">
+        <label>Ý nghĩa thành ngữ (Tùy chọn)</label>
+        <input id="f_giai_thich" placeholder="Ví dụ: Bị mất mát rồi mới tìm cách đề phòng...">
+      </div>
+      <div class="form-row">
+        <label>Ngôn ngữ</label>
+        <div class="lang-toggle">
+          <input type="radio" name="lang" id="lang_vn" value="vn" checked>
+          <label for="lang_vn">&#x1F1FB;&#x1F1F3; Tiếng Việt</label>
+          <input type="radio" name="lang" id="lang_en" value="en">
+          <label for="lang_en">&#x1F1EC;&#x1F1E7; Tiếng Anh</label>
+        </div>
+      </div>
+      ${makeSelect('boi_canh',  'Bối cảnh')}
+      ${makeSelect('hanh_dong', 'Hành động')}
+      ${makeSelect('ket_qua',   'Kết quả')}
+      ${makeSelect('muc_dich',  'Mục đích')}
+
+      <div id="synonym-preview" style="display:none">
+        <div style="border-top:1px solid var(--border);margin:.4rem 0 .8rem"></div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem">
+          🔍 Đồng nghĩa theo tiêu chí đang chọn:
+        </p>
+        <ul class="synonym-list" id="synonym-preview-list"></ul>
+      </div>
+
+      <button class="btn-success" onclick="addIdiom()">➕ Lưu thành ngữ mới</button>
+      <div id="add_msg"></div>
+    </div>`;
+}
+
+async function previewSynonyms() {
+  const bc = document.getElementById('f_boi_canh')?.value || '';
+  const hd = document.getElementById('f_hanh_dong')?.value || '';
+  const kq = document.getElementById('f_ket_qua')?.value || '';
+  const md = document.getElementById('f_muc_dich')?.value || '';
+
+  const previewBox  = document.getElementById('synonym-preview');
+  const previewList = document.getElementById('synonym-preview-list');
+  if (!previewBox || !previewList) return;
+
+  if (!bc && !hd && !kq && !md) {
+    previewBox.style.display = 'none';
+    return;
+  }
+
+  const params = new URLSearchParams();
+  if (bc) params.set('boi_canh', bc);
+  if (hd) params.set('hanh_dong', hd);
+  if (kq) params.set('ket_qua', kq);
+  if (md) params.set('muc_dich', md);
+
+  const r = await fetch(`/api/preview-synonyms?${params}`);
+  const data = await r.json();
+
+  const vns = (data.synonyms_vn || []).map(s => `<li>&#x1F1FB;&#x1F1F3; ${s}</li>`).join('');
+  const ens = (data.synonyms_en || []).map(s => `<li class="en-item">&#x1F1EC;&#x1F1E7; ${s}</li>`).join('');
+
+  if (vns || ens) {
+    const frames = data.matched_frames.join(', ');
+    previewList.innerHTML = `
+      <li style="font-size:.75rem;color:var(--muted);border:none;background:none;padding:.2rem 0">
+        Khung khớp: <b style="color:var(--accent)">${frames}</b>
+      </li>${vns}${ens}`;
+    previewBox.style.display = 'block';
+  } else {
+    previewList.innerHTML = `<li style="color:var(--muted);font-style:italic">
+      Chưa có câu đồng nghĩa nào khớp với tiêu chí đã chọn.
+    </li>`;
+    previewBox.style.display = 'block';
+  }
+}
+
+async function addIdiom() {
+  const name       = document.getElementById('f_name').value.trim();
+  const language   = document.querySelector('input[name=lang]:checked').value;
+  const boi_canh   = document.getElementById('f_boi_canh').value;
+  const hanh_dong  = document.getElementById('f_hanh_dong').value;
+  const ket_qua    = document.getElementById('f_ket_qua').value;
+  const muc_dich   = document.getElementById('f_muc_dich').value;
+  const giai_thich = document.getElementById('f_giai_thich').value.trim();
+
+  const msgEl = document.getElementById('add_msg');
+  if (!name) { msgEl.innerHTML = `<div class="msg msg-err">Vui lòng nhập tên thành ngữ!</div>`; return; }
+
+  const params = new URLSearchParams({ name, language, boi_canh, hanh_dong, ket_qua, muc_dich, giai_thich });
+  const r = await fetch(`/api/add?${params}`, { method: 'POST' });
+  const data = await r.json();
+
+  if (!data.ok) {
+    msgEl.innerHTML = `<div class="msg msg-err">${data.msg}</div>`;
+    return;
+  }
+
+  // Thành công — hiện đồng nghĩa tìm được ngay lập tức
+  const vns = (data.synonyms_vn || []).map(s => `<li>&#x1F1FB;&#x1F1F3; ${s}</li>`).join('');
+  const ens = (data.synonyms_en || []).map(s => `<li class="en-item">🇬🇧 ${s}</li>`).join('');
+  const synBlock = (vns || ens)
+    ? `<div style="margin-top:.8rem">
+        <p style="color:var(--muted);font-size:.82rem;margin-bottom:.4rem">Các câu đồng nghĩa (Khung: <b style="color:var(--accent)">${(data.matched_frames||[]).join(', ')}</b>):</p>
+        <ul class="synonym-list">${vns}${ens}</ul>
+       </div>`
+    : `<p style="color:var(--muted);font-size:.85rem;margin-top:.5rem">Chưa có câu đồng nghĩa nào trong hệ thống.</p>`;
+
+  msgEl.innerHTML = `
+    <div class="msg msg-ok">${data.msg}</div>
+    ${synBlock}`;
+}
+
+</script>
+</body>
+</html>
