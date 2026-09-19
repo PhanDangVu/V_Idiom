@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+owlready2
+pandas
+jupyter
