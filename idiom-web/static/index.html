@@ -476,68 +476,57 @@
 
     function renderAIAnalysisCard(d) {
       const res = document.getElementById('result');
-      const tc = d.Tieu_chi || {};
-      const sacThai = d.Buoc_1_Sac_thai_va_Y_nghia || d.Buoc_1_Phan_tich_sac_thai || '';
-      const coChe = d.Buoc_4_Co_che_nhan_qua || '';
-      const phanBien = d.Buoc_6_Phan_bien || d.Buoc_5_Phan_bien_Thanh_ngu_EN || '';
-      const kiemTraNguoc = d.Buoc_7_Kiem_tra_nguoc || '';
+      
+      const ketQuaDanhGia = d.Kết_Quả_Đánh_Giá || "";
+      const isNew = ketQuaDanhGia === "KHUNG_MỚI";
+      const tc = isNew ? (d.Bộ_Tiêu_Chí_Khung_Mới || {}) : (d.Bộ_Tiêu_Chí_Khung || {});
+      const stt = isNew ? d.Mã_Khung_STT_Khởi_Tạo : d.Mã_Khung_STT;
+      const vnMeaning = isNew ? (d.Giải_Thích_Nghĩa_Đề_Xuất?.Tiếng_Việt || "") : (d.Giải_Thích_Nghĩa_Gốc?.Tiếng_Việt || "");
+      const enMeaning = isNew ? (d.Giải_Thích_Nghĩa_Đề_Xuất?.Tiếng_Anh || "") : (d.Giải_Thích_Nghĩa_Gốc?.Tiếng_Anh || "");
+      
+      const synonyms = d.Các_Câu_Đồng_Nghĩa_Cùng_Khung || { Tiếng_Việt: [], Tiếng_Anh: [] };
+      const vns = (synonyms.Tiếng_Việt || []).map(s => `<li>&#x1F1FB;&#x1F1F3; ${s}</li>`).join('');
+      const ens = (synonyms.Tiếng_Anh || []).map(s => `<li class="en-item">&#x1F1EC;&#x1F1E7; ${s}</li>`).join('');
+
+      let badgeHtml = isNew 
+        ? `<span class="badge badge-ai" style="background:#f59e0b;color:#fff">⚠️ KHUNG MỚI (STT: ${stt})</span>`
+        : `<span class="badge badge-ai" style="background:#10b981;color:#fff">✅ KHUNG ĐÃ TỒN TẠI (STT: ${stt})</span>`;
 
       res.innerHTML = `
     <div class="card">
       <div class="card-title">
-        🤖 Kết quả phân tích Groq Cloud AI <span class="badge badge-ai">Groq LLaMA 3.3</span>
+        🤖 Kết quả đối soát Ontology ${badgeHtml}
       </div>
       <p style="font-size:1.05rem;margin-bottom:.5rem">
-        🇻🇳 <strong>${d.Thanh_ngu_VN}</strong> &nbsp;⇄&nbsp; 
-        🇬🇧 <strong style="color:var(--accent2)">${d.Thanh_ngu_EN || '(Không có câu tương đương)'}</strong>
+        🇻🇳 <strong>${d.Thành_Ngữ_Mới_Nhập}</strong>
       </p>
       
-      ${sacThai ? `
-      <div style="background:var(--surface);border-left:3px solid var(--accent);padding:.6rem .9rem;border-radius:6px;margin:.7rem 0">
-        <p style="color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em">BƯỚC 1 — Sắc thái & Ý nghĩa cốt lõi:</p>
-        <p style="color:#e2e8f0;font-size:.88rem;margin-top:.2rem">${sacThai}</p>
-      </div>` : ''}
+      ${d.Thông_Báo ? `<div style="color:#f59e0b; font-size:0.9rem; margin-bottom:1rem;"><i>${d.Thông_Báo}</i></div>` : ''}
 
       <div style="margin: .7rem 0">
-        <p style="color:var(--muted);font-size:.85rem">🇻🇳 BƯỚC 2 — Nghĩa bóng Tiếng Việt:</p>
-        <p style="color:white;font-style:italic;margin-bottom:.4rem">"${d.Giai_thich_ngan || d.Buoc_2_Giai_thich_nghia_bong_VN || '—'}"</p>
-        <p style="color:var(--muted);font-size:.85rem">🇬🇧 BƯỚC 3 — Nghĩa bóng Tiếng Anh:</p>
-        <p style="color:white;font-style:italic;">"${d.Giai_thich_EN || d.Buoc_3_Giai_thich_nghia_bong_EN || '—'}"</p>
+        <p style="color:var(--muted);font-size:.85rem">🇻🇳 Ý nghĩa Tiếng Việt:</p>
+        <p style="color:white;font-style:italic;margin-bottom:.4rem">"${vnMeaning || '—'}"</p>
+        <p style="color:var(--muted);font-size:.85rem">🇬🇧 Ý nghĩa Tiếng Anh:</p>
+        <p style="color:white;font-style:italic;">"${enMeaning || '—'}"</p>
       </div>
 
-      ${coChe ? `
-      <div style="background:rgba(59, 130, 246, 0.08);border-left:3px solid #3b82f6;padding:.6rem .9rem;border-radius:6px;margin:.7rem 0">
-        <p style="color:#60a5fa;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600">⭐ BƯỚC 4 — Cơ chế nhân - quả:</p>
-        <p style="color:#e2e8f0;font-size:.88rem;margin-top:.2rem">${coChe}</p>
-      </div>` : ''}
-
       <div style="margin:.7rem 0">
-        <p style="color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">BƯỚC 5 — Phân tích 4 trục tiêu chí:</p>
+        <p style="color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Bộ Khung Tiêu Chí (Semantic Frame):</p>
         <div class="criteria-grid">
-          <div class="crit-item"><div class="crit-label">Bối cảnh (BC)</div><div class="crit-value">${tc.Boi_canh || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Hành động (HD)</div><div class="crit-value">${tc.Hanh_dong || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Kết quả (KQ)</div><div class="crit-value">${tc.Ket_qua || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Mục đích (MD)</div><div class="crit-value">${tc.Muc_dich || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Bối cảnh (BC)</div><div class="crit-value">${criteriaLabels[tc.Bối_cảnh] || tc.Bối_cảnh || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Hành động (HD)</div><div class="crit-value">${criteriaLabels[tc.Hành_động] || tc.Hành_động || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Kết quả (KQ)</div><div class="crit-value">${criteriaLabels[tc.Kết_quả] || tc.Kết_quả || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Mục đích (MD)</div><div class="crit-value">${criteriaLabels[tc.Mục_đích] || tc.Mục_đích || '—'}</div></div>
         </div>
       </div>
 
-      ${phanBien ? `
-      <div style="background:rgba(245, 158, 11, 0.08);border-left:3px solid #f59e0b;padding:.6rem .9rem;border-radius:6px;margin:.7rem 0">
-        <p style="color:#fbbf24;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600">⚖️ BƯỚC 6 — Phản biện đối chiếu (Self-Critique):</p>
-        <p style="color:#e2e8f0;font-size:.88rem;margin-top:.2rem">${phanBien}</p>
-      </div>` : ''}
+      ${(vns || ens) 
+        ? `<div style="margin-top:1rem;margin-bottom:1rem"><p style="color:var(--muted);font-size:.85rem;margin-bottom:.5rem">Các câu tương đương / đồng nghĩa (Cùng chia sẻ Khung ${stt}):</p><ul class="synonym-list">
+             ${vns}
+             ${ens}
+           </ul></div>`
+        : `<p style="color:var(--muted);font-size:.85rem;margin-top:.8rem;margin-bottom:1rem">Chưa có câu đồng nghĩa nào trong hệ thống.</p>`}
 
-      ${kiemTraNguoc ? `
-      <div style="background:rgba(16, 185, 129, 0.08);border-left:3px solid #10b981;padding:.6rem .9rem;border-radius:6px;margin:.7rem 0">
-        <p style="color:#34d399;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600">🔄 BƯỚC 7 — Kiểm tra ngược (Reverse Check):</p>
-        <p style="color:#e2e8f0;font-size:.88rem;margin-top:.2rem">${kiemTraNguoc}</p>
-      </div>` : ''}
-
-      <div class="form-actions">
-        <button class="btn-success" onclick="saveAIResult(${JSON.stringify(d).replace(/"/g, '&quot;')})">💾 Lưu vào Bản thể học (Ontology) & CSV</button>
-        <button class="btn-secondary" onclick="fillFormFromAI(${JSON.stringify(d).replace(/"/g, '&quot;')})">✏️ Điền vào Form chỉnh sửa thủ công</button>
-      </div>
-      <div id="ai_save_msg"></div>
     </div>`;
     }
 
@@ -608,8 +597,7 @@
       <div class="card">
         <div class="card-title">🎉 Tự động phân tích & Lưu thành công! <span class="badge badge-ai">STT: ${data.stt}</span></div>
         <p style="font-size:1.05rem;margin-bottom:.4rem">
-          🇻🇳 <strong>${data.thanh_ngu_vn}</strong> &nbsp;⇄&nbsp; 
-          🇬🇧 <strong style="color:var(--accent2)">${data.thanh_ngu_en}</strong>
+          🇻🇳 <strong>${data.thanh_ngu_vn}</strong>
         </p>
         <p style="color:var(--muted);font-size:.82rem;margin-bottom:.6rem">Khung Ontology: <b style="color:var(--accent)">${data.frame}</b></p>
         
@@ -622,10 +610,10 @@
         </div>
 
         <div class="criteria-grid">
-          <div class="crit-item"><div class="crit-label">Bối cảnh</div><div class="crit-value">${tc.Boi_canh || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Hành động</div><div class="crit-value">${tc.Hanh_dong || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Kết quả</div><div class="crit-value">${tc.Ket_qua || '—'}</div></div>
-          <div class="crit-item"><div class="crit-label">Mục đích</div><div class="crit-value">${tc.Muc_dich || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Bối cảnh</div><div class="crit-value">${criteriaLabels[tc.Boi_canh] || tc.Boi_canh || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Hành động</div><div class="crit-value">${criteriaLabels[tc.Hanh_dong] || tc.Hanh_dong || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Kết quả</div><div class="crit-value">${criteriaLabels[tc.Ket_qua] || tc.Ket_qua || '—'}</div></div>
+          <div class="crit-item"><div class="crit-label">Mục đích</div><div class="crit-value">${criteriaLabels[tc.Muc_dich] || tc.Muc_dich || '—'}</div></div>
         </div>
 
         ${data.phan_bien ? `<div style="background:rgba(245, 158, 11, 0.08);border-left:3px solid #f59e0b;padding:.6rem .9rem;border-radius:6px;margin:.7rem 0"><p style="color:#fbbf24;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600">⚖️ Phản biện:</p><p style="color:#e2e8f0;font-size:.88rem;margin-top:.2rem">${data.phan_bien}</p></div>` : ''}

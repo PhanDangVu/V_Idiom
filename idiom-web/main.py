@@ -217,7 +217,7 @@ def read_csv_idioms():
 # ─── PHẦN 1: GROQ CLOUD VÀ LLM PROMPT ────────────────────────
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-PROMPT_FILE_PATH = Path(__file__).parent / "prompts" / "prompt_analyze.md"
+PROMPT_FILE_PATH = Path(__file__).parent / "prompts" / "prompt_phan_loai_thanh_ngu.md"
 
 def load_prompt_template() -> str:
     """Đọc template prompt từ file Markdown."""
@@ -226,25 +226,15 @@ def load_prompt_template() -> str:
     with open(PROMPT_FILE_PATH, mode="r", encoding="utf-8") as f:
         return f.read()
 
-def build_ai_prompt(idiom_input: str) -> str:
-    """Tạo chuỗi Prompt theo 4 trục Tiêu chí và danh sách có sẵn từ Ontology dựa trên file Markdown."""
-    list_bc = ", ".join(sorted([i.name for i in BC_cls.instances()]))
-    list_hd = ", ".join(sorted([i.name for i in HD_cls.instances()]))
-    list_kq = ", ".join(sorted([i.name for i in KQ_cls.instances()]))
-    list_md = ", ".join(sorted([i.name for i in MD_cls.instances()]))
+def build_ai_prompt(idiom_input: str) -> tuple[str, str]:
+    """Trả về (system_prompt, user_prompt) dựa trên template và input."""
+    system_prompt = load_prompt_template()
+    user_prompt = f"Phân loại câu thành ngữ này: {idiom_input}"
+    return system_prompt, user_prompt
 
-    template = load_prompt_template()
-    return (
-        template
-        .replace("{idiom_input}", idiom_input)
-        .replace("{list_bc}", list_bc)
-        .replace("{list_hd}", list_hd)
-        .replace("{list_kq}", list_kq)
-        .replace("{list_md}", list_md)
-    )
-
-def call_groq_api(prompt: str) -> dict:
+def call_groq_api(prompts: tuple[str, str]) -> dict:
     """Gọi Groq Cloud API qua endpoint OpenAI-compatible."""
+    system_prompt, user_prompt = prompts
     groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not groq_api_key:
         raise HTTPException(
@@ -256,26 +246,21 @@ def call_groq_api(prompt: str) -> dict:
         "Authorization": f"Bearer {groq_api_key}",
         "Content-Type": "application/json"
     }
-    model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+    model = os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
     payload = {
         "model": model,
         "messages": [
             {
                 "role": "system",
-                "content": (
-                    "Bạn là chuyên gia ngôn ngữ học đối chiếu và Kỹ sư tri thức. "
-                    "Hãy trả về JSON hợp lệ theo đúng cấu trúc yêu cầu. "
-                    "Chỉ giải thích nghĩa bóng (tuyệt đối không giải thích nghĩa đen). "
-                    "TUYỆT ĐỐI KHÔNG dịch từng từ (word-for-word), không dùng câu châm ngôn (quotes) hay câu giao tiếp tự do, chỉ dùng thành ngữ hoặc tục ngữ tiếng Anh kinh điển có thật trong từ điển hoặc chuỗi rỗng \"\" nếu không có."
-                )
+                "content": system_prompt
             },
             {
                 "role": "user",
-                "content": prompt
+                "content": user_prompt
             }
         ],
         "response_format": {"type": "json_object"},
-        "temperature": 0.2
+        "temperature": 0.1
     }
 
     try:
@@ -284,8 +269,22 @@ def call_groq_api(prompt: str) -> dict:
         raise HTTPException(status_code=502, detail=f"Lỗi kết nối tới Groq Cloud API: {str(e)}")
 
     if resp.status_code != 200:
-        raise HTTPException(status_code=resp.status_code, detail=f"Groq API báo lỗi: {resp.text}")
-
+        error_detail = f"Groq API báo lỗi: {resp.text}"
+        try:
+            error_data = resp.json()
+            if "error" in error_data and "message" in error_data["error"]:
+                msg = error_data["error"]["message"]
+                if "rate limit" in msg.lower():
+                    import re
+                    wait_time = re.search(r'in (\d+\.?\d*)s', msg)
+                    if wait_time:
+                        seconds = float(wait_time.group(1))
+                        error_detail = f"⚠️ Đạt giới hạn gọi AI (Rate Limit). Prompt hiện tại khá dài do chứa danh sách khung. Vui lòng thử lại sau {int(seconds) + 1} giây!"
+                    else:
+                        error_detail = "⚠️ Đạt giới hạn gọi AI (Rate Limit). Vui lòng chờ 1 phút rồi thử lại."
+        except:
+            pass
+        raise HTTPException(status_code=resp.status_code, detail=error_detail)
     try:
         raw_text = resp.json()["choices"][0]["message"]["content"]
         data = json.loads(raw_text)
@@ -495,61 +494,23 @@ def api_ai_analyze(idiom: str = Q(None), body: AIAnalyzeRequest = Body(None)):
 
     prompt = build_ai_prompt(target_idiom.strip())
     result = call_groq_api(prompt)
+    print("GROQ RESULT:", result)
 
-    # Chuẩn hoá dữ liệu trả về từ các bước phân tích (hỗ trợ cả 8 bước mới và các bước cũ)
-    thanh_ngu_vn = result.get("Thanh_ngu_VN") or target_idiom.strip()
-    thanh_ngu_en = (
-        result.get("Buoc_8_Thanh_ngu_EN_Chot")
-        or result.get("Buoc_6_Thanh_ngu_EN")
-        or result.get("Buoc_6_Thanh_ngu_EN_Chot")
-        or result.get("Buoc_5_Thanh_ngu_EN")
-        or result.get("Thanh_ngu_EN")
-        or ""
-    )
-    tieu_chi = result.get("Buoc_5_Tieu_chi") or result.get("Buoc_4_Tieu_chi") or result.get("Tieu_chi") or {}
-    giai_thich_vn = (
-        result.get("Buoc_2_Giai_thich_nghia_bong_VN")
-        or result.get("Buoc_2_Giai_thich_VN")
-        or result.get("Giai_thich_ngan")
-        or result.get("Giai_thich_VN")
-        or ""
-    )
-    giai_thich_en = (
-        result.get("Buoc_3_Giai_thich_nghia_bong_EN")
-        or result.get("Buoc_3_Giai_thich_EN")
-        or result.get("Giai_thich_EN")
-        or result.get("Giai_thich_tieng_Anh")
-        or ""
-    )
-    sac_thai = result.get("Buoc_1_Sac_thai_va_Y_nghia") or result.get("Buoc_1_Phan_tich_sac_thai") or ""
-    co_che = result.get("Buoc_4_Co_che_nhan_qua") or ""
-    phan_bien = result.get("Buoc_6_Phan_bien") or result.get("Buoc_5_Phan_bien_Thanh_ngu_EN") or ""
-    kiem_tra_nguoc = result.get("Buoc_7_Kiem_tra_nguoc") or ""
+    try:
+        matcher = IdiomOntologyMatcher(CSV_V4_PATH)
+        if "Thành_ngữ_Gốc" not in result and "Thành_ngữ_Tiếng_Việt" in result:
+            result["Thành_ngữ_Gốc"] = result["Thành_ngữ_Tiếng_Việt"]
+        elif "Thành_ngữ_Gốc" not in result:
+            result["Thành_ngữ_Gốc"] = target_idiom.strip()
 
-    return {
-        "ok": True,
-        "data": {
-            "Thanh_ngu_VN": thanh_ngu_vn,
-            "Thanh_ngu_EN": thanh_ngu_en,
-            "Tieu_chi": {
-                "Boi_canh": tieu_chi.get("Boi_canh", ""),
-                "Hanh_dong": tieu_chi.get("Hanh_dong", ""),
-                "Ket_qua": tieu_chi.get("Ket_qua", ""),
-                "Muc_dich": tieu_chi.get("Muc_dich", "")
-            },
-            "Giai_thich_ngan": giai_thich_vn,
-            "Giai_thich_EN": giai_thich_en,
-            "Buoc_1_Sac_thai_va_Y_nghia": sac_thai,
-            "Buoc_2_Giai_thich_nghia_bong_VN": giai_thich_vn,
-            "Buoc_3_Giai_thich_nghia_bong_EN": giai_thich_en,
-            "Buoc_4_Co_che_nhan_qua": co_che,
-            "Buoc_5_Tieu_chi": tieu_chi,
-            "Buoc_6_Phan_bien": phan_bien,
-            "Buoc_7_Kiem_tra_nguoc": kiem_tra_nguoc,
-            "Buoc_8_Thanh_ngu_EN_Chot": thanh_ngu_en,
-            "Buoc_5_Thanh_ngu_EN": thanh_ngu_en
+        final_result = matcher.process_llm_json(result)
+        return {
+            "ok": True,
+            "data": final_result
         }
-    }
+    except Exception as e:
+        print("Lỗi xử lý matcher:", e)
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/ai/save")
 def api_ai_save(req: AISaveRequest):
@@ -600,41 +561,26 @@ def api_ai_auto_process(req: AIAnalyzeRequest):
     prompt = build_ai_prompt(req.idiom.strip())
     res = call_groq_api(prompt)
 
-    thanh_ngu_vn = res.get("Thanh_ngu_VN") or req.idiom.strip()
-    thanh_ngu_en = (
-        res.get("Buoc_8_Thanh_ngu_EN_Chot")
-        or res.get("Buoc_6_Thanh_ngu_EN")
-        or res.get("Buoc_6_Thanh_ngu_EN_Chot")
-        or res.get("Buoc_5_Thanh_ngu_EN")
-        or res.get("Thanh_ngu_EN")
-        or ""
-    )
-    tieu_chi = res.get("Buoc_5_Tieu_chi") or res.get("Buoc_4_Tieu_chi") or res.get("Tieu_chi") or {}
-    bc = tieu_chi.get("Boi_canh", "")
-    hd = tieu_chi.get("Hanh_dong", "")
-    kq = tieu_chi.get("Ket_qua", "")
-    md = tieu_chi.get("Muc_dich", "")
-    giai_thich_vn = (
-        res.get("Buoc_2_Giai_thich_nghia_bong_VN")
-        or res.get("Buoc_2_Giai_thich_VN")
-        or res.get("Giai_thich_ngan")
-        or res.get("Giai_thich_VN")
-        or ""
-    )
-    giai_thich_en = (
-        res.get("Buoc_3_Giai_thich_nghia_bong_EN")
-        or res.get("Buoc_3_Giai_thich_EN")
-        or res.get("Giai_thich_EN")
-        or res.get("Giai_thich_tieng_Anh")
-        or ""
-    )
-    sac_thai = res.get("Buoc_1_Sac_thai_va_Y_nghia") or res.get("Buoc_1_Phan_tich_sac_thai") or ""
-    co_che = res.get("Buoc_4_Co_che_nhan_qua") or ""
-    phan_bien = res.get("Buoc_6_Phan_bien") or res.get("Buoc_5_Phan_bien_Thanh_ngu_EN") or ""
-    kiem_tra_nguoc = res.get("Buoc_7_Kiem_tra_nguoc") or ""
+    thanh_ngu_vn = res.get("Thành_ngữ_Tiếng_Việt") or res.get("Thanh_ngu_VN") or req.idiom.strip()
+    thanh_ngu_en = res.get("Thành_ngữ_Tiếng_Anh") or res.get("Thanh_ngu_EN") or ""
 
-    if not thanh_ngu_en:
-        raise HTTPException(status_code=500, detail="Groq không tìm thấy thành ngữ tiếng Anh bản xứ tương đương phù hợp.")
+    bc = res.get("Bối_cảnh") or ""
+    hd = res.get("Hành_động") or ""
+    kq = res.get("Kết_quả") or ""
+    md = res.get("Mục_đích") or ""
+
+    bc = bc if bc else ""
+    hd = hd if hd else ""
+    kq = kq if kq else ""
+    md = md if md else ""
+
+    giai_thich_vn = res.get("Giải_thích_nghĩa_Tiếng_Việt") or ""
+    giai_thich_en = res.get("Giải_thích_nghĩa_Tiếng_Anh") or ""
+    
+    sac_thai = ""
+    co_che = ""
+    phan_bien = ""
+    kiem_tra_nguoc = ""
 
     # 2. Lưu vào CSV
     stt = save_to_csv(
@@ -666,7 +612,12 @@ def api_ai_auto_process(req: AIAnalyzeRequest):
         "stt": stt,
         "thanh_ngu_vn": thanh_ngu_vn,
         "thanh_ngu_en": thanh_ngu_en,
-        "tieu_chi": tieu_chi,
+        "tieu_chi": {
+            "Boi_canh": bc,
+            "Hanh_dong": hd,
+            "Ket_qua": kq,
+            "Muc_dich": md
+        },
         "giai_thich_vn": giai_thich_vn,
         "giai_thich_en": giai_thich_en,
         "sac_thai": sac_thai,
@@ -821,3 +772,99 @@ def preview_synonyms(
 
 # ─── Serve frontend ──────────────────────────────────────────
 app.mount("/", StaticFiles(directory=str(Path(__file__).parent / "static"), html=True), name="static")
+import pandas as pd
+import json
+
+class IdiomOntologyMatcher:
+    def __init__(self, csv_path):
+        self.csv_path = csv_path
+        self.df = pd.read_csv(csv_path)
+        self.frame_db = {}
+        self._build_frame_index()
+
+    def _build_frame_index(self):
+        self.frame_db = {}
+        for idx, row in self.df.iterrows():
+            bc = str(row['Bối_cảnh']).strip() if pd.notna(row['Bối_cảnh']) else ''
+            hd = str(row['Hành_động']).strip() if pd.notna(row['Hành_động']) else ''
+            kq = str(row['Kết_quả']).strip() if pd.notna(row['Kết_quả']) else ''
+            md = str(row['Mục_đích']).strip() if pd.notna(row['Mục_đích']) else ''
+            
+            key = (bc, hd, kq, md)
+            if key not in self.frame_db:
+                self.frame_db[key] = {
+                    'stt': row['STT'],
+                    'vi_list': [],
+                    'en_list': [],
+                    'meaning_vi': str(row['Giải_thích_nghĩa_Tiếng_Việt']) if pd.notna(row['Giải_thích_nghĩa_Tiếng_Việt']) else '',
+                    'meaning_en': str(row['Giải_thích_nghĩa_Tiếng_Anh']) if pd.notna(row['Giải_thích_nghĩa_Tiếng_Anh']) else ''
+                }
+            
+            if pd.notna(row['Thành_ngữ_Tiếng_Việt']) and str(row['Thành_ngữ_Tiếng_Việt']).strip():
+                vi = str(row['Thành_ngữ_Tiếng_Việt']).strip()
+                if vi not in self.frame_db[key]['vi_list']:
+                    self.frame_db[key]['vi_list'].append(vi)
+
+            if pd.notna(row['Thành_ngữ_Tiếng_Anh']) and str(row['Thành_ngữ_Tiếng_Anh']).strip():
+                en = str(row['Thành_ngữ_Tiếng_Anh']).strip()
+                if en not in self.frame_db[key]['en_list']:
+                    self.frame_db[key]['en_list'].append(en)
+
+    def process_llm_json(self, extracted_json):
+        bc = str(extracted_json.get('Bối_cảnh') or '').strip()
+        hd = str(extracted_json.get('Hành_động') or '').strip()
+        kq = str(extracted_json.get('Kết_quả') or '').strip()
+        md = str(extracted_json.get('Mục_đích') or '').strip()
+        
+        if bc.lower() in ['null', 'none']: bc = ''
+        if hd.lower() in ['null', 'none']: hd = ''
+        if kq.lower() in ['null', 'none']: kq = ''
+        if md.lower() in ['null', 'none']: md = ''
+
+        key = (bc, hd, kq, md)
+        input_idiom = extracted_json.get('Thành_ngữ_Gốc') or extracted_json.get('Thành_ngữ_Tiếng_Việt') or ''
+
+        if key in self.frame_db:
+            matched = self.frame_db[key]
+            return {
+                "Kết_Quả_Đánh_Giá": "KHUNG_ĐÃ_TỒN_TẠI",
+                "Mã_Khung_STT": matched['stt'],
+                "Thành_Ngữ_Mới_Nhập": input_idiom,
+                "Bộ_Tiêu_Chí_Khung": {
+                    "Bối_cảnh": bc or None,
+                    "Hành_động": hd or None,
+                    "Kết_quả": kq or None,
+                    "Mục_đích": md or None
+                },
+                "Các_Câu_Đồng_Nghĩa_Cùng_Khung": {
+                    "Tiếng_Việt": matched['vi_list'],
+                    "Tiếng_Anh": matched['en_list']
+                },
+                "Giải_Thích_Nghĩa_Gốc": {
+                    "Tiếng_Việt": matched['meaning_vi'],
+                    "Tiếng_Anh": matched['meaning_en']
+                },
+                "Giải_Thích_Nghĩa_Đề_Xuất": {
+                    "Tiếng_Việt": extracted_json.get('Giải_thích_nghĩa_Tiếng_Việt', ''),
+                    "Tiếng_Anh": extracted_json.get('Giải_thích_nghĩa_Tiếng_Anh', '')
+                }
+            }
+        else:
+            max_stt = max([item['stt'] for item in self.frame_db.values()]) if self.frame_db else 100
+            new_stt = max_stt + 1
+            return {
+                "Kết_Quả_Đánh_Giá": "KHUNG_MỚI",
+                "Mã_Khung_STT_Khởi_Tạo": new_stt,
+                "Thành_Ngữ_Mới_Nhập": input_idiom,
+                "Bộ_Tiêu_Chí_Khung_Mới": {
+                    "Bối_cảnh": bc or None,
+                    "Hành_động": hd or None,
+                    "Kết_quả": kq or None,
+                    "Mục_đích": md or None
+                },
+                "Thông_Báo": f"Không tìm thấy khung trùng khớp. Đã đề xuất tạo Khung mới STT {new_stt}.",
+                "Giải_Thích_Nghĩa_Đề_Xuất": {
+                    "Tiếng_Việt": extracted_json.get('Giải_thích_nghĩa_Tiếng_Việt', ''),
+                    "Tiếng_Anh": extracted_json.get('Giải_thích_nghĩa_Tiếng_Anh', '')
+                }
+            }
