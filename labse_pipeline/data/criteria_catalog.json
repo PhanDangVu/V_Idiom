@@ -1,0 +1,484 @@
+{
+  "Bối_cảnh": {
+    "BC_Giao_tiếp": {
+      "label_vi": "Giao tiếp",
+      "label_en": "Communication",
+      "desc_vi": "Tình huống nói chuyện, đàm phán, phô trương ý kiến.",
+      "desc_en": "Situations involving speaking, negotiating, or expressing opinions."
+    },
+    "BC_Thương_mại": {
+      "label_vi": "Thương mại",
+      "label_en": "Commerce and Finance",
+      "desc_vi": "Mua bán, kinh doanh, trao đổi tiền bạc, giá cả.",
+      "desc_en": "Buying, selling, business, money exchange, and pricing."
+    },
+    "BC_Xung_đột": {
+      "label_vi": "Xung đột",
+      "label_en": "Conflict",
+      "desc_vi": "Cãi vã, chiến đấu, mâu thuẫn, đối đầu.",
+      "desc_en": "Quarrels, fighting, confrontation, and antagonism."
+    },
+    "BC_Nguy_hiểm": {
+      "label_vi": "Nguy hiểm",
+      "label_en": "Danger and Crisis",
+      "desc_vi": "Tình huống đe dọa đến an toàn, rủi ro cao.",
+      "desc_en": "Situations threatening safety with high danger or crisis."
+    },
+    "BC_Sinh_hoạt": {
+      "label_vi": "Sinh hoạt",
+      "label_en": "Daily Life",
+      "desc_vi": "Đời sống hàng ngày, thói quen, sinh hoạt gia đình.",
+      "desc_en": "Everyday living, habits, and household routines."
+    },
+    "BC_Rủi_ro": {
+      "label_vi": "Rủi ro",
+      "label_en": "Risk and Uncertainty",
+      "desc_vi": "Đánh cược, tình huống không chắc chắn, làm điều lén lút.",
+      "desc_en": "Gambling, uncertain situations, or covert risky actions."
+    },
+    "BC_Đánh_giá": {
+      "label_vi": "Đánh giá",
+      "label_en": "Judgment and Evaluation",
+      "desc_vi": "Nhìn nhận, phán xét người hoặc vật.",
+      "desc_en": "Perceiving, judging, or evaluating people or things."
+    },
+    "BC_Bảo_mật": {
+      "label_vi": "Bảo mật",
+      "label_en": "Secrecy",
+      "desc_vi": "Tình huống liên quan đến bí mật, thông tin ẩn giấu.",
+      "desc_en": "Situations involving secrets or hidden information."
+    },
+    "BC_Sự_kiện_hiếm": {
+      "label_vi": "Sự kiện hiếm",
+      "label_en": "Rare Event",
+      "desc_vi": "Hiện tượng tự nhiên hoặc sự kiện hiếm gặp, bất ngờ.",
+      "desc_en": "Rare or unexpected occurrences and phenomena."
+    },
+    "BC_Cơ_hội": {
+      "label_vi": "Cơ hội",
+      "label_en": "Opportunity",
+      "desc_vi": "Thời cơ tốt xuất hiện.",
+      "desc_en": "Favorable timing or opportunity arising."
+    },
+    "BC_Cảm_xúc": {
+      "label_vi": "Cảm xúc",
+      "label_en": "Emotion and Psychology",
+      "desc_vi": "Trạng thái tâm lý, xáo trộn nội tâm, so sánh.",
+      "desc_en": "Psychological states, inner turmoil, or emotional comparison."
+    },
+    "BC_Thực_thi_mục_tiêu": {
+      "label_vi": "Thực thi mục tiêu",
+      "label_en": "Goal Pursuit",
+      "desc_vi": "Quá trình đang nỗ lực đạt một đích đến.",
+      "desc_en": "The process of striving to achieve a specific goal or task."
+    },
+    "BC_Hậu_quả": {
+      "label_vi": "Hậu quả",
+      "label_en": "Aftermath",
+      "desc_vi": "Giai đoạn sự việc quá sát hoặc hậu quả đã xảy ra.",
+      "desc_en": "When an event is imminent or consequences have already occurred."
+    },
+    "BC_Nhận_thức": {
+      "label_vi": "Nhận thức",
+      "label_en": "Cognition and Perception",
+      "desc_vi": "Trạng thái biết, tin tưởng hoặc chứng kiến sự việc.",
+      "desc_en": "Knowing, believing, or witnessing facts and reality."
+    },
+    "BC_Đối_nhân_xử_thế": {
+      "label_vi": "Đối nhân xử thế",
+      "label_en": "Social Relations",
+      "desc_vi": "Giao tiếp xã hội, ứng xử giữa người với người.",
+      "desc_en": "Social interaction and interpersonal conduct."
+    },
+    "BC_Bệnh_tật": {
+      "label_vi": "Bệnh tật",
+      "label_en": "Illness and Health",
+      "desc_vi": "Tình trạng sức khỏe kém, bệnh tật.",
+      "desc_en": "Poor health conditions or sickness."
+    },
+    "BC_Cuộc_sống": {
+      "label_vi": "Cuộc sống",
+      "label_en": "Life Rules",
+      "desc_vi": "Quy luật đời sống, thực tế xã hội.",
+      "desc_en": "General laws of life and social reality."
+    },
+    "BC_Gia_đình": {
+      "label_vi": "Gia đình",
+      "label_en": "Family and Kinship",
+      "desc_vi": "Quan hệ huyết thống, gia tộc, cha con, anh em.",
+      "desc_en": "Blood relations, kinship, parents, children, and siblings."
+    },
+    "BC_Lao_động": {
+      "label_vi": "Lao động",
+      "label_en": "Work and Practice",
+      "desc_vi": "Quá trình học tập, rèn luyện, lao động sản xuất.",
+      "desc_en": "Learning, training, hard work, and production."
+    },
+    "BC_Đạo_đức": {
+      "label_vi": "Đạo đức",
+      "label_en": "Morality and Ethics",
+      "desc_vi": "Chuẩn mực đạo đức, nhân cách, lòng biết ơn.",
+      "desc_en": "Moral standards, character, karma, and gratitude."
+    },
+    "BC_Môi_trường_mới": {
+      "label_vi": "Môi trường mới",
+      "label_en": "New Environment",
+      "desc_vi": "Hoàn cảnh sống hoặc môi trường văn hóa mới.",
+      "desc_en": "Entering a new living environment or unfamiliar culture."
+    }
+  },
+  "Hành_động": {
+    "HD_Né_tránh": {
+      "label_vi": "Né tránh",
+      "label_en": "Avoidance",
+      "desc_vi": "Vòng vo, thoái thác, trốn tránh nguy cơ.",
+      "desc_en": "Beating around the bush, shirking, or fleeing from danger."
+    },
+    "HD_Đối_mặt": {
+      "label_vi": "Đối mặt",
+      "label_en": "Confrontation",
+      "desc_vi": "Chấp nhận đương đầu, dấn thân vào gian khó.",
+      "desc_en": "Bravely facing and enduring hardship or danger."
+    },
+    "HD_Liều_lĩnh": {
+      "label_vi": "Liều lĩnh",
+      "label_en": "Recklessness",
+      "desc_vi": "Làm điều sai trái lén lút, rủi ro cao.",
+      "desc_en": "Acting recklessly or repeatedly doing covert wrongdoings."
+    },
+    "HD_Tấn_công": {
+      "label_vi": "Tấn công",
+      "label_en": "Aggression and Harm",
+      "desc_vi": "Công kích, chê bai, làm hại người khác.",
+      "desc_en": "Attacking, criticizing, or harming others."
+    },
+    "HD_Đánh_giá_sai": {
+      "label_vi": "Đánh giá sai",
+      "label_en": "Misjudgment",
+      "desc_vi": "Nhìn mặt bắt hình dong, áp đặt chủ quan.",
+      "desc_en": "Judging by appearances or projecting subjective bias."
+    },
+    "HD_Tham_lam": {
+      "label_vi": "Tham lam",
+      "label_en": "Greed",
+      "desc_vi": "Ôm đồm, lấn tới, đòi hỏi vô lý.",
+      "desc_en": "Being greedy, overreaching, or making unreasonable demands."
+    },
+    "HD_Nỗ_lực": {
+      "label_vi": "Nỗ lực",
+      "label_en": "Diligent Effort",
+      "desc_vi": "Làm việc chăm chỉ, dốc hết sức.",
+      "desc_en": "Working hard and putting in persistent effort."
+    },
+    "HD_Thổi_phồng": {
+      "label_vi": "Thổi phồng",
+      "label_en": "Boasting and Exaggeration",
+      "desc_vi": "Khoa trương, phô trương quá đà.",
+      "desc_en": "Boasting, showing off, or exaggerating one's abilities."
+    },
+    "HD_Lợi_dụng": {
+      "label_vi": "Lợi dụng",
+      "label_en": "Exploitation and Ingratitude",
+      "desc_vi": "Vô ơn, ăn cháo đá bát, đổ lỗi.",
+      "desc_en": "Being ungrateful, betraying benefactors, or shifting blame."
+    },
+    "HD_Che_giấu": {
+      "label_vi": "Che giấu",
+      "label_en": "Concealment",
+      "desc_vi": "Cố tình đậy điệm, giữ kín bí mật.",
+      "desc_en": "Deliberately hiding or keeping secrets."
+    },
+    "HD_Trì_hoãn": {
+      "label_vi": "Trì hoãn",
+      "label_en": "Procrastination",
+      "desc_vi": "Chậm trễ, ăn xổi ở thì, để nước đến chân mới nhảy.",
+      "desc_en": "Delaying action until too late or living hand to mouth."
+    },
+    "HD_Nắm_bắt": {
+      "label_vi": "Nắm bắt",
+      "label_en": "Seizing Opportunity",
+      "desc_vi": "Chớp lấy cơ hội ngay lập tức.",
+      "desc_en": "Promptly seizing an opportunity."
+    },
+    "HD_Kiên_nhẫn": {
+      "label_vi": "Kiên nhẫn",
+      "label_en": "Patience and Endurance",
+      "desc_vi": "Nhẫn nại, kiên trì chịu đựng.",
+      "desc_en": "Enduring hardship patiently and persistently."
+    },
+    "HD_Tiêu_xài_hoang_phí": {
+      "label_vi": "Tiêu xài hoang phí",
+      "label_en": "Extravagance",
+      "desc_vi": "Tiêu tốn tiền bạc không tiếc của.",
+      "desc_en": "Squandering money extravagantly without care."
+    },
+    "HD_Kìm_nén_cảm_xúc": {
+      "label_vi": "Kìm nén cảm xúc",
+      "label_en": "Restraint",
+      "desc_vi": "Giữ bình tĩnh, ứng xử mềm mỏng.",
+      "desc_en": "Exercising self-restraint, staying calm, and speaking gently."
+    },
+    "HD_Thích_ứng": {
+      "label_vi": "Thích ứng",
+      "label_en": "Adaptation",
+      "desc_vi": "Hòa nhập, điều chỉnh theo môi trường mới.",
+      "desc_en": "Adapting and conforming to local customs and environments."
+    },
+    "HD_Bắt_chước": {
+      "label_vi": "Bắt chước",
+      "label_en": "Imitation and Inheritance",
+      "desc_vi": "Kế thừa, mô phỏng hoặc bị ảnh hưởng thói quen.",
+      "desc_en": "Inheriting traits, imitating, or being influenced by surroundings."
+    },
+    "HD_Đồng_lòng": {
+      "label_vi": "Đồng lòng",
+      "label_en": "Solidarity and Unity",
+      "desc_vi": "Đoàn kết, hợp lực cùng nhau.",
+      "desc_en": "Uniting and working together in solidarity."
+    },
+    "HD_So_sánh": {
+      "label_vi": "So sánh",
+      "label_en": "Envious Comparison",
+      "desc_vi": "Nhìn nhận và ảo tưởng về hoàn cảnh người khác.",
+      "desc_en": "Comparing discontentedly with others' seemingly better situations."
+    }
+  },
+  "Kết_quả": {
+    "KQ_Thành_công": {
+      "label_vi": "Thành công",
+      "label_en": "Success",
+      "desc_vi": "Đạt kết quả tốt đẹp, hoàn thành mục tiêu.",
+      "desc_en": "Achieving good outcomes and fulfilling goals."
+    },
+    "KQ_Thất_bại": {
+      "label_vi": "Thất bại",
+      "label_en": "Failure",
+      "desc_vi": "Hỏng việc, không như ý.",
+      "desc_en": "Failing to achieve the desired result."
+    },
+    "KQ_Tổn_thất_tài_sản": {
+      "label_vi": "Tổn thất tài sản",
+      "label_en": "Financial Loss",
+      "desc_vi": "Mất tiền của, thiệt hại vật chất.",
+      "desc_en": "Losing money, wealth, or material possessions."
+    },
+    "KQ_Tổn_thương": {
+      "label_vi": "Tổn thương",
+      "label_en": "Harm and Injury",
+      "desc_vi": "Thiệt hại thể chất hoặc tinh thần.",
+      "desc_en": "Suffering physical or emotional harm."
+    },
+    "KQ_Hối_hận": {
+      "label_vi": "Hối hận",
+      "label_en": "Irreversible Regret",
+      "desc_vi": "Lời đã nói hoặc viết ra không cứu vãn được.",
+      "desc_en": "Irreversible consequences of spoken or written words."
+    },
+    "KQ_Lộ_tẩy": {
+      "label_vi": "Lộ tẩy",
+      "label_en": "Exposure of Truth",
+      "desc_vi": "Bản chất xấu xa hay bí mật bị phơi bày.",
+      "desc_en": "Hidden secrets or true bad nature being exposed."
+    },
+    "KQ_May_mắn": {
+      "label_vi": "May mắn",
+      "label_en": "Unexpected Luck",
+      "desc_vi": "Bất ngờ đạt kết quả tốt do may mắn.",
+      "desc_en": "Achieving success unexpectedly by sheer luck."
+    },
+    "KQ_Tối_ưu_hóa": {
+      "label_vi": "Tối ưu hóa",
+      "label_en": "Optimization",
+      "desc_vi": "Một công đôi việc, tiết kiệm công sức.",
+      "desc_en": "Accomplishing multiple goals with a single effort."
+    },
+    "KQ_Mất_quan_hệ": {
+      "label_vi": "Mất quan hệ",
+      "label_en": "Broken Relationship",
+      "desc_vi": "Gây thù chuốc oán, mất lòng tin.",
+      "desc_en": "Ruining relationships and losing trust."
+    },
+    "KQ_Bình_yên": {
+      "label_vi": "Bình yên",
+      "label_en": "Peace and Stability",
+      "desc_vi": "Giữ được sự êm ấm, ổn định.",
+      "desc_en": "Maintaining harmony, peace, and stability."
+    },
+    "KQ_An_toàn": {
+      "label_vi": "An toàn",
+      "label_en": "Safety",
+      "desc_vi": "Thoát khỏi nguy hiểm, giữ trọn bản thân.",
+      "desc_en": "Staying safe and avoiding harm."
+    },
+    "KQ_Đạt_được_thỏa_thuận": {
+      "label_vi": "Đạt được thỏa thuận",
+      "label_en": "Consensus",
+      "desc_vi": "Thống nhất ý kiến, giải quyết bất đồng.",
+      "desc_en": "Reaching mutual agreement and resolving disputes."
+    },
+    "KQ_Kết_thúc": {
+      "label_vi": "Kết thúc",
+      "label_en": "Termination",
+      "desc_vi": "Mọi sự việc hay điều tốt đẹp đều dừng lại.",
+      "desc_en": "Everything coming to an inevitable end."
+    },
+    "KQ_Bị_khống_chế": {
+      "label_vi": "Bị khống chế",
+      "label_en": "Outmatched",
+      "desc_vi": "Kẻ ghê gớm bị người cao tay hơn trừng trị.",
+      "desc_en": "A cunning person being outmatched by someone even cleverer."
+    },
+    "KQ_Gieo_tai_họa": {
+      "label_vi": "Gieo tai họa",
+      "label_en": "Retribution and Disaster",
+      "desc_vi": "Nhận lại hậu quả thảm khốc do mình gây ra.",
+      "desc_en": "Suffering disastrous consequences from one's own evil actions."
+    },
+    "KQ_Gắn_kết": {
+      "label_vi": "Gắn kết",
+      "label_en": "Bonding and Gratitude",
+      "desc_vi": "Duy trì tình nghĩa ruột thịt, thắt chặt mối quan hệ.",
+      "desc_en": "Strengthening bonds, loyalty, and family affection."
+    },
+    "KQ_Nhầm_lẫn": {
+      "label_vi": "Nhầm lẫn",
+      "label_en": "Misconception",
+      "desc_vi": "Nhầm lẫn do áp đặt suy nghĩ chủ quan.",
+      "desc_en": "Making mistaken judgments due to subjective bias."
+    },
+    "KQ_Hòa_nhập": {
+      "label_vi": "Hòa nhập",
+      "label_en": "Integration",
+      "desc_vi": "Hòa nhập an toàn vào môi trường mới.",
+      "desc_en": "Successfully integrating into a new environment."
+    },
+    "KQ_Tương_xứng_giá_trị": {
+      "label_vi": "Tương xứng giá trị",
+      "label_en": "Fair Value",
+      "desc_vi": "Giá trị nhận được tương ứng với chi phí bỏ ra.",
+      "desc_en": "Quality and value matching the price or effort paid."
+    },
+    "KQ_Gặp_trở_ngại": {
+      "label_vi": "Gặp trở ngại",
+      "label_en": "Obstacle",
+      "desc_vi": "Công việc bắt đầu hoặc thực hiện gặp nhiều khó khăn.",
+      "desc_en": "Encountering difficulties when starting or executing a task."
+    },
+    "KQ_Xác_nhận_sự_thật": {
+      "label_vi": "Xác nhận sự thật",
+      "label_en": "Truth Verification",
+      "desc_vi": "Tận mắt chứng kiến giúp kiểm chứng chân lý.",
+      "desc_en": "Witnessing firsthand to verify the truth."
+    },
+    "KQ_Tích_lũy_kinh_nghiệm": {
+      "label_vi": "Tích lũy kinh nghiệm",
+      "label_en": "Wisdom and Experience",
+      "desc_vi": "Tuổi tác và trải nghiệm đem lại sự sắc sảo.",
+      "desc_en": "Gaining wisdom and sharpness through age and experience."
+    },
+    "KQ_Tích_lũy_tri_thức": {
+      "label_vi": "Tích lũy tri thức",
+      "label_en": "Knowledge Acquisition",
+      "desc_vi": "Đi nhiều trải nghiệm giúp mở rộng tầm mắt.",
+      "desc_en": "Broadening horizons and knowledge through travel and observation."
+    },
+    "KQ_Trân_trọng_bản_chất": {
+      "label_vi": "Trân trọng bản chất",
+      "label_en": "Valuing Inner Quality",
+      "desc_vi": "Nhìn nhận giá trị phẩm chất bên trong quan trọng hơn.",
+      "desc_en": "Appreciating inner character over outer appearance."
+    },
+    "KQ_Hình_thành_nhân_cách": {
+      "label_vi": "Hình thành nhân cách",
+      "label_en": "Character Formation",
+      "desc_vi": "Môi trường và hoàn cảnh rèn luyện nên con người.",
+      "desc_en": "Character being shaped by social environment and companions."
+    },
+    "KQ_Khác_biệt_quan_điểm": {
+      "label_vi": "Khác biệt quan điểm",
+      "label_en": "Diverse Perspectives",
+      "desc_vi": "Mỗi người có suy nghĩ, sở thích riêng biệt.",
+      "desc_en": "Different people having distinct opinions and tastes."
+    },
+    "KQ_Tồn_tại_khuyết_điểm": {
+      "label_vi": "Tồn tại khuyết điểm",
+      "label_en": "Human Imperfection",
+      "desc_vi": "Thừa nhận con người không ai hoàn hảo.",
+      "desc_en": "Recognizing that nobody is completely perfect."
+    },
+    "KQ_Lưu_danh_hậu_thế": {
+      "label_vi": "Lưu danh hậu thế",
+      "label_en": "Lasting Reputation",
+      "desc_vi": "Danh tiếng tốt đẹp lưu truyền mãi về sau.",
+      "desc_en": "Leaving behind an honorable reputation after death."
+    },
+    "KQ_Đối_mặt_thực_tế": {
+      "label_vi": "Đối mặt thực tế",
+      "label_en": "Facing Harsh Reality",
+      "desc_vi": "Chấp nhận cuộc sống có nhiều gai góc.",
+      "desc_en": "Accepting that life involves inevitable hardships alongside good things."
+    },
+    "KQ_Ngoại_cảnh_chi_phối": {
+      "label_vi": "Ngoại cảnh chi phối",
+      "label_en": "External Circumstance",
+      "desc_vi": "Quyền lực tự nhiên hoặc ngoại cảnh nằm ngoài tầm kiểm soát.",
+      "desc_en": "Being subject to higher powers or uncontrollable external forces."
+    }
+  },
+  "Mục_đích": {
+    "MD_Bảo_vệ_bản_thân": {
+      "label_vi": "Bảo vệ bản thân",
+      "label_en": "Self-Protection",
+      "desc_vi": "Giữ an toàn, tránh rắc rối cho mình.",
+      "desc_en": "Protecting oneself and avoiding trouble."
+    },
+    "MD_Giải_quyết_vấn_đề": {
+      "label_vi": "Giải quyết vấn đề",
+      "label_en": "Problem Solving",
+      "desc_vi": "Muốn hoàn thành mục tiêu, vượt gian khó.",
+      "desc_en": "Overcoming difficulties to solve a problem or achieve a goal."
+    },
+    "MD_Che_đậy": {
+      "label_vi": "Che đậy",
+      "label_en": "Cover-up",
+      "desc_vi": "Cố tình giấu giếm bí mật, mâu thuẫn.",
+      "desc_en": "Keeping secrets or internal conflicts hidden from outsiders."
+    },
+    "MD_Hạ_bệ": {
+      "label_vi": "Hạ bệ",
+      "label_en": "Defeating Opponent",
+      "desc_vi": "Đánh bại, trừng phạt đối thủ.",
+      "desc_en": "Defeating or overthrowing a rival completely."
+    },
+    "MD_Né_tránh_trách_nhiệm": {
+      "label_vi": "Né tránh trách nhiệm",
+      "label_en": "Shirking Responsibility",
+      "desc_vi": "Đổ lỗi, thoái thác cho người khác.",
+      "desc_en": "Evading responsibility and blaming others."
+    },
+    "MD_Giao_hảo": {
+      "label_vi": "Giao hảo",
+      "label_en": "Maintaining Harmony",
+      "desc_vi": "Giữ trọn đạo lý, giữ mối quan hệ tốt đẹp.",
+      "desc_en": "Maintaining goodwill and harmonious relationships."
+    },
+    "MD_Hòa_giải": {
+      "label_vi": "Hòa giải",
+      "label_en": "Forgiveness and Reconciliation",
+      "desc_vi": "Tha thứ, bao dung người biết nhận lỗi.",
+      "desc_en": "Forgiving those who repent and reconciling conflicts."
+    },
+    "MD_Trân_trọng_thời_gian": {
+      "label_vi": "Trân trọng thời gian",
+      "label_en": "Valuing Time",
+      "desc_vi": "Ý thức giá trị quý báu của thời gian.",
+      "desc_en": "Cherishing the preciousness of time."
+    },
+    "MD_Bảo_vệ_tài_sản": {
+      "label_vi": "Bảo vệ tài sản",
+      "label_en": "Protecting Assets",
+      "desc_vi": "Trân trọng và giữ gìn thành quả lao động.",
+      "desc_en": "Preserving wealth and the fruits of hard work."
+    }
+  }
+}
