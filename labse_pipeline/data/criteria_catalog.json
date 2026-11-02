@@ -1,0 +1,1898 @@
+{
+  "Bối_cảnh": {
+    "BC_Cảm_xúc": {
+      "label_vi": "Cảm xúc",
+      "desc_vi": "Trải nghiệm hoặc biểu hiện tình cảm của chủ thể như vui, buồn, sợ, giận; không mặc định nguyên nhân nếu câu không nêu.",
+      "label_en": "Emotions and Feelings",
+      "desc_en": "Emotions and Feelings (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "12. Ruột để ngoài da; 141. Vui như mở cờ trong bụng"
+    },
+    "BC_Công_việc": {
+      "label_vi": "Công việc",
+      "desc_vi": "Một nhiệm vụ, kế hoạch hoặc quá trình thực hiện việc cần làm; không giới hạn ở việc làm có trả lương.",
+      "label_en": "Work and Tasks",
+      "desc_en": "Work and Tasks (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "49. Chọc gậy bánh xe; 62. Mò kim đáy bể"
+    },
+    "BC_Đánh_giá": {
+      "label_vi": "Đánh giá",
+      "desc_vi": "Hoạt động nhận xét chất lượng, động cơ, ưu điểm hoặc khuyết điểm của người hay sự việc.",
+      "label_en": "Evaluation and Judgment",
+      "desc_en": "Evaluation and Judgment (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "60. Bới lông tìm vết; 61. Vạch lá tìm sâu"
+    },
+    "BC_Đời_sống": {
+      "label_vi": "Đời sống",
+      "desc_vi": "Điều kiện sinh hoạt và mức hưởng thụ trong cuộc sống thường ngày; không tự quy định nguồn gốc của điều kiện ấy.",
+      "label_en": "Living Conditions",
+      "desc_en": "Living Conditions (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "116. Ngậm thìa vàng; 161. Cầu được ước thấy"
+    },
+    "BC_Giao_tiếp": {
+      "label_vi": "Giao tiếp",
+      "desc_vi": "Tình huống nói, nghe hoặc trao đổi giữa người với người; nhãn không hàm ý đã giao tiếp thành công.",
+      "label_en": "Communication",
+      "desc_en": "Communication (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "1. Nói toạc móng heo; 2. Thẳng như ruột ngựa"
+    },
+    "BC_Không_gian": {
+      "label_vi": "Không gian",
+      "desc_vi": "Không gian được xét về mức chật, rộng, đông hoặc vắng. Không suy từ chật chội sang tình trạng nghèo khó hay nguy hiểm.",
+      "label_en": "Physical Space",
+      "desc_en": "Physical Space (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "164. Chật như nêm"
+    },
+    "BC_Lợi_ích": {
+      "label_vi": "Lợi ích",
+      "desc_vi": "Việc tìm kiếm, bảo vệ hoặc phân chia phần có lợi cho cá nhân hay nhóm; không tự khẳng định hành vi là xấu.",
+      "label_en": "Interests and Advantage",
+      "desc_en": "Interests and Advantage (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "31. Đục nước béo cò; 32. Thừa nước đục thả câu"
+    },
+    "BC_May_rủi": {
+      "label_vi": "May rủi",
+      "desc_vi": "Yếu tố ngẫu nhiên hoặc điều ngoài khả năng kiểm soát ảnh hưởng đến triển vọng hay kết quả của chủ thể.",
+      "label_en": "Luck and Chance",
+      "desc_en": "Luck and Chance (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "169. Lành ít dữ nhiều; 172. Họa vô đơn chí"
+    },
+    "BC_Mua_bán": {
+      "label_vi": "Mua bán",
+      "desc_vi": "Quan hệ cung cấp, chào hàng, mua hàng hoặc trao đổi giá trị giữa bên bán và bên mua.",
+      "label_en": "Commerce and Trade",
+      "desc_en": "Commerce and Trade (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "23. Treo đầu dê, bán thịt chó; 173. Tiền trao cháo múc"
+    },
+    "BC_Năng_lực": {
+      "label_vi": "Năng lực",
+      "desc_vi": "Khả năng thực hiện một việc, mức chuẩn bị hoặc độ phù hợp giữa kỹ năng của chủ thể với hoạt động và môi trường.",
+      "label_en": "Competence and Readiness",
+      "desc_en": "Competence and Readiness (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "88. Như cá gặp nước; 98. Chưa học bò đã lo học chạy"
+    },
+    "BC_Nghịch_cảnh": {
+      "label_vi": "Nghịch cảnh",
+      "desc_vi": "Hoàn cảnh đau khổ, bất lợi hoặc khó khăn mà chủ thể phải chịu hay cố gắng vượt qua.",
+      "label_en": "Adversity and Hardship",
+      "desc_en": "Adversity and Hardship (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "42. Tránh vỏ dưa, gặp vỏ dừa; 51. Cắn răng chịu đựng"
+    },
+    "BC_Ngoại_hình": {
+      "label_vi": "Ngoại hình",
+      "desc_vi": "Dáng vẻ hoặc tình trạng nhìn thấy ở người, quần áo và đồ vật. Không dùng ngoại hình để suy đoán tính cách hay năng lực.",
+      "label_en": "Physical Appearance",
+      "desc_en": "Physical Appearance (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "78. Ướt như chuột lột"
+    },
+    "BC_Nguồn_lực": {
+      "label_vi": "Nguồn lực",
+      "desc_vi": "Tiền của, thời gian, công sức hoặc phương tiện được xem xét về mức đủ, thiếu, sử dụng hay lãng phí.",
+      "label_en": "Resources and Effort",
+      "desc_en": "Resources and Effort (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "37. Ngồi mát ăn bát vàng; 65. Đổ sông đổ bể"
+    },
+    "BC_Nguy_hiểm": {
+      "label_vi": "Nguy hiểm",
+      "desc_vi": "Có khả năng tổn hại đáng kể đối với con người, công việc hoặc lợi ích; không mặc định tai họa đã xảy ra.",
+      "label_en": "Danger and Threat",
+      "desc_en": "Danger and Threat (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "45. Ngàn cân treo sợi tóc; 46. Chỉ mành treo chuông"
+    },
+    "BC_Nhận_thức": {
+      "label_vi": "Nhận thức",
+      "desc_vi": "Phạm vi hiểu biết, mức hiểu vấn đề hoặc cách nhìn thế giới của chủ thể.",
+      "label_en": "Cognition and Understanding",
+      "desc_en": "Cognition and Understanding (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "69. Cưỡi ngựa xem hoa; 90. Thuộc như lòng bàn tay"
+    },
+    "BC_Quan_hệ": {
+      "label_vi": "Quan hệ",
+      "desc_vi": "Mối liên hệ giữa người với người, gồm tình bạn, gia đình, đồng nghiệp hoặc các quan hệ hỗ trợ và tin cậy.",
+      "label_en": "Interpersonal Relationships",
+      "desc_en": "Interpersonal Relationships (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "27. Đâm sau lưng; 28. Bôi tro trát trấu"
+    },
+    "BC_Quyền_lực": {
+      "label_vi": "Quyền lực",
+      "desc_vi": "Khả năng ảnh hưởng, kiểm soát, quyết định hoặc buộc người khác phải tuân theo trong một tổ chức hay cộng đồng.",
+      "label_en": "Power and Influence",
+      "desc_en": "Power and Influence (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "99. Nắm đằng chuôi; 117. Tai to mặt lớn"
+    },
+    "BC_Quyết_định": {
+      "label_vi": "Quyết định",
+      "desc_vi": "Chủ thể cân nhắc, lựa chọn hoặc đã định đoạt một hướng hành động, nhất là khi có hệ quả đáng kể.",
+      "label_en": "Decision Making",
+      "desc_en": "Decision Making (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "40. Tự đào hố chôn mình; 43. Tiến thoái lưỡng nan"
+    },
+    "BC_Rủi_ro": {
+      "label_vi": "Rủi ro",
+      "desc_vi": "Chủ thể đứng trước khả năng được hoặc mất đáng kể khi tham gia một việc có kết quả không chắc chắn.",
+      "label_en": "Risk and High Stakes",
+      "desc_en": "Risk and High Stakes (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "80. Được ăn cả, ngã về không"
+    },
+    "BC_So_sánh": {
+      "label_vi": "So sánh",
+      "desc_vi": "Đặt hai người hoặc sự vật cạnh nhau để xét mức giống, khác hay tương xứng của họ.",
+      "label_en": "Comparison",
+      "desc_en": "Comparison (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "197. Như hai giọt nước; 198. Một trời một vực"
+    },
+    "BC_Sức_khỏe": {
+      "label_vi": "Sức khỏe",
+      "desc_vi": "Sức lực và tình trạng cơ thể; trong bản này dùng để xét mức khỏe về thể chất, không đưa ra chẩn đoán.",
+      "label_en": "Physical Strength and Health",
+      "desc_en": "Physical Strength and Health (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "82. Khỏe như vâm"
+    },
+    "BC_Tài_chính": {
+      "label_vi": "Tài chính",
+      "desc_vi": "Thu nhập, tiền bạc, chi tiêu, tài sản hoặc nợ; ưu tiên nhãn này khi nghĩa đang chọn chỉ rõ yếu tố tiền.",
+      "label_en": "Finance and Money",
+      "desc_en": "Finance and Money (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "101. Tiền rừng bạc bể; 102. Tiền vào như nước"
+    },
+    "BC_Tập_thể": {
+      "label_vi": "Tập thể",
+      "desc_vi": "Nhiều người cùng hành động hoặc có quan hệ về lập trường và mục tiêu trong một nhóm.",
+      "label_en": "Collective Group Action",
+      "desc_en": "Collective Group Action (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "86. A dua a tòng; 122. Đồng tâm hiệp lực"
+    },
+    "BC_Thông_tin": {
+      "label_vi": "Thông tin",
+      "desc_vi": "Sự tồn tại, độ đúng, việc truyền đi, che giấu hoặc tiếp nhận tin tức và tri thức.",
+      "label_en": "Information and Secrecy",
+      "desc_en": "Information and Secrecy (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "10. Ngậm miệng như hến; 11. Kín như bưng"
+    },
+    "BC_Tính_cách": {
+      "label_vi": "Tính cách",
+      "desc_vi": "Đặc điểm tương đối ổn định trong cách một người cảm nhận hoặc hành xử; không đồng nhất với cảm xúc nhất thời.",
+      "label_en": "Character and Personality",
+      "desc_en": "Character and Personality (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "181. Nhát như cáy; 182. Gan vàng dạ sắt"
+    },
+    "BC_Tốc_độ": {
+      "label_vi": "Tốc độ",
+      "desc_vi": "Mức nhanh hoặc chậm của chuyển động, phản ứng hay tiến độ thực hiện một việc.",
+      "label_en": "Speed and Pace",
+      "desc_en": "Speed and Pace (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "75. Vắt chân lên cổ; 76. Ba chân bốn cẳng"
+    },
+    "BC_Ứng_xử": {
+      "label_vi": "Ứng xử",
+      "desc_vi": "Cách một người thể hiện thái độ, xử sự hoặc trình bày bản thân trước người khác.",
+      "label_en": "Conduct and Demeanor",
+      "desc_en": "Conduct and Demeanor (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "21. Khẩu Phật tâm xà; 22. Miệng nam mô, bụng một bồ dao găm"
+    },
+    "BC_Xung_đột": {
+      "label_vi": "Xung đột",
+      "desc_vi": "Có sự đối kháng, tranh chấp, tức giận hoặc hành vi gây hại giữa các bên.",
+      "label_en": "Conflict and Confrontation",
+      "desc_en": "Conflict and Confrontation (Khung ngữ cảnh)",
+      "type": "Khung ngữ cảnh",
+      "examples": "30. Đổ dầu vào lửa; 41. Gậy ông đập lưng ông"
+    }
+  },
+  "Hành_động": {
+    "HD_Bàn_tán": {
+      "label_vi": "Bàn tán",
+      "desc_vi": "Nhiều người trao đổi, đồn đoán hoặc bình luận về người hay việc khác; không tự khẳng định nội dung bàn tán đúng hay sai.",
+      "label_en": "Gossiping and Speculating",
+      "desc_en": "Gossiping and Speculating (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "13. Lời ra tiếng vào"
+    },
+    "HD_Bày_mưu": {
+      "label_vi": "Bày mưu",
+      "desc_vi": "Sắp đặt một kế hoạch có tính toán nhằm tác động đến người khác; mục tiêu hại người được xác định riêng bằng MD khi có căn cứ.",
+      "label_en": "Scheming and Plotting",
+      "desc_en": "Scheming and Plotting (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "41. Gậy ông đập lưng ông"
+    },
+    "HD_Bỏ_nhỏ_cầu_lớn": {
+      "label_vi": "Bỏ nhỏ cầu lớn",
+      "desc_vi": "Bỏ ra hoặc chấp nhận rủi ro mất một thứ ít giá trị để có cơ hội nhận thứ có giá trị lớn hơn. Chưa khẳng định đã thu lợi lớn.",
+      "label_en": "Sacrificing Small for Large Gain",
+      "desc_en": "Sacrificing Small for Large Gain (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "196. Thả con săn sắt, bắt con cá rô"
+    },
+    "HD_Bỏ_rơi": {
+      "label_vi": "Bỏ rơi",
+      "desc_vi": "Rút lại hoặc từ chối sự quan tâm, giúp đỡ hay hỗ trợ trong một quan hệ. Không nhất thiết có âm mưu gây hại.",
+      "label_en": "Abandoning Support",
+      "desc_en": "Abandoning Support (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "135. Quay lưng trở mặt"
+    },
+    "HD_Bộc_lộ_bản_chất": {
+      "label_vi": "Bộc lộ bản chất",
+      "desc_vi": "Thể hiện ra đặc điểm thật hoặc ý đồ từng bị che giấu; có thể là vô tình lộ ra chứ không phải cố ý công khai.",
+      "label_en": "Revealing True Nature",
+      "desc_en": "Revealing True Nature (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "38. Cháy nhà ra mặt chuột; 39. Lòi đuôi cáo"
+    },
+    "HD_Bộc_lộ_cảm_xúc": {
+      "label_vi": "Bộc lộ cảm xúc",
+      "desc_vi": "Để người khác dễ nhận thấy tình cảm qua lời nói, nét mặt hoặc hành vi, thay vì giấu trong lòng.",
+      "label_en": "Showing Feelings Openly",
+      "desc_en": "Showing Feelings Openly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "12. Ruột để ngoài da"
+    },
+    "HD_Bội_bạc": {
+      "label_vi": "Bội bạc",
+      "desc_vi": "Rút bỏ sự biết ơn, trung thành hoặc hỗ trợ, hay quay lại đối xử xấu với người từng có quan hệ gắn bó hoặc giúp đỡ mình.",
+      "label_en": "Ingratitude Towards Benefactor",
+      "desc_en": "Ingratitude Towards Benefactor (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "34. Ăn cháo đá bát"
+    },
+    "HD_Bù_chỗ_thiếu": {
+      "label_vi": "Bù chỗ thiếu",
+      "desc_vi": "Chuyển tiền hoặc nguồn lực từ nhu cầu này sang nhu cầu khác để tạm lấp thiếu hụt, có thể tạo ra thiếu hụt ở nơi bị lấy đi.",
+      "label_en": "Patching Shortfalls",
+      "desc_en": "Patching Shortfalls (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "110. Giật gấu vá vai"
+    },
+    "HD_Bùng_giận": {
+      "label_vi": "Bùng giận",
+      "desc_vi": "Phản ứng giận dữ xuất hiện đột ngột và mạnh, có thể thể hiện bằng lời nói hoặc hành vi; khác với chỉ đang cảm thấy giận.",
+      "label_en": "Exploding in Anger",
+      "desc_en": "Exploding in Anger (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "153. Nổi trận lôi đình"
+    },
+    "HD_Cai_quản_cứng_rắn": {
+      "label_vi": "Cai quản cứng rắn",
+      "desc_vi": "Điều hành và áp đặt kỷ luật bằng cách nghiêm khắc, ít chấp nhận sự không tuân theo.",
+      "label_en": "Ruling with an Iron Fist",
+      "desc_en": "Ruling with an Iron Fist (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "119. Bàn tay sắt"
+    },
+    "HD_Cãi_vã": {
+      "label_vi": "Cãi vã",
+      "desc_vi": "Trao đổi lời nói mang tính đối chọi hoặc gay gắt giữa các bên; không đồng nhất với bất đồng được trình bày ôn hòa.",
+      "label_en": "Quarrelling and Bickering",
+      "desc_en": "Quarrelling and Bickering (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "132. Như chó với mèo"
+    },
+    "HD_Cắt_chi_tiêu": {
+      "label_vi": "Cắt chi tiêu",
+      "desc_vi": "Giảm các khoản tiền dùng cho sinh hoạt hoặc nhu cầu khác để giữ lại nguồn lực.",
+      "label_en": "Cutting Expenses",
+      "desc_en": "Cutting Expenses (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "106. Thắt lưng buộc bụng; 107. Bóp mồm bóp miệng"
+    },
+    "HD_Cắt_đứt": {
+      "label_vi": "Cắt đứt",
+      "desc_vi": "Chấm dứt việc gắn bó hoặc tiếp tục tham gia một quan hệ hay sự việc, theo nghĩa đã chọn ở từng dòng.",
+      "label_en": "Severing Ties",
+      "desc_en": "Severing Ties (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "139. Dứt áo ra đi; 140. Đường ai nấy đi"
+    },
+    "HD_Cắt_giao_tiếp": {
+      "label_vi": "Cắt giao tiếp",
+      "desc_vi": "Ngừng nói chuyện hoặc tiếp xúc với người khác do quan hệ bị tổn hại; không tự khẳng định mọi liên hệ đều chấm dứt.",
+      "label_en": "Cutting Off Communication",
+      "desc_en": "Cutting Off Communication (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "134. Cạch mặt nhau"
+    },
+    "HD_Chạy_nhanh": {
+      "label_vi": "Chạy nhanh",
+      "desc_vi": "Di chuyển bằng cách chạy với tốc độ cao. Không tự thêm mục đích chạy trốn hoặc bắt đuổi.",
+      "label_en": "Running at Top Speed",
+      "desc_en": "Running at Top Speed (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "76. Ba chân bốn cẳng"
+    },
+    "HD_Chặn_cơ_hội": {
+      "label_vi": "Chặn cơ hội",
+      "desc_vi": "Làm người khác không thể tiếp cận con đường hoặc điều kiện tạo lợi ích mà chủ thể đã sử dụng hoặc đang nắm giữ.",
+      "label_en": "Denying Others the Same Opportunity",
+      "desc_en": "Denying Others the Same Opportunity (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "33. Qua cầu rút ván"
+    },
+    "HD_Chi_lãng_phí": {
+      "label_vi": "Chi lãng phí",
+      "desc_vi": "Sử dụng tiền quá mức hoặc vào việc không đem lại giá trị tương xứng; không đồng nhất với mọi khoản chi lớn.",
+      "label_en": "Wasting Money Carelessly",
+      "desc_en": "Wasting Money Carelessly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "103. Ném tiền qua cửa sổ"
+    },
+    "HD_Chi_phung_phí": {
+      "label_vi": "Chi phung phí",
+      "desc_vi": "Tiêu tiền rất nhiều và thiếu tiết chế. Khác HD_Chi_lãng_phí ở chỗ không cần khẳng định từng khoản chi đều không đem lại giá trị.",
+      "label_en": "Extravagant Spending",
+      "desc_en": "Extravagant Spending (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "105. Ăn tiêu như phá"
+    },
+    "HD_Chi_quá_sức": {
+      "label_vi": "Chi quá sức",
+      "desc_vi": "Chi tiêu vượt mức thu nhập hoặc nguồn tiền có thể đáp ứng, dù khoản chi chưa chắc là vô ích.",
+      "label_en": "Overspending Beyond Means",
+      "desc_en": "Overspending Beyond Means (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "104. Vung tay quá trán"
+    },
+    "HD_Chia_rẽ": {
+      "label_vi": "Chia rẽ",
+      "desc_vi": "Tác động khiến hai bên nghi kỵ, đối đầu hoặc xa nhau hơn, thường bằng cách kích động giữa các bên.",
+      "label_en": "Sowing Division",
+      "desc_en": "Sowing Division (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "177. Đâm bị thóc, chọc bị gạo"
+    },
+    "HD_Chia_sẻ_tận_tình": {
+      "label_vi": "Chia sẻ tận tình",
+      "desc_vi": "Sẵn lòng chia cả phần mình đang cần hoặc phần rất ít còn lại cho người khác. Không mặc định chỉ làm vậy với người thân.",
+      "label_en": "Sharing Generously Despite Scarcity",
+      "desc_en": "Sharing Generously Despite Scarcity (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "126. Con chấy cắn đôi; 127. Nhường cơm sẻ áo"
+    },
+    "HD_Chịu_đựng": {
+      "label_vi": "Chịu đựng",
+      "desc_vi": "Tiếp nhận và gánh một hoàn cảnh đau khổ, khó khăn hoặc khó chấp nhận mà chưa thoát khỏi nó; không tự gán mục tiêu phục thù.",
+      "label_en": "Enduring Hardship",
+      "desc_en": "Enduring Hardship (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "51. Cắn răng chịu đựng; 156. Ngậm đắng nuốt cay"
+    },
+    "HD_Cố_chấp": {
+      "label_vi": "Cố chấp",
+      "desc_vi": "Giữ khăng khăng ý kiến hoặc cách làm, không chịu nghe lời khuyên hay cân nhắc điều chỉnh.",
+      "label_en": "Stubbornly Refusing to Yield",
+      "desc_en": "Stubbornly Refusing to Yield (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "190. Ngang như cua; 191. Cứng đầu cứng cổ"
+    },
+    "HD_Cố_gắng": {
+      "label_vi": "Cố gắng",
+      "desc_vi": "Bỏ công sức để thực hiện một việc hoặc vượt trở ngại; nhãn không đảm bảo nỗ lực sẽ thành công.",
+      "label_en": "Striving and Exerting Effort",
+      "desc_en": "Striving and Exerting Effort (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "63. Dã tràng xe cát; 64. Công dã tràng"
+    },
+    "HD_Cung_cấp_thừa": {
+      "label_vi": "Cung cấp thừa",
+      "desc_vi": "Đưa thêm một thứ vào nơi đã có dư hoặc không cần thêm thứ ấy, khiến đóng góp trở nên không cần thiết.",
+      "label_en": "Supplying What Is Already Abundant",
+      "desc_en": "Supplying What Is Already Abundant (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "67. Chở củi về rừng"
+    },
+    "HD_Dạy_người_đã_thạo": {
+      "label_vi": "Dạy người đã thạo",
+      "desc_vi": "Đưa chỉ dẫn cho người vốn đã biết rất rõ việc ấy, khiến lời chỉ dẫn không cần thiết. Khác việc truyền đạt kiến thức cho người chưa biết.",
+      "label_en": "Teaching Someone Already Skilled",
+      "desc_en": "Teaching Someone Already Skilled (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "94. Dạy khỉ leo cây"
+    },
+    "HD_Dấn_thân": {
+      "label_vi": "Dấn thân",
+      "desc_vi": "Bước vào hoặc tiếp tục tham gia một tình thế có rủi ro, khiến bản thân bị cuốn vào hệ quả của nó.",
+      "label_en": "Venturing Into a Risky Commitment",
+      "desc_en": "Venturing Into a Risky Commitment (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "54. Cưỡi lên lưng hổ"
+    },
+    "HD_Dung_dưỡng_kẻ_xấu": {
+      "label_vi": "Dung dưỡng kẻ xấu",
+      "desc_vi": "Cho nơi ở, sự hỗ trợ hoặc quyền tiếp cận đối với người có thể phản lại và gây hại cho mình hoặc cộng đồng.",
+      "label_en": "Harboring a Treacherous Person",
+      "desc_en": "Harboring a Treacherous Person (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "35. Nuôi ong tay áo; 36. Nuôi cáo trong nhà"
+    },
+    "HD_Đánh_tráo": {
+      "label_vi": "Đánh tráo",
+      "desc_vi": "Dùng một thứ để thu hút hoặc tạo kỳ vọng rồi thay bằng thứ khác không tương ứng, thường có chất lượng hay giá trị kém hơn.",
+      "label_en": "Baiting and Switching",
+      "desc_en": "Baiting and Switching (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "23. Treo đầu dê, bán thịt chó"
+    },
+    "HD_Đáp_trả_tương_xứng": {
+      "label_vi": "Đáp trả tương xứng",
+      "desc_vi": "Phản ứng lại việc người khác làm bằng hành động tương tự hoặc tương xứng, thường mang sắc thái trả đũa trong ngữ cảnh xung đột.",
+      "label_en": "Retaliating Tit for Tat",
+      "desc_en": "Retaliating Tit for Tat (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "58. Ăn miếng trả miếng"
+    },
+    "HD_Điều_chỉnh_theo_nguồn_lực": {
+      "label_vi": "Điều chỉnh theo nguồn lực",
+      "desc_vi": "Sắp xếp kế hoạch hay mức chi cho phù hợp với điều kiện thực có. Không nhất thiết giảm chi nếu khả năng hiện tại đã đủ.",
+      "label_en": "Adjusting to Available Resources",
+      "desc_en": "Adjusting to Available Resources (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "194. Liệu cơm gắp mắm"
+    },
+    "HD_Đòi_hỏi_quá_mức": {
+      "label_vi": "Đòi hỏi quá mức",
+      "desc_vi": "Yêu cầu thêm lợi ích hoặc sự nhượng bộ vượt mức hợp lý, nhất là sau khi đã được đáp ứng.",
+      "label_en": "Making Excessive Demands",
+      "desc_en": "Making Excessive Demands (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "193. Được voi đòi tiên"
+    },
+    "HD_Đối_đầu": {
+      "label_vi": "Đối đầu",
+      "desc_vi": "Trực tiếp chống lại hoặc tranh đấu với một bên khác, không tự quy định bên nào mạnh hơn.",
+      "label_en": "Confronting a Stronger Opponent",
+      "desc_en": "Confronting a Stronger Opponent (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "55. Châu chấu đá xe; 56. Trứng chọi đá"
+    },
+    "HD_Đổi_lập_trường": {
+      "label_vi": "Đổi lập trường",
+      "desc_vi": "Thay đổi thái độ, ý kiến hoặc phía mình ủng hộ; động cơ cơ hội chỉ được ghi khi có căn cứ riêng.",
+      "label_en": "Switching Allegiance",
+      "desc_en": "Switching Allegiance (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "84. Gió chiều nào che chiều ấy"
+    },
+    "HD_Đồng_hành": {
+      "label_vi": "Đồng hành",
+      "desc_vi": "Ở bên và chia sẻ những trải nghiệm thuận lợi lẫn khó khăn với người khác qua thời gian.",
+      "label_en": "Standing Together Through Thick and Thin",
+      "desc_en": "Standing Together Through Thick and Thin (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "128. Đồng cam cộng khổ; 129. Chia ngọt sẻ bùi"
+    },
+    "HD_Đốt_giai_đoạn": {
+      "label_vi": "Đốt giai đoạn",
+      "desc_vi": "Vội thực hiện bước cao hoặc việc khó khi chưa đạt kỹ năng và điều kiện nền tảng. Khác chỉ bắt đầu sớm hơn thời điểm đã định.",
+      "label_en": "Skipping Foundational Steps",
+      "desc_en": "Skipping Foundational Steps (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "98. Chưa học bò đã lo học chạy"
+    },
+    "HD_Đưa_bằng_chứng": {
+      "label_vi": "Đưa bằng chứng",
+      "desc_vi": "Nêu dữ kiện, dẫn chứng hoặc nguồn có thể kiểm tra để làm căn cứ cho một khẳng định.",
+      "label_en": "Presenting Concrete Evidence",
+      "desc_en": "Presenting Concrete Evidence (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "4. Nói có sách, mách có chứng"
+    },
+    "HD_Gán_tội": {
+      "label_vi": "Gán tội",
+      "desc_vi": "Đẩy lỗi hoặc trách nhiệm làm sai sang một người không phải người gây ra, khiến họ có nguy cơ chịu hậu quả thay.",
+      "label_en": "Framing Someone Else for Blame",
+      "desc_en": "Framing Someone Else for Blame (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "29. Gắp lửa bỏ tay người"
+    },
+    "HD_Gây_trở_ngại": {
+      "label_vi": "Gây trở ngại",
+      "desc_vi": "Can thiệp hoặc tạo điều kiện bất lợi khiến công việc đang diễn ra bị vướng mắc, khó tiến triển bình thường.",
+      "label_en": "Disrupting and Sabotaging",
+      "desc_en": "Disrupting and Sabotaging (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "49. Chọc gậy bánh xe"
+    },
+    "HD_Giả_thương_cảm": {
+      "label_vi": "Giả thương cảm",
+      "desc_vi": "Thể hiện buồn thương hoặc cảm thông không chân thành. Không tự thêm mục đích trục lợi, xin tha hay gây thiện cảm nếu chưa có căn cứ.",
+      "label_en": "Feigning Sympathy",
+      "desc_en": "Feigning Sympathy (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "26. Nước mắt cá sấu"
+    },
+    "HD_Giả_tử_tế": {
+      "label_vi": "Giả tử tế",
+      "desc_vi": "Thể hiện sự hiền lành, đạo đức hoặc thương cảm không tương ứng với bản chất hay cảm xúc thật.",
+      "label_en": "Feigning Benevolence",
+      "desc_en": "Feigning Benevolence (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "21. Khẩu Phật tâm xà; 22. Miệng nam mô, bụng một bồ dao găm"
+    },
+    "HD_Giả_vờ_không_biết": {
+      "label_vi": "Giả vờ không biết",
+      "desc_vi": "Tỏ ra không biết, không nghe hoặc không hiểu trong khi thực tế có biết hoặc có hiểu.",
+      "label_en": "Playing Dumb",
+      "desc_en": "Playing Dumb (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "25. Giả câm giả điếc"
+    },
+    "HD_Giữ_kín": {
+      "label_vi": "Giữ kín",
+      "desc_vi": "Không nói ra, không công bố hoặc ngăn người khác tiếp cận thông tin; mục đích cụ thể chỉ gán thêm khi đã rõ.",
+      "label_en": "Keeping Secret",
+      "desc_en": "Keeping Secret (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "10. Ngậm miệng như hến; 11. Kín như bưng"
+    },
+    "HD_Gợi_ý_gián_tiếp": {
+      "label_vi": "Gợi ý gián tiếp",
+      "desc_vi": "Đưa dấu hiệu hoặc nói bóng gió để người nghe tự nhận ra ý, thay vì diễn đạt trực tiếp toàn bộ điều muốn nói.",
+      "label_en": "Dropping Indirect Hints",
+      "desc_en": "Dropping Indirect Hints (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "19. Nói bóng nói gió"
+    },
+    "HD_Hồi_phục": {
+      "label_vi": "Hồi phục",
+      "desc_vi": "Dần trở lại tình trạng ổn định hơn sau giai đoạn nguy kịch hoặc gần sụp đổ; mức hồi phục cụ thể do giải nghĩa xác định.",
+      "label_en": "Recovering from Crisis",
+      "desc_en": "Recovering from Crisis (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "168. Chết đi sống lại"
+    },
+    "HD_Hợp_tác": {
+      "label_vi": "Hợp tác",
+      "desc_vi": "Nhiều người phối hợp công sức, ý chí hoặc sự hỗ trợ để cùng thực hiện một việc.",
+      "label_en": "Cooperating and Uniting Efforts",
+      "desc_en": "Cooperating and Uniting Efforts (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "122. Đồng tâm hiệp lực; 123. Chung lưng đấu cật"
+    },
+    "HD_Hùa_theo": {
+      "label_vi": "Hùa theo",
+      "desc_vi": "Đi theo ý kiến, hành động hoặc xu hướng của người khác mà không thể hiện sự cân nhắc độc lập đầy đủ.",
+      "label_en": "Blindly Following the Crowd",
+      "desc_en": "Blindly Following the Crowd (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "86. A dua a tòng"
+    },
+    "HD_Hưởng_không_đóng_góp": {
+      "label_vi": "Hưởng không đóng góp",
+      "desc_vi": "Nhận lợi ích mà không bỏ công hoặc nguồn lực tương xứng. Không nhất thiết là trộm cắp hoặc lừa đảo.",
+      "label_en": "Free-Riding Without Contributing",
+      "desc_en": "Free-Riding Without Contributing (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "37. Ngồi mát ăn bát vàng"
+    },
+    "HD_Kết_hợp_việc": {
+      "label_vi": "Kết hợp việc",
+      "desc_vi": "Thực hiện một cách làm chung để phục vụ đồng thời nhiều mục tiêu, thay vì xử lý từng mục tiêu bằng hành động riêng.",
+      "label_en": "Combining Tasks in One Action",
+      "desc_en": "Combining Tasks in One Action (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "178. Một công đôi việc; 179. Một mũi tên trúng hai đích"
+    },
+    "HD_Khiêu_khích": {
+      "label_vi": "Khiêu khích",
+      "desc_vi": "Cố ý chọc giận, thách thức hoặc kích phản ứng từ một đối tượng có thể đáp trả.",
+      "label_en": "Provoking a Powerful Party",
+      "desc_en": "Provoking a Powerful Party (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "53. Vuốt râu hùm"
+    },
+    "HD_Không_chọn_bên": {
+      "label_vi": "Không chọn bên",
+      "desc_vi": "Giữ thái độ chưa đứng hẳn về lựa chọn hoặc phe nào; có thể do phân vân hoặc né cam kết.",
+      "label_en": "Sitting on the Fence",
+      "desc_en": "Sitting on the Fence (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "83. Đứng giữa hai dòng nước"
+    },
+    "HD_Không_hành_động": {
+      "label_vi": "Không hành động",
+      "desc_vi": "Đứng ngoài hoặc không can thiệp trong một tình huống cần phản ứng. Không tự suy thêm rằng người đó đang chờ lợi ích tự đến.",
+      "label_en": "Refusing to Take Action",
+      "desc_en": "Refusing to Take Action (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "195. Khoanh tay đứng nhìn"
+    },
+    "HD_Khuyên_bảo": {
+      "label_vi": "Khuyên bảo",
+      "desc_vi": "Đưa lời chỉ dẫn, dạy bảo, giải thích hoặc phê bình với nội dung người nghe được kỳ vọng sẽ hiểu hay tiếp thu.",
+      "label_en": "Giving Advice or Admonition",
+      "desc_en": "Giving Advice or Admonition (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "16. Nước đổ đầu vịt; 176. Nước đổ lá khoai"
+    },
+    "HD_Kiếm_tiền": {
+      "label_vi": "Kiếm tiền",
+      "desc_vi": "Thu được tiền từ hoạt động làm ăn, công việc hoặc nguồn thu khác; số tiền lớn hay nhỏ được ghi ở KQ khi rõ.",
+      "label_en": "Earning Money",
+      "desc_en": "Earning Money (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "102. Tiền vào như nước"
+    },
+    "HD_Làm_căng_thẳng": {
+      "label_vi": "Làm căng thẳng",
+      "desc_vi": "Nói hoặc làm điều làm tăng sự tức giận hay đối đầu đã có. Không tự khẳng định người làm cố ý muốn gây xung đột.",
+      "label_en": "Aggravating Tension",
+      "desc_en": "Aggravating Tension (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "30. Đổ dầu vào lửa"
+    },
+    "HD_Làm_cật_lực": {
+      "label_vi": "Làm cật lực",
+      "desc_vi": "Bỏ sức làm việc với cường độ cao, thời gian dài hoặc trong điều kiện rất nhọc nhằn.",
+      "label_en": "Toiling Extremely Hard",
+      "desc_en": "Toiling Extremely Hard (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "71. Làm như trâu ngựa; 72. Cày sâu cuốc bẫm"
+    },
+    "HD_Làm_chậm": {
+      "label_vi": "Làm chậm",
+      "desc_vi": "Di chuyển, phản ứng hoặc thực hiện việc với tốc độ thấp; không suy ra chủ thể cố tình trì hoãn.",
+      "label_en": "Moving at a Snail's Pace",
+      "desc_en": "Moving at a Snail's Pace (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "188. Chậm như rùa"
+    },
+    "HD_Làm_hòa": {
+      "label_vi": "Làm hòa",
+      "desc_vi": "Giải quyết hoặc gác lại mâu thuẫn để khôi phục quan hệ thân thiện giữa các bên.",
+      "label_en": "Reconciling and Making Peace",
+      "desc_en": "Reconciling and Making Peace (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "138. Gương vỡ lại lành"
+    },
+    "HD_Làm_nhanh": {
+      "label_vi": "Làm nhanh",
+      "desc_vi": "Di chuyển, phản ứng hoặc thực hiện việc với tốc độ rất cao; không tự hàm ý làm ẩu.",
+      "label_en": "Acting Quickly and Decisively",
+      "desc_en": "Acting Quickly and Decisively (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "75. Vắt chân lên cổ; 189. Nhanh như chớp"
+    },
+    "HD_Làm_ô_danh": {
+      "label_vi": "Làm ô danh",
+      "desc_vi": "Làm một người hoặc nhóm bị mang tiếng xấu. Không tự khẳng định việc ấy dùng lời nói dối hay do chủ ý ác độc.",
+      "label_en": "Tarnishing Someone's Reputation",
+      "desc_en": "Tarnishing Someone's Reputation (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "28. Bôi tro trát trấu"
+    },
+    "HD_Lộng_quyền": {
+      "label_vi": "Lộng quyền",
+      "desc_vi": "Hành xử như thể quyền lực của mình vượt trên các quy tắc hoặc sự kiềm chế thông thường.",
+      "label_en": "Throwing One's Weight Around",
+      "desc_en": "Throwing One's Weight Around (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "120. Ra oai tác quái"
+    },
+    "HD_Lờ_đi": {
+      "label_vi": "Lờ đi",
+      "desc_vi": "Cố tình không chú ý hoặc không phản ứng với điều đã biết, dù điều đó có vấn đề hoặc cần được xử lý.",
+      "label_en": "Turning a Blind Eye",
+      "desc_en": "Turning a Blind Eye (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "87. Nhắm mắt làm ngơ"
+    },
+    "HD_Lợi_dụng_rối_ren": {
+      "label_vi": "Lợi dụng rối ren",
+      "desc_vi": "Khai thác sự hỗn loạn hoặc bất ổn để kiếm lợi. Phải có nét rối ren trong nghĩa đang chọn, không dùng cho mọi cơ hội thuận lợi.",
+      "label_en": "Fishing in Troubled Waters",
+      "desc_en": "Fishing in Troubled Waters (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "31. Đục nước béo cò; 32. Thừa nước đục thả câu"
+    },
+    "HD_Lừa_dối": {
+      "label_vi": "Lừa dối",
+      "desc_vi": "Dẫn người khác đến nhận thức sai hoặc không thấy sự thật bằng lời nói hay cách sắp đặt có chủ ý.",
+      "label_en": "Deceiving and Misleading",
+      "desc_en": "Deceiving and Misleading (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "24. Đánh lận con đen"
+    },
+    "HD_Mạo_hiểm": {
+      "label_vi": "Mạo hiểm",
+      "desc_vi": "Thực hiện việc có khả năng gây tổn thất đáng kể hoặc nguy hiểm cho bản thân; không mặc định mức liều lĩnh là đúng hay sai.",
+      "label_en": "Risking Life or All Resources",
+      "desc_en": "Risking Life or All Resources (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "52. Vào sinh ra tử; 80. Được ăn cả, ngã về không"
+    },
+    "HD_Né_tránh": {
+      "label_vi": "Né tránh",
+      "desc_vi": "Rời xa hoặc tránh trực tiếp đối diện với một điều khó khăn hay bất lợi; đây là hành động, khác với MD_Né_tránh là ý định.",
+      "label_en": "Evading Difficulty",
+      "desc_en": "Evading Difficulty (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "42. Tránh vỏ dưa, gặp vỏ dừa"
+    },
+    "HD_Nghe_hời_hợt": {
+      "label_vi": "Nghe hời hợt",
+      "desc_vi": "Nghe mà không chú ý đủ hoặc không giữ lại nội dung. Khác với không có khả năng hiểu ngôn ngữ đang được nói.",
+      "label_en": "Listening Inattentively",
+      "desc_en": "Listening Inattentively (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "96. Nghe tai này lọt tai kia"
+    },
+    "HD_Ngủ_say": {
+      "label_vi": "Ngủ say",
+      "desc_vi": "Ngủ sâu và ít bị các tác động thông thường làm thức giấc. Không suy thêm về thời gian ngủ hay bệnh lý.",
+      "label_en": "Sleeping Soundly",
+      "desc_en": "Sleeping Soundly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "162. Ngủ như chết"
+    },
+    "HD_Nịnh_nọt": {
+      "label_vi": "Nịnh nọt",
+      "desc_vi": "Dùng lời ngọt ngào, đề cao hoặc dễ nghe hướng tới người khác, thường để tạo thiện cảm hay thuyết phục.",
+      "label_en": "Flattering and Sweet-Talking",
+      "desc_en": "Flattering and Sweet-Talking (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "18. Nói như rót mật vào tai"
+    },
+    "HD_Nói_dối": {
+      "label_vi": "Nói dối",
+      "desc_vi": "Phát biểu điều biết là không đúng sự thật hoặc bịa ra điều không có; khác với sai do thiếu thông tin.",
+      "label_en": "Lying Blatantly",
+      "desc_en": "Lying Blatantly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "9. Ăn không nói có"
+    },
+    "HD_Nói_hớ": {
+      "label_vi": "Nói hớ",
+      "desc_vi": "Nói ra điều thiếu cân nhắc hoặc không phù hợp, có thể khiến bản thân hay người nghe gặp rắc rối.",
+      "label_en": "Making a Tactless Slip of the Tongue",
+      "desc_en": "Making a Tactless Slip of the Tongue (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "89. Lỡ mồm lỡ miệng"
+    },
+    "HD_Nói_làm_bất_nhất": {
+      "label_vi": "Nói làm bất nhất",
+      "desc_vi": "Hành động thực tế không phù hợp hoặc trái với điều chủ thể nói hay hứa. Khác HD_Nói_suông: có thể đã hành động nhưng theo hướng ngược lời nói.",
+      "label_en": "Saying One Thing and Doing Another",
+      "desc_en": "Saying One Thing and Doing Another (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "133. Nói một đằng, làm một nẻo"
+    },
+    "HD_Nói_nhiều": {
+      "label_vi": "Nói nhiều",
+      "desc_vi": "Nói liên tục hoặc với lượng lời lớn; chỉ riêng nhãn này không quy định lời nói đúng, sai, khoe khoang hay vô ích.",
+      "label_en": "Talking Incessantly",
+      "desc_en": "Talking Incessantly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "6. Nói như khướu; 17. Nói như nước chảy"
+    },
+    "HD_Nói_suông": {
+      "label_vi": "Nói suông",
+      "desc_vi": "Đưa ra lời hứa hoặc lời nói có vẻ đáng kể nhưng thiếu hành động thực chất tương ứng.",
+      "label_en": "Making Empty Promises Without Action",
+      "desc_en": "Making Empty Promises Without Action (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "5. Khua môi múa mép"
+    },
+    "HD_Nói_thẳng": {
+      "label_vi": "Nói thẳng",
+      "desc_vi": "Diễn đạt ý kiến hoặc sự thật trực tiếp, không vòng vo hay làm nhẹ lời đến mức mất nội dung.",
+      "label_en": "Speaking Frankly and Directly",
+      "desc_en": "Speaking Frankly and Directly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "1. Nói toạc móng heo; 2. Thẳng như ruột ngựa"
+    },
+    "HD_Nói_vòng_vo": {
+      "label_vi": "Nói vòng vo",
+      "desc_vi": "Nói quanh chủ đề hoặc kéo dài mà chưa đi thẳng vào điểm chính cần đề cập.",
+      "label_en": "Beating Around the Bush",
+      "desc_en": "Beating Around the Bush (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "3. Vòng vo tam quốc"
+    },
+    "HD_Phản_bội": {
+      "label_vi": "Phản bội",
+      "desc_vi": "Quay lại chống người hoặc phía từng được mình trung thành, hay ngầm làm hại người tin cậy mình. Không đồng nhất với chỉ rời khỏi một quan hệ.",
+      "label_en": "Betraying Trust",
+      "desc_en": "Betraying Trust (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "27. Đâm sau lưng; 136. Thay lòng đổi dạ"
+    },
+    "HD_Phản_kháng": {
+      "label_vi": "Phản kháng",
+      "desc_vi": "Chống lại sự dồn ép hoặc đối xử bất lợi sau khi đã phải chịu đựng; hình thức phản kháng không mặc định là bạo lực.",
+      "label_en": "Fighting Back After Enduring",
+      "desc_en": "Fighting Back After Enduring (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "155. Tức nước vỡ bờ"
+    },
+    "HD_Phóng_đại": {
+      "label_vi": "Phóng đại",
+      "desc_vi": "Diễn tả mức độ, quy mô hoặc tính chất lớn hơn thực tế; không mặc định mọi phóng đại đều nhằm lừa gạt.",
+      "label_en": "Exaggerating",
+      "desc_en": "Exaggerating (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "7. Thêm mắm dặm muối; 8. Chuyện bé xé ra to"
+    },
+    "HD_Phỏng_đoán": {
+      "label_vi": "Phỏng đoán",
+      "desc_vi": "Đưa ra một hoặc nhiều khả năng giải thích khi chưa có đủ dữ liệu chắc chắn.",
+      "label_en": "Guessing Blindly",
+      "desc_en": "Guessing Blindly (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "95. Đoán già đoán non"
+    },
+    "HD_Quyết_chiến": {
+      "label_vi": "Quyết chiến",
+      "desc_vi": "Đấu tranh hoặc nỗ lực đến cùng, không dễ nhượng bộ, khi việc thắng thua được xem là rất quan trọng.",
+      "label_en": "Fighting Tooth and Nail",
+      "desc_en": "Fighting Tooth and Nail (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "59. Ăn thua đủ"
+    },
+    "HD_So_sánh_thiên_lệch": {
+      "label_vi": "So sánh thiên lệch",
+      "desc_vi": "Đánh giá lựa chọn khác có vẻ tốt hơn điều mình đang có mà chưa cân nhắc đầy đủ các mặt.",
+      "label_en": "Comparing Unfavorably with Others",
+      "desc_en": "Comparing Unfavorably with Others (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "192. Đứng núi này trông núi nọ"
+    },
+    "HD_Soi_lỗi": {
+      "label_vi": "Soi lỗi",
+      "desc_vi": "Tìm rất kỹ các khuyết điểm hoặc lỗi nhỏ ở người hay sự vật, thường để bắt bẻ.",
+      "label_en": "Nitpicking Minor Faults",
+      "desc_en": "Nitpicking Minor Faults (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "60. Bới lông tìm vết; 61. Vạch lá tìm sâu"
+    },
+    "HD_Suy_nghĩ": {
+      "label_vi": "Suy nghĩ",
+      "desc_vi": "Huy động trí nhớ, lập luận hoặc sự tập trung để tìm câu trả lời, đặc biệt khi việc ấy đòi hỏi nỗ lực trí óc.",
+      "label_en": "Pondering and Racking One's Brains",
+      "desc_en": "Pondering and Racking One's Brains (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "93. Vắt óc suy nghĩ"
+    },
+    "HD_Tái_kết_nối_tình_cảm": {
+      "label_vi": "Tái kết nối tình cảm",
+      "desc_vi": "Nối lại tình cảm yêu đương từng có. Khác với bắt đầu yêu một người mới hoặc chỉ làm hòa sau tranh cãi.",
+      "label_en": "Rekindling Past Affection",
+      "desc_en": "Rekindling Past Affection (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "137. Nối lại tình xưa"
+    },
+    "HD_Theo_hai_phía": {
+      "label_vi": "Theo hai phía",
+      "desc_vi": "Duy trì sự theo đuổi, liên hệ hoặc cam kết với hai lựa chọn hay hai bên có thể không tương thích.",
+      "label_en": "Playing Both Sides",
+      "desc_en": "Playing Both Sides (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "81. Bắt cá hai tay"
+    },
+    "HD_Thoát_hiểm": {
+      "label_vi": "Thoát hiểm",
+      "desc_vi": "Ra khỏi một tình trạng đe dọa hoặc giai đoạn rất khó khăn; mức an toàn sau đó được thể hiện ở KQ nếu câu có nêu.",
+      "label_en": "Narrowly Escaping Danger",
+      "desc_en": "Narrowly Escaping Danger (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "166. Thoát chết trong gang tấc"
+    },
+    "HD_Tiếp_nhận_dè_dặt": {
+      "label_vi": "Tiếp nhận dè dặt",
+      "desc_vi": "Tiếp nhận thông tin nhưng chưa tin hoàn toàn, vẫn giữ sự nghi ngờ. Không tự khẳng định thông tin ấy là sai.",
+      "label_en": "Taking Information with Skepticism",
+      "desc_en": "Taking Information with Skepticism (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "130. Nửa tin nửa ngờ; 186. Bán tín bán nghi"
+    },
+    "HD_Tìm_kiếm": {
+      "label_vi": "Tìm kiếm",
+      "desc_vi": "Bỏ công để xác định vị trí hoặc nhận ra đối tượng cần tìm trong một phạm vi hay tập hợp.",
+      "label_en": "Searching for Something Elusive",
+      "desc_en": "Searching for Something Elusive (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "62. Mò kim đáy bể"
+    },
+    "HD_Trả_tiền_ngay": {
+      "label_vi": "Trả tiền ngay",
+      "desc_vi": "Thanh toán ngay trong giao dịch thay vì nhận nợ hoặc để trả sau. Không đồng nhất với chi tiêu nhiều hay lãng phí.",
+      "label_en": "Paying Cash on the Spot",
+      "desc_en": "Paying Cash on the Spot (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "173. Tiền trao cháo múc"
+    },
+    "HD_Trao_điều_có_giá_trị": {
+      "label_vi": "Trao điều có giá trị",
+      "desc_vi": "Đưa đến người khác lời hay, sự tinh tế hoặc điều hữu ích để họ tiếp nhận. Không tự suy rằng người nhận có khả năng trân trọng.",
+      "label_en": "Offering Something Valuable to the Unappreciative",
+      "desc_en": "Offering Something Valuable to the Unappreciative (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "15. Đàn gảy tai trâu"
+    },
+    "HD_Trao_đổi": {
+      "label_vi": "Trao đổi",
+      "desc_vi": "Các bên nói hoặc truyền đạt thông tin cho nhau; chất lượng hiểu nhau được xác định bằng nhãn khác.",
+      "label_en": "Conversing at Cross Purposes",
+      "desc_en": "Conversing at Cross Purposes (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "20. Ông nói gà, bà nói vịt"
+    },
+    "HD_Trì_hoãn": {
+      "label_vi": "Trì hoãn",
+      "desc_vi": "Đẩy việc phải làm sang thời điểm muộn hơn, đặc biệt đến sát hạn; khác với làm chậm do tốc độ thấp.",
+      "label_en": "Procrastinating Until the Last Minute",
+      "desc_en": "Procrastinating Until the Last Minute (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "68. Nước đến chân mới nhảy"
+    },
+    "HD_Truyền_tin": {
+      "label_vi": "Truyền tin",
+      "desc_vi": "Chuyển nội dung từ người này sang người khác hoặc qua nhiều bước; không mặc định nội dung còn nguyên vẹn.",
+      "label_en": "Passing Messages Along a Chain",
+      "desc_en": "Passing Messages Along a Chain (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "14. Tam sao thất bản"
+    },
+    "HD_Tự_gây_hại": {
+      "label_vi": "Tự gây hại",
+      "desc_vi": "Hành động của chính chủ thể tạo bất lợi cho họ, dù họ không nhất thiết muốn tự làm hại mình.",
+      "label_en": "Bringing Ruin Upon Oneself",
+      "desc_en": "Bringing Ruin Upon Oneself (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "40. Tự đào hố chôn mình"
+    },
+    "HD_Tự_lo_phần_mình": {
+      "label_vi": "Tự lo phần mình",
+      "desc_vi": "Ưu tiên tự bảo đảm lợi ích của mình trong tình thế thiếu sự hỗ trợ chung. Không tự suy rằng chủ thể chủ động hại người khác.",
+      "label_en": "Looking Out Only for Oneself",
+      "desc_en": "Looking Out Only for Oneself (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "85. Mạnh ai nấy lo"
+    },
+    "HD_Xem_qua_loa": {
+      "label_vi": "Xem qua loa",
+      "desc_vi": "Chỉ tiếp xúc hoặc xem xét sơ lược, chưa đi sâu vào các chi tiết và bản chất cần hiểu.",
+      "label_en": "Skimming Superficially",
+      "desc_en": "Skimming Superficially (Hành động / quá trình)",
+      "type": "Hành động / quá trình",
+      "examples": "69. Cưỡi ngựa xem hoa"
+    }
+  },
+  "Kết_quả": {
+    "KQ_Bấp_bênh": {
+      "label_vi": "Bấp bênh",
+      "desc_vi": "Tình trạng thiếu ổn định, có thể thất bại hoặc gặp tai họa chỉ bởi một thay đổi nhỏ.",
+      "label_en": "Precarious and Hanging by a Thread",
+      "desc_en": "Precarious and Hanging by a Thread (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "45. Ngàn cân treo sợi tóc; 46. Chỉ mành treo chuông"
+    },
+    "KQ_Bất_hòa": {
+      "label_vi": "Bất hòa",
+      "desc_vi": "Quan hệ không còn hòa thuận, có mâu thuẫn hoặc đối kháng; mức độ có thể từ khó chịu đến xung đột gay gắt.",
+      "label_en": "Discord and Estrangement",
+      "desc_en": "Discord and Estrangement (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "131. Cơm không lành, canh không ngọt; 132. Như chó với mèo"
+    },
+    "KQ_Bất_lợi_cho_mình": {
+      "label_vi": "Bất lợi cho mình",
+      "desc_vi": "Chủ thể chịu hoặc đứng trước hậu quả xấu do lời nói, quyết định hay hành động của chính mình.",
+      "label_en": "Self-Inflicted Harm or Ruin",
+      "desc_en": "Self-Inflicted Harm or Ruin (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "40. Tự đào hố chôn mình"
+    },
+    "KQ_Bị_đe_dọa": {
+      "label_vi": "Bị đe dọa",
+      "desc_vi": "An toàn, quyền lợi hoặc sự tồn tại đang đứng trước khả năng bị tổn hại; nhãn chỉ nguy cơ, không khẳng định tổn hại đã xảy ra.",
+      "label_en": "Exposed to Serious Threat",
+      "desc_en": "Exposed to Serious Threat (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "50. Hang hùm miệng sói; 52. Vào sinh ra tử"
+    },
+    "KQ_Bị_hạn_chế": {
+      "label_vi": "Bị hạn chế",
+      "desc_vi": "Phạm vi hành động bị thu hẹp đến mức không thể làm điều muốn làm; không suy ra chủ thể thiếu năng lực.",
+      "label_en": "Hands Tied and Restricted",
+      "desc_en": "Hands Tied and Restricted (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "100. Trói tay trói chân"
+    },
+    "KQ_Bị_kẹp_hai_phía": {
+      "label_vi": "Bị kẹp hai phía",
+      "desc_vi": "Chịu tác động hoặc sự khống chế đồng thời của hai lực gây sức ép. Không nhất thiết đang chủ động chọn giữa hai phương án.",
+      "label_en": "Caught Between Two Opposing Pressures",
+      "desc_en": "Caught Between Two Opposing Pressures (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "44. Trên đe dưới búa; 97. Một cổ hai tròng"
+    },
+    "KQ_Buồn_bã": {
+      "label_vi": "Buồn bã",
+      "desc_vi": "Trạng thái buồn, ủ rũ hoặc mất tinh thần được câu mô tả; không suy ra một nguyên nhân cụ thể nếu chưa được nêu.",
+      "label_en": "Deep Sadness and Gloom",
+      "desc_en": "Deep Sadness and Gloom (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "144. Buồn như đưa đám"
+    },
+    "KQ_Can_đảm": {
+      "label_vi": "Can đảm",
+      "desc_vi": "Có sự gan dạ trước thử thách hay nguy hiểm. Không đồng nhất với chỉ giữ vẻ mặt bình tĩnh hoặc không có phản ứng sinh lý vì sợ.",
+      "label_en": "Fearless Courage",
+      "desc_en": "Fearless Courage (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "182. Gan vàng dạ sắt; 183. Gan lì tướng quân"
+    },
+    "KQ_Chen_chúc": {
+      "label_vi": "Chen chúc",
+      "desc_vi": "Người hoặc vật ở quá sát nhau trong không gian hạn chế. Không tự suy số lượng tuyệt đối lớn nếu diện tích vốn rất nhỏ.",
+      "label_en": "Packed Tightly Together",
+      "desc_en": "Packed Tightly Together (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "164. Chật như nêm"
+    },
+    "KQ_Chỉ_đủ_trước_mắt": {
+      "label_vi": "Chỉ đủ trước mắt",
+      "desc_vi": "Nguồn sống chỉ đủ cho nhu cầu thiết yếu hiện tại, ít hoặc không có phần dự trữ. Không khẳng định chắc chắn đang thiếu ăn mỗi ngày.",
+      "label_en": "Living Hand to Mouth",
+      "desc_en": "Living Hand to Mouth (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "111. Chạy ăn từng bữa"
+    },
+    "KQ_Có_thế_lực": {
+      "label_vi": "Có thế lực",
+      "desc_vi": "Có địa vị, danh tiếng hoặc ảnh hưởng đủ lớn khiến người khác phải coi trọng hoặc bị tác động.",
+      "label_en": "Influential and High-Ranking",
+      "desc_en": "Influential and High-Ranking (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "117. Tai to mặt lớn; 118. Có máu mặt"
+    },
+    "KQ_Dễ_bị_hại": {
+      "label_vi": "Dễ bị hại",
+      "desc_vi": "Ở vị trí phơi bày trước nguy cơ mà khó tự vệ hoặc chống đỡ. Chưa khẳng định tổn hại thực sự đã xảy ra.",
+      "label_en": "Defenseless Sitting Duck",
+      "desc_en": "Defenseless Sitting Duck (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "48. Cá nằm trên thớt"
+    },
+    "KQ_Đau_khổ": {
+      "label_vi": "Đau khổ",
+      "desc_vi": "Trạng thái đau buồn hoặc tổn thương tinh thần sâu sắc; trong bộ này không dùng thay cho đau thể chất.",
+      "label_en": "Heartbreaking Emotional Pain",
+      "desc_en": "Heartbreaking Emotional Pain (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "156. Ngậm đắng nuốt cay; 157. Đau như cắt"
+    },
+    "KQ_Đầu_mạnh_cuối_yếu": {
+      "label_vi": "Đầu mạnh cuối yếu",
+      "desc_vi": "Quá trình có khởi đầu nổi bật, mạnh mẽ nhưng kết thúc yếu hoặc nhỏ bé hơn hẳn. Không mặc định hoàn toàn thất bại.",
+      "label_en": "Strong Start but Weak Finish",
+      "desc_en": "Strong Start but Weak Finish (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "70. Đầu voi đuôi chuột"
+    },
+    "KQ_Đồng_điệu": {
+      "label_vi": "Đồng điệu",
+      "desc_vi": "Hai người dễ hiểu và hòa hợp với suy nghĩ, cảm nhận của nhau; khác việc chỉ đồng ý về một quyết định cụ thể.",
+      "label_en": "Like-Minded Harmony",
+      "desc_en": "Like-Minded Harmony (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "121. Tâm đầu ý hợp"
+    },
+    "KQ_Đúng_nhu_cầu": {
+      "label_vi": "Đúng nhu cầu",
+      "desc_vi": "Điều nhận được phù hợp với yêu cầu thực tế ở đúng hoàn cảnh đang cần, không nhất thiết là một mong ước lâu dài.",
+      "label_en": "Timely Fulfillment of Immediate Need",
+      "desc_en": "Timely Fulfillment of Immediate Need (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "163. Buồn ngủ gặp chiếu manh"
+    },
+    "KQ_Được_ưu_đãi": {
+      "label_vi": "Được ưu đãi",
+      "desc_vi": "Chủ thể có sẵn điều kiện vật chất hoặc vị thế thuận lợi từ nền tảng xuất thân, thay vì tự đạt được trong việc đang xét.",
+      "label_en": "Born into Privilege",
+      "desc_en": "Born into Privilege (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "116. Ngậm thìa vàng"
+    },
+    "KQ_Gánh_lỗi_thay": {
+      "label_vi": "Gánh lỗi thay",
+      "desc_vi": "Một người bị đặt vào vị trí chịu trách nhiệm hoặc hậu quả cho việc sai không do mình gây ra.",
+      "label_en": "Made the Scapegoat",
+      "desc_en": "Made the Scapegoat (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "29. Gắp lửa bỏ tay người"
+    },
+    "KQ_Gắn_bó": {
+      "label_vi": "Gắn bó",
+      "desc_vi": "Quan hệ thân thiết, bền chặt hoặc có sự hiện diện hỗ trợ thường xuyên; không nhất thiết là quan hệ yêu đương.",
+      "label_en": "Inseparable Bond and Solidarity",
+      "desc_en": "Inseparable Bond and Solidarity (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "125. Như hình với bóng; 128. Đồng cam cộng khổ"
+    },
+    "KQ_Gây_phiền_toái": {
+      "label_vi": "Gây phiền toái",
+      "desc_vi": "Lời nói hoặc hành vi tạo ra sự khó xử, ngượng ngùng hay rắc rối. Không tự nâng lên mức tai họa nghiêm trọng.",
+      "label_en": "Causing Awkwardness or Embarrassment",
+      "desc_en": "Causing Awkwardness or Embarrassment (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "89. Lỡ mồm lỡ miệng"
+    },
+    "KQ_Giàu_có": {
+      "label_vi": "Giàu có",
+      "desc_vi": "Sở hữu nhiều tiền của hoặc tài sản; không tự khẳng định sự giàu có đến từ nỗ lực hay may mắn.",
+      "label_en": "Immense Wealth",
+      "desc_en": "Immense Wealth (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "101. Tiền rừng bạc bể"
+    },
+    "KQ_Giận_dữ": {
+      "label_vi": "Giận dữ",
+      "desc_vi": "Trạng thái tức giận mạnh; chỉ gán HD_Bùng_giận thêm khi câu nhấn mạnh quá trình bùng phát cơn giận.",
+      "label_en": "Furious Anger",
+      "desc_en": "Furious Anger (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "152. Giận tím mặt; 153. Nổi trận lôi đình"
+    },
+    "KQ_Giống_bản_chất": {
+      "label_vi": "Giống bản chất",
+      "desc_vi": "Nhiều người có cùng kiểu tính cách hoặc đặc điểm bên trong. Không gộp với giống ngoại hình hay chỉ tương hợp trong một quan hệ.",
+      "label_en": "Sharing the Same Underlying Nature",
+      "desc_en": "Sharing the Same Underlying Nature (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "200. Cá mè một lứa"
+    },
+    "KQ_Hết_nhẫn_nhịn": {
+      "label_vi": "Hết nhẫn nhịn",
+      "desc_vi": "Chủ thể không tiếp tục chịu đựng một cách phục tùng như trước. Trong các dòng dùng nhãn này, hành động phản kháng được ghi riêng ở HD.",
+      "label_en": "Reaching the Limit of Patience",
+      "desc_en": "Reaching the Limit of Patience (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "155. Tức nước vỡ bờ"
+    },
+    "KQ_Hiển_nhiên": {
+      "label_vi": "Hiển nhiên",
+      "desc_vi": "Thông tin hoặc tình trạng rõ đến mức dễ nhận thấy, ít cần suy đoán để hiểu.",
+      "label_en": "Plainly Obvious",
+      "desc_en": "Plainly Obvious (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "91. Rõ như ban ngày"
+    },
+    "KQ_Hiểu_rõ": {
+      "label_vi": "Hiểu rõ",
+      "desc_vi": "Có kiến thức hoặc sự quen thuộc rất sâu đối với nơi chốn, đối tượng hay vấn đề đang nói tới.",
+      "label_en": "Knowing Inside Out",
+      "desc_en": "Knowing Inside Out (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "90. Thuộc như lòng bàn tay"
+    },
+    "KQ_Hòa_hợp_trở_lại": {
+      "label_vi": "Hòa hợp trở lại",
+      "desc_vi": "Quan hệ được khôi phục sự thân thiện hoặc gắn bó sau giai đoạn bất hòa hay chia cách.",
+      "label_en": "Reconciled and Reunited",
+      "desc_en": "Reconciled and Reunited (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "137. Nối lại tình xưa; 138. Gương vỡ lại lành"
+    },
+    "KQ_Hoài_nghi": {
+      "label_vi": "Hoài nghi",
+      "desc_vi": "Chưa tin hoàn toàn và vẫn nghi ngờ điều đang xét. Không đồng nhất với kết luận chắc chắn điều đó sai.",
+      "label_en": "Skeptical and Half-Believing",
+      "desc_en": "Skeptical and Half-Believing (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "130. Nửa tin nửa ngờ; 186. Bán tín bán nghi"
+    },
+    "KQ_Hời_hợt": {
+      "label_vi": "Hời hợt",
+      "desc_vi": "Mức tiếp cận mới dừng ở bề mặt, chưa đạt độ hiểu sâu cần thiết; không tự khẳng định toàn bộ nhận định là sai.",
+      "label_en": "Superficial Understanding",
+      "desc_en": "Superficial Understanding (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "69. Cưỡi ngựa xem hoa"
+    },
+    "KQ_Hợp_môi_trường": {
+      "label_vi": "Hợp môi trường",
+      "desc_vi": "Môi trường phù hợp với sở trường hoặc thói quen, khiến chủ thể thấy tự nhiên và thoải mái. Không đảm bảo thành công cụ thể.",
+      "label_en": "In One's Element",
+      "desc_en": "In One's Element (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "88. Như cá gặp nước"
+    },
+    "KQ_Hứng_chịu_công_kích": {
+      "label_vi": "Hứng chịu công kích",
+      "desc_vi": "Đứng ở vị trí trực tiếp chịu nguy hiểm hoặc sự chỉ trích. Không tự gán trách nhiệm lãnh đạo.",
+      "label_en": "In the Line of Fire",
+      "desc_en": "In the Line of Fire (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "47. Đầu sóng ngọn gió"
+    },
+    "KQ_Khó_khăn_tiếp_diễn": {
+      "label_vi": "Khó khăn tiếp diễn",
+      "desc_vi": "Sau khi thoát một trở ngại, chủ thể lại gặp trở ngại khác; không mặc định mọi trường hợp trở ngại mới đều nặng hơn.",
+      "label_en": "Out of One Difficulty Into Another",
+      "desc_en": "Out of One Difficulty Into Another (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "42. Tránh vỏ dưa, gặp vỏ dừa"
+    },
+    "KQ_Khó_rút_lui": {
+      "label_vi": "Khó rút lui",
+      "desc_vi": "Việc đã tham gia hoặc cam kết khiến dừng lại, thoát ra hay đảo hướng trở nên khó khăn hoặc nguy hiểm.",
+      "label_en": "In Too Deep to Back Out",
+      "desc_en": "In Too Deep to Back Out (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "54. Cưỡi lên lưng hổ; 79. Đâm lao phải theo lao"
+    },
+    "KQ_Khó_thành_công": {
+      "label_vi": "Khó thành công",
+      "desc_vi": "Khả năng đạt mục tiêu rất thấp hoặc bị nhiều trở ngại chi phối; đây là triển vọng, không phải kết luận đã thất bại.",
+      "label_en": "Fighting a Losing Battle",
+      "desc_en": "Fighting a Losing Battle (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "55. Châu chấu đá xe; 56. Trứng chọi đá"
+    },
+    "KQ_Không_đáng_kể": {
+      "label_vi": "Không đáng kể",
+      "desc_vi": "Mức đóng góp hoặc tác động quá nhỏ khi so với quy mô nhu cầu hay tổng thể cần giải quyết.",
+      "label_en": "A Drop in the Ocean",
+      "desc_en": "A Drop in the Ocean (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "66. Muối bỏ bể"
+    },
+    "KQ_Không_đạt_cả_hai": {
+      "label_vi": "Không đạt cả hai",
+      "desc_vi": "Không đạt được phương án nào trong hai khả năng đang xét. Không tự thêm động cơ tham lam muốn chiếm cả hai.",
+      "label_en": "Losing Both Options",
+      "desc_en": "Losing Both Options (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "170. Xôi hỏng bỏng không"
+    },
+    "KQ_Không_được_trân_trọng": {
+      "label_vi": "Không được trân trọng",
+      "desc_vi": "Điều có giá trị không được người nhận hiểu, thưởng thức hoặc coi trọng. Không đồng nhất với hiểu rõ nhưng không nghe theo chỉ dẫn.",
+      "label_en": "Unappreciated Value",
+      "desc_en": "Unappreciated Value (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "15. Đàn gảy tai trâu"
+    },
+    "KQ_Không_ghi_nhớ": {
+      "label_vi": "Không ghi nhớ",
+      "desc_vi": "Nội dung nghe được không được giữ lại hay không được để tâm. Khác với hiểu mà nhất định không làm theo lời khuyên.",
+      "label_en": "In One Ear and Out the Other",
+      "desc_en": "In One Ear and Out the Other (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "96. Nghe tai này lọt tai kia"
+    },
+    "KQ_Không_hiểu": {
+      "label_vi": "Không hiểu",
+      "desc_vi": "Không nắm được ý nghĩa của thông tin hoặc lời nói đang tiếp nhận; khác với hiểu nhưng không muốn nghe theo.",
+      "label_en": "Total Incomprehension",
+      "desc_en": "Total Incomprehension (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "92. Như vịt nghe sấm"
+    },
+    "KQ_Không_thể_đảo_ngược": {
+      "label_vi": "Không thể đảo ngược",
+      "desc_vi": "Tình thế đã đi quá xa để có thể trở lại trạng thái trước; mạnh hơn việc chỉ khó rút lui.",
+      "label_en": "Irreversible Situation",
+      "desc_en": "Irreversible Situation (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "174. Ván đã đóng thuyền; 175. Gạo đã nấu thành cơm"
+    },
+    "KQ_Không_thỏa_mãn": {
+      "label_vi": "Không thỏa mãn",
+      "desc_vi": "Chủ thể không bằng lòng với điều đang có hoặc vẫn cho rằng điều khác đáng muốn hơn.",
+      "label_en": "Dissatisfied with What One Has",
+      "desc_en": "Dissatisfied with What One Has (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "192. Đứng núi này trông núi nọ"
+    },
+    "KQ_Không_thu_được_gì": {
+      "label_vi": "Không thu được gì",
+      "desc_vi": "Chủ thể không có thành quả, tài sản hoặc lợi ích mong muốn để nhận sau quá trình đã diễn ra.",
+      "label_en": "Coming Away Empty-Handed",
+      "desc_en": "Coming Away Empty-Handed (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "112. Trắng tay"
+    },
+    "KQ_Không_tiếp_thu": {
+      "label_vi": "Không tiếp thu",
+      "desc_vi": "Lời nói, khuyên bảo hay phê bình không tạo được sự đón nhận hoặc thay đổi tương ứng ở người nghe; không đồng nhất với không hiểu ngôn ngữ.",
+      "label_en": "Advice Falling on Deaf Ears",
+      "desc_en": "Advice Falling on Deaf Ears (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "16. Nước đổ đầu vịt; 176. Nước đổ lá khoai"
+    },
+    "KQ_Không_tiết_lộ": {
+      "label_vi": "Không tiết lộ",
+      "desc_vi": "Thông tin chưa được nói ra hoặc chưa trở thành điều người ngoài biết; không nhất thiết có động cơ xấu.",
+      "label_en": "Kept Under Wraps",
+      "desc_en": "Kept Under Wraps (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "10. Ngậm miệng như hến; 11. Kín như bưng"
+    },
+    "KQ_Lãng_phí": {
+      "label_vi": "Lãng phí",
+      "desc_vi": "Tiền, thời gian hoặc công sức đã bỏ ra không mang lại giá trị tương xứng hoặc bị mất đi vô ích.",
+      "label_en": "Wasted Effort or Money",
+      "desc_en": "Wasted Effort or Money (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "65. Đổ sông đổ bể; 103. Ném tiền qua cửa sổ"
+    },
+    "KQ_Lạnh_nhạt": {
+      "label_vi": "Lạnh nhạt",
+      "desc_vi": "Thái độ thiếu thân thiện, ít biểu lộ tình cảm hoặc tạo khoảng cách. Không tự khẳng định người đó độc ác hoặc hoàn toàn thiếu lòng trắc ẩn.",
+      "label_en": "Cold and Aloof Attitude",
+      "desc_en": "Cold and Aloof Attitude (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "184. Lạnh như tiền"
+    },
+    "KQ_Lệch_ý": {
+      "label_vi": "Lệch ý",
+      "desc_vi": "Các bên giao tiếp không hiểu nhau vì đang nghĩ về vấn đề theo những hướng hoặc nghĩa khác nhau.",
+      "label_en": "Misunderstanding at Cross Purposes",
+      "desc_en": "Misunderstanding at Cross Purposes (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "20. Ông nói gà, bà nói vịt"
+    },
+    "KQ_Lo_lắng": {
+      "label_vi": "Lo lắng",
+      "desc_vi": "Trạng thái bất an, sốt ruột hoặc hồi hộp về điều chưa chắc chắn hay có nguy cơ bất lợi.",
+      "label_en": "Burning Anxiety and Restlessness",
+      "desc_en": "Burning Anxiety and Restlessness (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "145. Ruột gan như lửa đốt; 146. Đứng ngồi không yên"
+    },
+    "KQ_Lộ_bản_chất": {
+      "label_vi": "Lộ bản chất",
+      "desc_vi": "Đặc điểm thật hay ý đồ từng được che giấu trở nên có thể nhận ra, thường là mặt xấu trong các dòng sử dụng nhãn này.",
+      "label_en": "True Colors Exposed",
+      "desc_en": "True Colors Exposed (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "38. Cháy nhà ra mặt chuột; 39. Lòi đuôi cáo"
+    },
+    "KQ_Lợi_ích_kép": {
+      "label_vi": "Lợi ích kép",
+      "desc_vi": "Một hành động đem lại hai mục tiêu hay lợi ích khác nhau; không nhất thiết là lợi nhuận tài chính.",
+      "label_en": "Killing Two Birds with One Stone",
+      "desc_en": "Killing Two Birds with One Stone (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "178. Một công đôi việc; 179. Một mũi tên trúng hai đích"
+    },
+    "KQ_Lưỡng_nan": {
+      "label_vi": "Lưỡng nan",
+      "desc_vi": "Chủ thể ở giữa những lựa chọn hoặc sức ép đối lập, khó chọn một hướng mà không chịu bất lợi hoặc từ bỏ điều quan trọng.",
+      "label_en": "Caught in a Dilemma",
+      "desc_en": "Caught in a Dilemma (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "43. Tiến thoái lưỡng nan"
+    },
+    "KQ_Mạnh_bề_ngoài": {
+      "label_vi": "Mạnh bề ngoài",
+      "desc_vi": "Bề ngoài có vẻ mạnh hoặc đáng sợ nhưng thực lực không tương xứng. Không đồng nhất với mạnh thật mà chủ động kiềm chế.",
+      "label_en": "Outwardly Fierce Paper Tiger",
+      "desc_en": "Outwardly Fierce Paper Tiger (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "187. Hổ giấy"
+    },
+    "KQ_Nắm_lợi_thế": {
+      "label_vi": "Nắm lợi thế",
+      "desc_vi": "Chủ thể đang giữ điều kiện quyết định hoặc ưu thế cho phép chi phối diễn biến theo hướng có lợi.",
+      "label_en": "Holding the Upper Hand",
+      "desc_en": "Holding the Upper Hand (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "99. Nắm đằng chuôi"
+    },
+    "KQ_Ngang_mức": {
+      "label_vi": "Ngang mức",
+      "desc_vi": "Hai đối tượng gần ngang nhau về thuộc tính đang so sánh, có thể là năng lực, chất lượng hoặc mức độ. Không chỉ áp dụng cho sức mạnh hay cuộc đua.",
+      "label_en": "Evenly Matched on a Par",
+      "desc_en": "Evenly Matched on a Par (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "199. Kẻ tám lạng, người nửa cân"
+    },
+    "KQ_Nghèo_khó": {
+      "label_vi": "Nghèo khó",
+      "desc_vi": "Thiếu tiền của hoặc điều kiện vật chất để sống thoải mái; không quy kết nguyên nhân nghèo.",
+      "label_en": "Extreme Poverty",
+      "desc_en": "Extreme Poverty (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "108. Nghèo rớt mồng tơi; 109. Khố rách áo ôm"
+    },
+    "KQ_Nghiêm_trọng_hóa": {
+      "label_vi": "Nghiêm trọng hóa",
+      "desc_vi": "Một việc bị nhìn hoặc trình bày như nghiêm trọng hơn thực tế; đây có thể là hệ quả diễn ngôn, không phải vấn đề thật đã lớn lên.",
+      "label_en": "Blown Out of Proportion",
+      "desc_en": "Blown Out of Proportion (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "8. Chuyện bé xé ra to"
+    },
+    "KQ_Nguy_cơ_phản_bội": {
+      "label_vi": "Nguy cơ phản bội",
+      "desc_vi": "Có khả năng người được hỗ trợ hoặc tin cậy quay lại gây hại; không khẳng định sự phản bội đã thực sự xảy ra.",
+      "label_en": "Risk of Future Betrayal",
+      "desc_en": "Risk of Future Betrayal (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "35. Nuôi ong tay áo; 36. Nuôi cáo trong nhà"
+    },
+    "KQ_Nhút_nhát": {
+      "label_vi": "Nhút nhát",
+      "desc_vi": "Đặc điểm dễ sợ hoặc thiếu mạnh dạn được câu mô tả như một trạng thái tính cách, không phải hệ quả của một hành động ngầm định.",
+      "label_en": "Timid and Faint-Hearted",
+      "desc_en": "Timid and Faint-Hearted (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "181. Nhát như cáy"
+    },
+    "KQ_Nợ_nần": {
+      "label_vi": "Nợ nần",
+      "desc_vi": "Có nghĩa vụ trả một lượng tiền đáng kể, thường vượt mức dễ dàng thanh toán trong ngữ nghĩa đang xét.",
+      "label_en": "Deep in Debt",
+      "desc_en": "Deep in Debt (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "113. Nợ như chúa Chổm"
+    },
+    "KQ_Phản_tác_dụng": {
+      "label_vi": "Phản tác dụng",
+      "desc_vi": "Phương án nhằm tác động xấu lên người khác lại gây bất lợi cho chính người đề ra hoặc thực hiện.",
+      "label_en": "Backfiring on the Schemer",
+      "desc_en": "Backfiring on the Schemer (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "41. Gậy ông đập lưng ông"
+    },
+    "KQ_Qua_nguy_hiểm": {
+      "label_vi": "Qua nguy hiểm",
+      "desc_vi": "Chủ thể đã vượt giai đoạn nguy kịch hoặc phần khó khăn nhất; không đảm bảo mọi rủi ro về sau đều biến mất.",
+      "label_en": "Safe and Out of Danger",
+      "desc_en": "Safe and Out of Danger (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "167. Tai qua nạn khỏi; 168. Chết đi sống lại"
+    },
+    "KQ_Quá_tải": {
+      "label_vi": "Quá tải",
+      "desc_vi": "Lượng việc, trách nhiệm hoặc đòi hỏi vượt mức có thể xử lý thoải mái, làm chủ thể thiếu thời gian hoặc kiệt sức.",
+      "label_en": "Overwhelmed with Work",
+      "desc_en": "Overwhelmed with Work (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "73. Đầu tắt mặt tối; 74. Tối mặt tối mũi"
+    },
+    "KQ_Rất_giống_nhau": {
+      "label_vi": "Rất giống nhau",
+      "desc_vi": "Hai đối tượng có mức tương đồng rất cao ở đặc điểm đang so sánh; không tự mở rộng sang mọi đặc điểm khác.",
+      "label_en": "Alike as Two Peas in a Pod",
+      "desc_en": "Alike as Two Peas in a Pod (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "197. Như hai giọt nước"
+    },
+    "KQ_Rất_khác_nhau": {
+      "label_vi": "Rất khác nhau",
+      "desc_vi": "Hai đối tượng có khoảng cách rất lớn về đặc điểm, hoàn cảnh hoặc chất lượng đang được xét.",
+      "label_en": "Worlds Apart",
+      "desc_en": "Worlds Apart (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "198. Một trời một vực"
+    },
+    "KQ_Rất_khỏe": {
+      "label_vi": "Rất khỏe",
+      "desc_vi": "Có sức lực thể chất lớn. Không quy đổi thành can đảm, thông minh hay quyền lực xã hội.",
+      "label_en": "Strong as an Ox",
+      "desc_en": "Strong as an Ox (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "82. Khỏe như vâm"
+    },
+    "KQ_Rùng_mình": {
+      "label_vi": "Rùng mình",
+      "desc_vi": "Phản ứng cơ thể như nổi da gà do sợ, kinh ngạc hoặc xúc động mạnh; không mặc định cảm xúc là tiêu cực.",
+      "label_en": "Goosebumps and Shivering",
+      "desc_en": "Goosebumps and Shivering (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "151. Nổi da gà"
+    },
+    "KQ_Sai_lệch_thông_tin": {
+      "label_vi": "Sai lệch thông tin",
+      "desc_vi": "Nội dung bị biến dạng, gán sai hoặc hiểu sai so với điều ban đầu cần truyền đạt; có thể xảy ra không có chủ ý.",
+      "label_en": "Distorted Message",
+      "desc_en": "Distorted Message (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "14. Tam sao thất bản"
+    },
+    "KQ_Sai_sự_thật": {
+      "label_vi": "Sai sự thật",
+      "desc_vi": "Nội dung được phát biểu không phù hợp với thực tế; nhãn này đi cùng HD_Nói_dối khi sự sai lệch là cố ý.",
+      "label_en": "Blatant Falsehood",
+      "desc_en": "Blatant Falsehood (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "9. Ăn không nói có"
+    },
+    "KQ_Sát_hạn": {
+      "label_vi": "Sát hạn",
+      "desc_vi": "Việc hành động bị đẩy đến thời điểm gần hết khoảng thời gian có thể xử lý một cách thuận lợi.",
+      "label_en": "Delayed Until the Eleventh Hour",
+      "desc_en": "Delayed Until the Eleventh Hour (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "68. Nước đến chân mới nhảy"
+    },
+    "KQ_Sống_còn": {
+      "label_vi": "Sống còn",
+      "desc_vi": "Tình thế được đặt ở mức phải thành công hoặc chịu thất bại toàn diện. Không mặc định chủ thể thực tế sẽ chết nếu thua.",
+      "label_en": "Make-or-Break Survival",
+      "desc_en": "Make-or-Break Survival (Nguy cơ / triển vọng)",
+      "type": "Nguy cơ / triển vọng",
+      "examples": "57. Một mất một còn"
+    },
+    "KQ_Sợ_hãi": {
+      "label_vi": "Sợ hãi",
+      "desc_vi": "Trạng thái lo sợ mạnh trước điều đe dọa hoặc đáng kinh hãi, không nhất thiết là đặc điểm tính cách lâu dài.",
+      "label_en": "Terrified and Panic-Stricken",
+      "desc_en": "Terrified and Panic-Stricken (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "148. Sợ mất mật; 149. Hồn vía lên mây"
+    },
+    "KQ_Sung_túc": {
+      "label_vi": "Sung túc",
+      "desc_vi": "Sống trong điều kiện dư dả, có đủ phương tiện để hưởng sự thoải mái; không tự xác định nguyên nhân do may hay do làm việc.",
+      "label_en": "Living in Luxury",
+      "desc_en": "Living in Luxury (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "165. Sống như ông hoàng"
+    },
+    "KQ_Sững_sờ": {
+      "label_vi": "Sững sờ",
+      "desc_vi": "Bị bất ngờ đến mức tạm thời khó phản ứng hoặc tiếp nhận điều vừa xảy ra.",
+      "label_en": "Stunned Speechless",
+      "desc_en": "Stunned Speechless (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "160. Chết đứng như Từ Hải"
+    },
+    "KQ_Tách_rời": {
+      "label_vi": "Tách rời",
+      "desc_vi": "Các bên không còn tiếp tục chung đường hoặc gắn với nhau trong quan hệ, dự án hay tình thế đang xét.",
+      "label_en": "Parting Ways",
+      "desc_en": "Parting Ways (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "139. Dứt áo ra đi; 140. Đường ai nấy đi"
+    },
+    "KQ_Tai_họa_dồn_dập": {
+      "label_vi": "Tai họa dồn dập",
+      "desc_vi": "Nhiều điều xấu đến cùng lúc hoặc nối tiếp nhau, thay vì một bất lợi đơn lẻ. Không quy định phải liên quan tiền hay sức khỏe.",
+      "label_en": "Misfortunes Never Come Singly",
+      "desc_en": "Misfortunes Never Come Singly (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "172. Họa vô đơn chí"
+    },
+    "KQ_Tái_nhợt": {
+      "label_vi": "Tái nhợt",
+      "desc_vi": "Sắc mặt trở nên rất nhợt, trong nghĩa đang chọn là phản ứng trước sợ hãi hoặc sốc; không gán chẩn đoán y khoa.",
+      "label_en": "Pale as a Ghost from Shock",
+      "desc_en": "Pale as a Ghost from Shock (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "159. Mặt cắt không còn giọt máu"
+    },
+    "KQ_Thiếu_hụt": {
+      "label_vi": "Thiếu hụt",
+      "desc_vi": "Nguồn tiền hoặc vật chất không đủ để đáp ứng đồng thời các nhu cầu, có thể chỉ đủ cho sinh hoạt trước mắt.",
+      "label_en": "Financial Shortfall",
+      "desc_en": "Financial Shortfall (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "110. Giật gấu vá vai"
+    },
+    "KQ_Thoát_trong_gang_tấc": {
+      "label_vi": "Thoát trong gang tấc",
+      "desc_vi": "Đã tránh được nguy hiểm nhưng chỉ nhờ một khoảng cách, thời gian hoặc cơ hội rất nhỏ.",
+      "label_en": "Escaping by a Hair's Breadth",
+      "desc_en": "Escaping by a Hair's Breadth (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "166. Thoát chết trong gang tấc"
+    },
+    "KQ_Thu_nhập_lớn": {
+      "label_vi": "Thu nhập lớn",
+      "desc_vi": "Tiền được thu về với lượng lớn hoặc tốc độ cao; khác KQ_Giàu_có là mức tài sản đã sở hữu.",
+      "label_en": "Money Rolling In",
+      "desc_en": "Money Rolling In (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "102. Tiền vào như nước"
+    },
+    "KQ_Thua_lỗ_nặng": {
+      "label_vi": "Thua lỗ nặng",
+      "desc_vi": "Mất một phần rất lớn hoặc toàn bộ số tiền, vốn hay tài sản đã có hoặc đem vào rủi ro.",
+      "label_en": "Losing Hook, Line, and Sinker",
+      "desc_en": "Losing Hook, Line, and Sinker (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "171. Mất cả chì lẫn chài"
+    },
+    "KQ_Thuận_lợi": {
+      "label_vi": "Thuận lợi",
+      "desc_vi": "Quá trình thực hiện tiến triển dễ dàng với ít trở ngại đáng kể; không mặc định kết quả cuối cùng đã đạt.",
+      "label_en": "Smooth Sailing",
+      "desc_en": "Smooth Sailing (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "180. Thuận buồm xuôi gió"
+    },
+    "KQ_Thừa_thãi": {
+      "label_vi": "Thừa thãi",
+      "desc_vi": "Điều được cung cấp hoặc chỉ dẫn không cần thiết vì người nhận hay tình huống đã đáp ứng nhu cầu đó.",
+      "label_en": "Redundant and Unnecessary",
+      "desc_en": "Redundant and Unnecessary (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "94. Dạy khỉ leo cây"
+    },
+    "KQ_Tiến_triển_tốt": {
+      "label_vi": "Tiến triển tốt",
+      "desc_vi": "Công việc hoặc vị thế đang phát triển theo chiều tích cực. Không tự gán nguyên nhân là may mắn hay đảm bảo đã giàu có.",
+      "label_en": "Thriving and Prospering",
+      "desc_en": "Thriving and Prospering (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "114. Ăn nên làm ra; 115. Diều gặp gió"
+    },
+    "KQ_Toại_nguyện": {
+      "label_vi": "Toại nguyện",
+      "desc_vi": "Điều thực tế nhận được phù hợp với điều chủ thể đã mong muốn từ trước.",
+      "label_en": "Wishes Fulfilled",
+      "desc_en": "Wishes Fulfilled (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "161. Cầu được ước thấy"
+    },
+    "KQ_Ướt_sũng": {
+      "label_vi": "Ướt sũng",
+      "desc_vi": "Người hoặc quần áo bị ướt rất nhiều, thường trông nhếch nhác. Không tự suy nguyên nhân là mưa, ngã xuống nước hay bơi.",
+      "label_en": "Soaked Like a Drowned Rat",
+      "desc_en": "Soaked Like a Drowned Rat (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "78. Ướt như chuột lột"
+    },
+    "KQ_Vô_cảm": {
+      "label_vi": "Vô cảm",
+      "desc_vi": "Thiếu thương xót hoặc không bị lay động trước đau khổ, cảm xúc hay lời cầu xin của người khác.",
+      "label_en": "Heart of Stone",
+      "desc_en": "Heart of Stone (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "185. Lòng dạ sắt đá"
+    },
+    "KQ_Vô_ích": {
+      "label_vi": "Vô ích",
+      "desc_vi": "Việc làm hoặc công sức không tạo ra tiến bộ hay kết quả hữu ích; khác lãng phí ở chỗ không bắt buộc nhấn mạnh phần nguồn lực bị mất.",
+      "label_en": "Futile and Fruitless",
+      "desc_en": "Futile and Fruitless (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "63. Dã tràng xe cát; 64. Công dã tràng"
+    },
+    "KQ_Vui_sướng": {
+      "label_vi": "Vui sướng",
+      "desc_vi": "Trạng thái hạnh phúc, phấn khởi hoặc thỏa mãn ở mức rất cao.",
+      "label_en": "Overjoyed and Elated",
+      "desc_en": "Overjoyed and Elated (Trạng thái / thuộc tính)",
+      "type": "Trạng thái / thuộc tính",
+      "examples": "141. Vui như mở cờ trong bụng; 142. Mừng như bắt được vàng"
+    },
+    "KQ_Vượt_khả_năng": {
+      "label_vi": "Vượt khả năng",
+      "desc_vi": "Mức chi hoặc yêu cầu vượt giới hạn nguồn lực có thể đáp ứng; trong bộ hiện tại tập trung vào chi tiêu.",
+      "label_en": "Beyond Financial Capacity",
+      "desc_en": "Beyond Financial Capacity (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "104. Vung tay quá trán"
+    },
+    "KQ_Xung_đột_tăng": {
+      "label_vi": "Xung đột tăng",
+      "desc_vi": "Mức căng thẳng, thù địch hoặc đối đầu giữa các bên trở nên mạnh hơn trước.",
+      "label_en": "Escalated Conflict",
+      "desc_en": "Escalated Conflict (Hệ quả / kết cục)",
+      "type": "Hệ quả / kết cục",
+      "examples": "30. Đổ dầu vào lửa"
+    }
+  },
+  "Mục_đích": {
+    "MD_Bắt_lỗi": {
+      "label_vi": "Bắt lỗi",
+      "desc_vi": "Chủ thể muốn tìm được chỗ sai để chê trách hoặc bắt bẻ; chỉ dùng khi mục tiêu phê phán là một phần rõ ràng của nghĩa.",
+      "label_en": "Finding Faults",
+      "desc_en": "Finding Faults (Ý định)",
+      "type": "Ý định",
+      "examples": "60. Bới lông tìm vết; 61. Vạch lá tìm sâu"
+    },
+    "MD_Cản_trở": {
+      "label_vi": "Cản trở",
+      "desc_vi": "Chủ thể muốn làm người khác khó thực hiện, chậm tiến hành hoặc không hoàn thành công việc và kế hoạch của họ.",
+      "label_en": "Obstructing Progress",
+      "desc_en": "Obstructing Progress (Ý định)",
+      "type": "Ý định",
+      "examples": "49. Chọc gậy bánh xe"
+    },
+    "MD_Che_giấu_sự_thật": {
+      "label_vi": "Che giấu sự thật",
+      "desc_vi": "Chủ thể muốn người khác không nhận ra tình hình thật, thường để tránh bất lợi hoặc duy trì sự lừa dối.",
+      "label_en": "Concealing the Truth",
+      "desc_en": "Concealing the Truth (Ý định)",
+      "type": "Ý định",
+      "examples": "24. Đánh lận con đen"
+    },
+    "MD_Chứng_minh": {
+      "label_vi": "Chứng minh",
+      "desc_vi": "Chủ thể muốn người nghe tin hoặc chấp nhận một khẳng định dựa trên chứng cứ có thể kiểm tra.",
+      "label_en": "Providing Proof",
+      "desc_en": "Providing Proof (Ý định)",
+      "type": "Ý định",
+      "examples": "4. Nói có sách, mách có chứng"
+    },
+    "MD_Đổ_lỗi": {
+      "label_vi": "Đổ lỗi",
+      "desc_vi": "Chủ thể muốn chuyển trách nhiệm hoặc hậu quả của lỗi sang người khác thay vì đúng người gây ra.",
+      "label_en": "Shifting Blame",
+      "desc_en": "Shifting Blame (Ý định)",
+      "type": "Ý định",
+      "examples": "29. Gắp lửa bỏ tay người"
+    },
+    "MD_Giành_thắng_lợi": {
+      "label_vi": "Giành thắng lợi",
+      "desc_vi": "Chủ thể muốn thắng cuộc hoặc đạt thành công quyết định trước thử thách hay đối thủ.",
+      "label_en": "Winning at All Costs",
+      "desc_en": "Winning at All Costs (Ý định)",
+      "type": "Ý định",
+      "examples": "80. Được ăn cả, ngã về không"
+    },
+    "MD_Giữ_lợi_thế": {
+      "label_vi": "Giữ lợi thế",
+      "desc_vi": "Chủ thể muốn duy trì vị trí có lợi, phần hưởng hoặc sự thuận lợi mình đang nắm giữ.",
+      "label_en": "Maintaining Advantage",
+      "desc_en": "Maintaining Advantage (Ý định)",
+      "type": "Ý định",
+      "examples": "84. Gió chiều nào che chiều ấy"
+    },
+    "MD_Hãm_hại": {
+      "label_vi": "Hãm hại",
+      "desc_vi": "Chủ thể muốn gây thiệt hại cho người khác về an toàn, quyền lợi hoặc danh tiếng; không gán chỉ vì hành động vô tình gây hại.",
+      "label_en": "Harming Others",
+      "desc_en": "Harming Others (Ý định)",
+      "type": "Ý định",
+      "examples": "41. Gậy ông đập lưng ông"
+    },
+    "MD_Hưởng_lợi_hai_phía": {
+      "label_vi": "Hưởng lợi hai phía",
+      "desc_vi": "Chủ thể muốn nhận lợi ích từ cả hai lựa chọn hoặc hai bên, dù chúng có thể cạnh tranh hay mâu thuẫn.",
+      "label_en": "Profiting from Both Sides",
+      "desc_en": "Profiting from Both Sides (Ý định)",
+      "type": "Ý định",
+      "examples": "81. Bắt cá hai tay"
+    },
+    "MD_Kiểm_soát": {
+      "label_vi": "Kiểm soát",
+      "desc_vi": "Chủ thể muốn duy trì hoặc gia tăng quyền chi phối hành vi của người khác hay tình hình chung.",
+      "label_en": "Controlling and Dominating",
+      "desc_en": "Controlling and Dominating (Ý định)",
+      "type": "Ý định",
+      "examples": "119. Bàn tay sắt"
+    },
+    "MD_Lấy_lòng": {
+      "label_vi": "Lấy lòng",
+      "desc_vi": "Chủ thể muốn người khác có thiện cảm, đồng ý hoặc dành ưu ái cho mình thông qua cách tiếp cận dễ nghe.",
+      "label_en": "Currying Favor",
+      "desc_en": "Currying Favor (Ý định)",
+      "type": "Ý định",
+      "examples": "18. Nói như rót mật vào tai"
+    },
+    "MD_Lợi_lớn_hơn": {
+      "label_vi": "Lợi lớn hơn",
+      "desc_vi": "Chủ thể muốn thu được thứ có giá trị lớn hơn điều đã bỏ ra. Không đảm bảo ý định đó sẽ thành công.",
+      "label_en": "Seeking Greater Gain",
+      "desc_en": "Seeking Greater Gain (Ý định)",
+      "type": "Ý định",
+      "examples": "196. Thả con săn sắt, bắt con cá rô"
+    },
+    "MD_Lừa_người_mua": {
+      "label_vi": "Lừa người mua",
+      "desc_vi": "Chủ thể muốn người mua tin vào một đề nghị hoặc chất lượng không đúng với thứ thực sự cung cấp.",
+      "label_en": "Deceiving Buyers",
+      "desc_en": "Deceiving Buyers (Ý định)",
+      "type": "Ý định",
+      "examples": "23. Treo đầu dê, bán thịt chó"
+    },
+    "MD_Né_tránh": {
+      "label_vi": "Né tránh",
+      "desc_vi": "Chủ thể muốn tránh phải đối diện, trả lời hoặc xử lý trực tiếp một vấn đề; khác với hành động né tránh đã thực hiện.",
+      "label_en": "Avoiding Responsibility or Response",
+      "desc_en": "Avoiding Responsibility or Response (Ý định)",
+      "type": "Ý định",
+      "examples": "25. Giả câm giả điếc"
+    },
+    "MD_Thoát_nguy": {
+      "label_vi": "Thoát nguy",
+      "desc_vi": "Chủ thể muốn rời khỏi tình trạng nguy hiểm hoặc khó khăn đang gặp; không mặc định việc thoát đã thành công.",
+      "label_en": "Escaping Danger",
+      "desc_en": "Escaping Danger (Ý định)",
+      "type": "Ý định",
+      "examples": "42. Tránh vỏ dưa, gặp vỏ dừa"
+    },
+    "MD_Tiết_kiệm": {
+      "label_vi": "Tiết kiệm",
+      "desc_vi": "Chủ thể muốn giảm hao tốn và giữ lại tiền hoặc nguồn lực để đáp ứng nhu cầu hay dự phòng.",
+      "label_en": "Saving Money and Resources",
+      "desc_en": "Saving Money and Resources (Ý định)",
+      "type": "Ý định",
+      "examples": "106. Thắt lưng buộc bụng; 107. Bóp mồm bóp miệng"
+    },
+    "MD_Tìm_lời_giải": {
+      "label_vi": "Tìm lời giải",
+      "desc_vi": "Chủ thể muốn nhớ ra, hiểu được hoặc giải quyết một câu hỏi hay vấn đề chưa có câu trả lời.",
+      "label_en": "Finding a Solution",
+      "desc_en": "Finding a Solution (Ý định)",
+      "type": "Ý định",
+      "examples": "93. Vắt óc suy nghĩ"
+    },
+    "MD_Tìm_ra": {
+      "label_vi": "Tìm ra",
+      "desc_vi": "Chủ thể muốn xác định được đối tượng đang tìm, chưa nói đến việc đã tìm thấy hay chưa.",
+      "label_en": "Locating Something Difficult",
+      "desc_en": "Locating Something Difficult (Ý định)",
+      "type": "Ý định",
+      "examples": "62. Mò kim đáy bể"
+    },
+    "MD_Trục_lợi": {
+      "label_vi": "Trục lợi",
+      "desc_vi": "Chủ thể muốn kiếm lợi riêng bằng cách khai thác hoàn cảnh hoặc người khác, thường mang sắc thái cơ hội hay thiếu công bằng.",
+      "label_en": "Opportunistic Profiteering",
+      "desc_en": "Opportunistic Profiteering (Ý định)",
+      "type": "Ý định",
+      "examples": "31. Đục nước béo cò; 32. Thừa nước đục thả câu"
+    },
+    "MD_Vừa_sức": {
+      "label_vi": "Vừa sức",
+      "desc_vi": "Chủ thể muốn mức chi hoặc kế hoạch phù hợp với nguồn lực thực có. Không mặc định muốn giảm mọi chi tiêu xuống thấp nhất.",
+      "label_en": "Living Within Means",
+      "desc_en": "Living Within Means (Ý định)",
+      "type": "Ý định",
+      "examples": "194. Liệu cơm gắp mắm"
+    },
+    "MD_Xoay_xở": {
+      "label_vi": "Xoay xở",
+      "desc_vi": "Chủ thể muốn giải quyết nhu cầu trước mắt bằng cách điều chuyển nguồn lực đang thiếu, không nhất thiết xử lý được nguyên nhân gốc.",
+      "label_en": "Making Do with Scarcity",
+      "desc_en": "Making Do with Scarcity (Ý định)",
+      "type": "Ý định",
+      "examples": "110. Giật gấu vá vai"
+    }
+  }
+}
