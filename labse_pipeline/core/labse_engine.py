@@ -3,7 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 
 from .text_builder import (
     CRITERIA_CATALOG,
@@ -46,6 +46,8 @@ class LaBSEOntologyEngine:
         s_onto_near_threshold: float = 0.50,
     ):
         self.model_name = model_name
+        self.is_bge_m3 = "bge-m3" in model_name.lower()
+        self.cache_prefix = "bge_m3" if self.is_bge_m3 else "labse"
         self.csv_path = Path(csv_path)
         self.alpha = alpha
         self.exact_threshold = exact_threshold
@@ -182,7 +184,7 @@ class LaBSEOntologyEngine:
         if mode in self.embeddings_cache and not force_recompute:
             return self.embeddings_cache[mode]
 
-        cache_file = DATA_DIR / f"labse_single_vectors_{mode}.npz"
+        cache_file = DATA_DIR / f"{self.cache_prefix}_single_vectors_{mode}.npz"
         if cache_file.exists() and not force_recompute:
             data = np.load(cache_file)
             if "vecs" in data and len(data["vecs"]) == len(self.records):
@@ -215,17 +217,31 @@ class LaBSEOntologyEngine:
     ) -> Dict[str, Any]:
         """Dùng LaBSE tự động gợi ý bộ 4 tiêu chí từ Bể tiêu chí v5 (236 mã)."""
         if not self.criteria_embeddings:
-            for axis_name, items in CRITERIA_CATALOG.items():
-                codes = list(items.keys())
-                descs = [
-                    f"{meta['label_vi']}: {meta['desc_vi']} ({meta['label_en']})"
-                    for meta in items.values()
-                ]
-                vecs = self.encode_texts(descs)
-                self.criteria_embeddings[axis_name] = {
-                    "codes": codes,
-                    "vecs": vecs,
-                }
+            crit_vec_path = DATA_DIR / f"{self.cache_prefix}_criteria_vectors.npz"
+            if crit_vec_path.exists():
+                data = np.load(crit_vec_path)
+                c_codes = list(data["codes"])
+                c_axes = list(data["axes"])
+                c_vecs = data["vecs"]
+                for axis_name in CRITERIA_CATALOG.keys():
+                    indices = [i for i, a in enumerate(c_axes) if a == axis_name]
+                    if indices:
+                        self.criteria_embeddings[axis_name] = {
+                            "codes": [c_codes[i] for i in indices],
+                            "vecs": c_vecs[indices],
+                        }
+            else:
+                for axis_name, items in CRITERIA_CATALOG.items():
+                    codes = list(items.keys())
+                    descs = [
+                        f"{meta['label_vi']}: {meta['desc_vi']} ({meta['label_en']})"
+                        for meta in items.values()
+                    ]
+                    vecs = self.encode_texts(descs)
+                    self.criteria_embeddings[axis_name] = {
+                        "codes": codes,
+                        "vecs": vecs,
+                    }
 
         q_vec = self.encode_texts([gloss_text])[0]
         axis_map = {
@@ -286,10 +302,10 @@ class LaBSEOntologyEngine:
                 }
         return None
 
-    @staticmethod
-    def _compare_frame_axes(q_frame: Dict[str, str], c_frame: Dict[str, str]) -> Dict[str, Dict[str, str]]:
+    def _compare_frame_axes(self, q_frame: Dict[str, str], c_frame: Dict[str, str]) -> Dict[str, Dict[str, str]]:
         """So sánh chi tiết từng trục (BC, HD, KQ, MD) giữa Khung truy vấn và Khung ứng viên."""
         axis_details = {}
+        m_type = "bge_m3" if self.is_bge_m3 else "labse"
         for ax in ["bc", "hd", "kq", "md"]:
             qv = (q_frame.get(ax) or "").strip()
             cv = (c_frame.get(ax) or "").strip()
@@ -297,8 +313,8 @@ class LaBSEOntologyEngine:
                 status = "BOTH_EMPTY"
             elif qv and cv and qv == cv:
                 status = "EXACT_MATCH"
-            elif qv and cv and is_related_criterion(qv, cv):
-                sim = get_criteria_similarity(qv, cv)
+            elif qv and cv and is_related_criterion(qv, cv, model_type=m_type):
+                sim = get_criteria_similarity(qv, cv, model_type=m_type)
                 status = f"NEAR_MATCH ({sim:.2f})"
             else:
                 status = "MISMATCH"
@@ -401,7 +417,8 @@ class LaBSEOntologyEngine:
                 continue
 
             cand_frame = {"bc": rec["bc"], "hd": rec["hd"], "kq": rec["kq"], "md": rec["md"]}
-            s_onto, onto_meta = compute_ontology_similarity(query_frame, cand_frame)
+            m_type = "bge_m3" if self.is_bge_m3 else "labse"
+            s_onto, onto_meta = compute_ontology_similarity(query_frame, cand_frame, model_type=m_type)
             axis_comparison = self._compare_frame_axes(query_frame, cand_frame)
 
             # Nếu Khung Bản thể học trùng khớp hoàn toàn 100% (s_onto == 1.0):
@@ -609,6 +626,9 @@ class LaBSEOntologyEngine:
             except Exception as e:
                 print(f"⚠️ Cảnh báo lưu RDF: {e}")
 
+        # Tự động cập nhật tiêu chí mới vào Catalog, Vector NPZ và Ma trận khoảng cách
+        self._sync_new_criteria_if_any([("Bối_cảnh", bc), ("Hành_động", hd), ("Kết_quả", kq), ("Mục_đích", md)])
+
         self._load_records()
         self.get_corpus_embeddings(mode="frame_and_gloss", force_recompute=True)
         self.get_corpus_embeddings(mode="gloss_only", force_recompute=True)
@@ -620,3 +640,100 @@ class LaBSEOntologyEngine:
             "frame_name": frame_name,
             "total_records": len(self.records),
         }
+
+    def _sync_new_criteria_if_any(self, axis_criterion_pairs: List[Tuple[str, str]]):
+        """
+        Nếu người dùng hoặc LLM thêm một tiêu chí mới chưa có trong Bể tiêu chí (criteria_catalog.json):
+        1. Thêm vào criteria_catalog.json
+        2. Sinh vector LaBSE và cập nhật vào labse_criteria_vectors.npz
+        3. Tính lại khoảng cách Cosine với các tiêu chí cùng trục và cập nhật vào criteria_similarity_matrix.json
+        """
+        crit_cat_path = DATA_DIR / "criteria_catalog.json"
+        crit_vec_path = DATA_DIR / "labse_criteria_vectors.npz"
+        crit_mat_path = DATA_DIR / "criteria_similarity_matrix.json"
+
+        with open(crit_cat_path, "r", encoding="utf-8") as f:
+            catalog = json.load(f)
+
+        new_entries = []
+        for axis_name, code in axis_criterion_pairs:
+            if not code or str(code).strip() in ["", "null", "none", "nan"]:
+                continue
+            code = code.strip()
+            if axis_name not in catalog:
+                catalog[axis_name] = {}
+            if code not in catalog[axis_name]:
+                # Tiêu chí mới
+                clean_lbl = code.split("_", 1)[-1].replace("_", " ")
+                catalog[axis_name][code] = {
+                    "label_vi": clean_lbl,
+                    "label_en": clean_lbl,
+                    "desc_vi": f"Tiêu chí bổ sung: {clean_lbl}",
+                    "desc_en": f"Supplementary criterion: {clean_lbl}",
+                }
+                new_entries.append((axis_name, code, catalog[axis_name][code]))
+
+        if not new_entries:
+            return  # Không có tiêu chí mới, không cần cập nhật
+
+        # 1. Lưu catalog mới
+        with open(crit_cat_path, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, ensure_ascii=False, indent=2)
+
+        # 2. Cập nhật vector vào labse_criteria_vectors.npz
+        if crit_vec_path.exists():
+            data = np.load(crit_vec_path)
+            c_codes = list(data["codes"])
+            c_axes = list(data["axes"])
+            c_labels_vi = list(data["labels_vi"])
+            c_labels_en = list(data["labels_en"])
+            c_vecs = list(data["vecs"])
+        else:
+            c_codes, c_axes, c_labels_vi, c_labels_en, c_vecs = [], [], [], [], []
+
+        new_texts = [f"{m['label_vi']}: {m['desc_vi']} ({m['label_en']})" for _, _, m in new_entries]
+        new_vecs = self.encode_texts(new_texts)
+
+        for i, (ax, cd, m) in enumerate(new_entries):
+            c_codes.append(cd)
+            c_axes.append(ax)
+            c_labels_vi.append(m["label_vi"])
+            c_labels_en.append(m["label_en"])
+            c_vecs.append(new_vecs[i])
+
+        np.savez_compressed(
+            crit_vec_path,
+            codes=np.array(c_codes),
+            axes=np.array(c_axes),
+            labels_vi=np.array(c_labels_vi),
+            labels_en=np.array(c_labels_en),
+            vecs=np.array(c_vecs),
+        )
+
+        # 3. Cập nhật ma trận khoảng cách tương đồng (criteria_similarity_matrix.json)
+        sim_map = {}
+        if crit_mat_path.exists():
+            with open(crit_mat_path, "r", encoding="utf-8") as f:
+                sim_map = json.load(f)
+
+        c_axes_arr = np.array(c_axes)
+        c_vecs_arr = np.array(c_vecs)
+
+        for i, (ax, cd, _) in enumerate(new_entries):
+            v_new = new_vecs[i]
+            same_axis_indices = [idx for idx, a in enumerate(c_axes_arr) if a == ax and c_codes[idx] != cd]
+            if same_axis_indices:
+                other_vecs = c_vecs_arr[same_axis_indices]
+                cos_sims = np.dot(other_vecs, v_new)
+                for j, score in enumerate(cos_sims):
+                    if score >= 0.70:
+                        other_code = c_codes[same_axis_indices[j]]
+                        sim_map[f"{cd}|{other_code}"] = round(float(score), 4)
+                        sim_map[f"{other_code}|{cd}"] = round(float(score), 4)
+
+        with open(crit_mat_path, "w", encoding="utf-8") as f:
+            json.dump(sim_map, f, ensure_ascii=False, indent=2)
+
+        # Xóa cache RAM để nạp lại
+        self.criteria_embeddings = {}
+        print(f"✅ Đã tự động đồng bộ {len(new_entries)} tiêu chí mới vào Catalog, Vector NPZ và Ma trận khoảng cách.")

@@ -22,17 +22,35 @@ PROMPT_PATH = BASE_DIR / "prompts" / "prompt_labse_extract.md"
 
 app = FastAPI(
     title="V-Idiom: LaBSE + Ontology Hybrid UI & API",
-    description="Giao diện thử nghiệm toàn trình: LLM (Groq) -> [Khung + Gloss] -> LaBSE + Bản thể học",
-    version="1.0.0",
+    description="Giao diện thử nghiệm toàn trình: LLM (Groq) -> [Khung + Gloss] -> LaBSE / BGE-M3 + Bản thể học",
+    version="1.1.0",
 )
 
-engine = LaBSEOntologyEngine()
-# Khởi tạo sẵn mô hình LaBSE và toàn bộ cache vector khi bật server để truy vấn trên UI mượt tức thì (~25ms)
-engine._ensure_model()
-engine.get_corpus_embeddings(mode="frame_and_gloss")
-engine.get_corpus_embeddings(mode="gloss_only")
-engine.get_corpus_embeddings(mode="raw_and_frame")
-engine.get_corpus_embeddings(mode="raw_only")
+# Khởi tạo song song 2 Engine: LaBSE và BAAI/bge-m3
+engine_labse = LaBSEOntologyEngine(model_name="sentence-transformers/LaBSE")
+engine_bge_m3 = LaBSEOntologyEngine(model_name="BAAI/bge-m3")
+
+# Nạp sẵn mô hình và các vector cache của cả 2 engine để UI chuyển đổi tức thì (~0ms)
+engine_labse._ensure_model()
+engine_labse.get_corpus_embeddings(mode="frame_and_gloss")
+engine_labse.get_corpus_embeddings(mode="gloss_only")
+engine_labse.get_corpus_embeddings(mode="raw_and_frame")
+engine_labse.get_corpus_embeddings(mode="raw_only")
+
+engine_bge_m3._ensure_model()
+engine_bge_m3.get_corpus_embeddings(mode="frame_and_gloss")
+engine_bge_m3.get_corpus_embeddings(mode="gloss_only")
+engine_bge_m3.get_corpus_embeddings(mode="raw_and_frame")
+engine_bge_m3.get_corpus_embeddings(mode="raw_only")
+
+# Mặc định engine là labse
+engine = engine_labse
+
+
+def get_active_engine(model_choice: Optional[str] = "labse") -> LaBSEOntologyEngine:
+    if model_choice and "bge" in str(model_choice).lower():
+        return engine_bge_m3
+    return engine_labse
 
 
 def _clean_null(val) -> str:
@@ -95,11 +113,13 @@ def call_groq_llm(idiom_input: str) -> tuple[dict, float, str]:
 
 class FullFlowRequest(BaseModel):
     idiom: str
+    model_choice: Optional[str] = "labse"
     top_k: Optional[int] = 10
 
 
 class ManualMatchRequest(BaseModel):
     idiom: str
+    model_choice: Optional[str] = "labse"
     en_idiom_suggested: Optional[str] = ""
     gloss_vi: Optional[str] = ""
     gloss_en: Optional[str] = ""
@@ -154,15 +174,17 @@ def api_full_flow(req: FullFlowRequest):
       - Nếu câu ĐÃ CÓ SẴN trong Ontology (v-idiomV6.rdf): Lấy trực tiếp Description (rdfs:comment) và 4 trục tiêu chí của nó từ Ontology (KHÔNG gọi LLM tự suy luận).
       - Nếu là câu MỚI hoàn toàn: Gọi LLM (Groq API + model trong .env) tách nghĩa bóng Gloss & 4 trục tiêu chí.
     Bước 3: Ghép chuỗi '[Khung Bản thể học] : <Nghĩa bóng Gloss>'.
-    Bước 4A & 4B: Mã hóa LaBSE 768 chiều & Đối soát Khung Bản thể học.
+    Bước 4A & 4B: Mã hóa Vector (LaBSE / BGE-M3) & Đối soát Khung Bản thể học.
     Bước 5: Tính điểm S_hybrid, lọc sàn S_Gloss >= 0.60 và phân nhánh 3 mức ngưỡng.
     """
     idiom_str = (req.idiom or "").strip()
     if not idiom_str:
         raise HTTPException(status_code=400, detail="Vui lòng nhập câu thành ngữ cần phân tích.")
 
+    active_engine = get_active_engine(req.model_choice)
+
     # Bước 2: Kiểm tra xem câu nhập đã có sẵn trong Ontology (v-idiomV6.rdf) chưa
-    onto_rec = engine.lookup_ontology_record(idiom_str)
+    onto_rec = active_engine.lookup_ontology_record(idiom_str)
     if onto_rec is not None:
         llm_ms = 0.0
         source_type = "ONTOLOGY_V6"
@@ -207,9 +229,9 @@ def api_full_flow(req: FullFlowRequest):
         gloss_vi = _clean_null(llm_json.get("Giải_thích_nghĩa_Tiếng_Việt"))
         gloss_en = _clean_null(llm_json.get("Giải_thích_nghĩa_Tiếng_Anh"))
 
-    # Bước 3, 4A, 4B, 5: Chạy LaBSE + Bản thể học
+    # Bước 3, 4A, 4B, 5: Chạy Embedding + Bản thể học
     t1 = time.time()
-    hybrid_res = engine.match_idiom(
+    hybrid_res = active_engine.match_idiom(
         idiom_surface=vi_idiom,
         gloss_vi=gloss_vi,
         gloss_en=gloss_en,
@@ -221,14 +243,14 @@ def api_full_flow(req: FullFlowRequest):
         mode="frame_and_gloss",
         top_k=req.top_k or 10,
     )
-    labse_ms = round((time.time() - t1) * 1000, 1)
+    embed_ms = round((time.time() - t1) * 1000, 1)
 
     return {
         "ok": True,
         "timing": {
             "llm_ms": llm_ms,
-            "labse_ontology_ms": labse_ms,
-            "total_ms": round(llm_ms + labse_ms, 1),
+            "labse_ontology_ms": embed_ms,
+            "total_ms": round(llm_ms + embed_ms, 1),
         },
         "llm_step": {
             "source": source_type,
@@ -245,17 +267,19 @@ def api_full_flow(req: FullFlowRequest):
             "giai_thich_en": gloss_en,
         },
         "hybrid_step": hybrid_res,
+        "active_model": active_engine.model_name,
     }
 
 
 @app.post("/api/pipeline/re-evaluate")
 def api_re_evaluate(req: ManualMatchRequest):
     """
-    Chạy lại trực tiếp bước 3 -> 5 (LaBSE + Bản thể học) khi người dùng chỉnh sửa
+    Chạy lại trực tiếp bước 3 -> 5 (Embedding + Bản thể học) khi người dùng chỉnh sửa
     tiêu chí hoặc nghĩa Gloss trên UI mà không cần gọi lại LLM.
     """
+    active_engine = get_active_engine(req.model_choice)
     t0 = time.time()
-    hybrid_res = engine.match_idiom(
+    hybrid_res = active_engine.match_idiom(
         idiom_surface=req.idiom.strip(),
         gloss_vi=(req.gloss_vi or "").strip(),
         gloss_en=(req.gloss_en or "").strip(),
@@ -267,11 +291,12 @@ def api_re_evaluate(req: ManualMatchRequest):
         mode="frame_and_gloss",
         top_k=req.top_k or 10,
     )
-    labse_ms = round((time.time() - t0) * 1000, 1)
+    embed_ms = round((time.time() - t0) * 1000, 1)
     return {
         "ok": True,
-        "timing": {"labse_ontology_ms": labse_ms},
+        "timing": {"labse_ontology_ms": embed_ms},
         "hybrid_step": hybrid_res,
+        "active_model": active_engine.model_name,
     }
 
 

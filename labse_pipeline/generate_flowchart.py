@@ -91,8 +91,8 @@ def main():
     # Main Title & Subtitle
     f_main = load_font(42, bold=True)
     f_sub = load_font(25, bold=False)
-    title_str = "FLOWCHART PHƯƠNG PHÁP LAI GHÉP: BẢN THỂ HỌC OWL 2 (v6) + LaBSE"
-    sub_str = "Tra cứu Ontology v-idiomV6.rdf (382 câu, 160 Khung, 236 Tiêu chí) kết hợp Đối sánh Khung & Mô hình Đa ngôn ngữ LaBSE"
+    title_str = "FLOWCHART PHƯƠNG PHÁP LAI GHÉP: BẢN THỂ HỌC OWL 2 (v6) + TRANSFORMER"
+    sub_str = "Tra cứu Ontology v-idiomV6.rdf kết hợp Đối sánh Khung & Mô hình Đa ngôn ngữ (LaBSE / BGE-M3)"
 
     tb = draw.textbbox((0, 0), title_str, font=f_main)
     draw.text((cx - (tb[2] - tb[0]) / 2, 50), title_str, font=f_main, fill="#0f172a")
@@ -189,7 +189,7 @@ def main():
         bullets=[
             "• Trọng số 4 trục (BC, HD, KQ, MD) BẰNG NHAU: S_onto = (Tổng điểm khớp) / (Tổng số trục tiêu chí) — VD: 2/3 = 0.67, 2/4 = 0.50",
             "• Khớp chính xác mã tiêu chí (Exact Match): +1.0 điểm trên trục đó",
-            "• Khớp nhóm tiêu chí liên quan (Related Group — LaBSE mô tả tiêu chí >= 0.70): +0.75 điểm trên trục đó",
+            "• Khớp nhóm tiêu chí liên quan (Related Group — Transformer mô tả tiêu chí >= 0.70): +0.75 điểm trên trục đó",
             "• Phủ quyết nhân quả (Veto): Phạt nặng nếu trùng Bối cảnh nhưng ngược hẳn Kết quả nhân-quả",
         ],
         border_color="#d97706",
@@ -234,16 +234,16 @@ def main():
     draw_arrow_down(draw, cx, d2_cy + d2_ry, 1640, color="#0284c7", width=5)
     draw_pill_label(draw, cx + 230, d2_cy + d2_ry + 35, "S_onto < 1.0 (Khung chưa trùng 100%)", "#0284c7", "#0369a1")
 
-    # STEP 4: GHÉP CHUỖI NEO & MÃ HÓA VECTOR ĐA NGÔN NGỮ LaBSE
+    # STEP 4: GHÉP CHUỖI NEO & MÃ HÓA VECTOR ĐA NGÔN NGỮ TRANSFORMER
     box4_y1, box4_y2 = 1640, 1910
     draw_card_with_header(
         draw,
         box=(440, box4_y1, 2180, box4_y2),
-        header_text="4. GHÉP CHUỖI NEO & MÃ HÓA VECTOR ĐA NGÔN NGỮ (LaBSE 768 CHIỀU)",
+        header_text="4. GHÉP CHUỖI NEO & MÃ HÓA VECTOR ĐA NGÔN NGỮ (TRANSFORMER EMBEDDING)",
         bullets=[
             "• Ghép chuỗi neo Bản thể học: \"[Bối cảnh | Hành động | Kết quả | Mục đích] : <Nghĩa bóng Gloss thuần>\"",
-            "• Mã hóa qua mô hình đa ngôn ngữ sentence-transformers/LaBSE ra vector 768 chiều chuẩn hóa L2",
-            "• Tính khoảng cách Cosine Similarity trên từng câu: S_LaBSE ([Khung + Gloss]) và S_Gloss ([Gloss thuần])",
+            "• Mã hóa qua mô hình Transformer đa ngôn ngữ (LaBSE 768d hoặc BGE-M3 1024d) chuẩn hóa L2",
+            "• Tính khoảng cách Cosine Similarity trên từng câu: S_Transformer ([Khung + Gloss]) và S_Gloss ([Gloss thuần])",
         ],
         border_color="#0284c7",
         header_bg="#bae6fd",
@@ -261,7 +261,7 @@ def main():
         box=(440, box5_y1, 2180, box5_y2),
         header_text="5. TÍNH ĐIỂM TƯƠNG ĐỒNG LAI GHÉP (S_hybrid) & LỌC SÀN NGỮ NGHĨA",
         bullets=[
-            "• Công thức kết hợp Neuro-Symbolic: S_hybrid = 0.65 * S_LaBSE + 0.35 * S_onto",
+            "• Công thức kết hợp Neuro-Symbolic: S_hybrid = 0.65 * S_Transformer + 0.35 * S_onto",
             "• Bộ lọc sàn ngữ nghĩa bắt buộc: S_Gloss >= 0.60 (Chặn các câu trùng khung giả nhưng khác nghĩa bóng)",
         ],
         border_color="#334155",
@@ -301,7 +301,7 @@ def main():
         draw,
         fast_x + 10,
         1950,
-        "ĐỒNG NGHĨA CỨNG LUÔN (BỎ QUA LaBSE)",
+        "ĐỒNG NGHĨA CỨNG LUÔN (BỎ QUA TRANSFORMER)",
         "#16a34a",
         "#15803d",
         fill="#f0fdf4",
@@ -369,7 +369,7 @@ def main():
         bullets=[
             "• S_onto >= 0.50, S_Gloss >= 0.60 và 0.62 <= S_hybrid < 0.80",
             "• Cứu các câu lệch nhẹ tiêu chí hoặc thuộc Related Group",
-            "• (Tiêu chí có LaBSE >= 0.70 được nhân hệ số +0.75)",
+            "• (Tiêu chí có Transformer >= 0.70 được nhân hệ số +0.75)",
             "• Gợi ý danh sách từng câu thành ngữ gần nghĩa nhất",
         ],
         border_color="#0284c7",
