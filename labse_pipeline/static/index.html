@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V-Idiom — Thử Nghiệm Pipeline LaBSE + Bản Thể Học (Có LLM)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --card: #1e293b;
+      --card-alt: #0f172a;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --cyan: #06b6d4;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      border: 1px solid #4338ca;
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+
+    .header p {
+      color: #c7d2fe;
+      font-size: 0.9rem;
+    }
+
+    .status-badges {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #e2e8f0;
+    }
+
+    .badge strong { color: #38bdf8; }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .step-title {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.04rem;
+      font-weight: 700;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .num-blue { background: var(--blue); }
+    .num-purple { background: var(--purple); }
+    .num-cyan { background: var(--cyan); }
+    .num-amber { background: var(--amber); }
+    .num-green { background: var(--green); }
+
+    .input-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .input-main {
+      flex: 1;
+      min-width: 260px;
+      background: var(--card-alt);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .input-main:focus { border-color: var(--blue); }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      padding: 0.82rem 1.3rem;
+      font-size: 0.94rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.18s;
+      color: #fff;
+    }
+
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+    .btn-primary:hover { opacity: 0.92; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary { background: #0284c7; }
+    .btn-secondary:hover { background: #0369a1; }
+    .btn-success { background: #059669; }
+    .btn-success:hover { background: #047857; }
+
+    .chips-bar {
+      margin-top: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chips-label { font-size: 0.82rem; color: var(--muted); }
+
+    .chip {
+      font-size: 0.8rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      padding: 0.32rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .chip:hover {
+      border-color: var(--purple);
+      color: #fff;
+      background: #2e1065;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .field-group select,
+    .field-group input,
+    .field-group textarea {
+      width: 100%;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .field-group textarea { min-height: 65px; resize: vertical; }
+
+    .code-box {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-left: 4px solid var(--cyan);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      margin-bottom: 0.7rem;
+      word-break: break-word;
+    }
+
+    .code-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #38bdf8;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .formula-banner {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px dashed #3b82f6;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.83rem;
+      color: #bae6fd;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tier-section { margin-top: 1.15rem; }
+
+    .tier-heading {
+      font-size: 0.94rem;
+      font-weight: 700;
+      padding: 0.55rem 0.9rem;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tier-exact { background: rgba(16, 185, 129, 0.14); border: 1px solid #10b981; color: #6ee7b7; }
+    .tier-near { background: rgba(6, 182, 212, 0.14); border: 1px solid #06b6d4; color: #67e8f9; }
+    .tier-filtered { background: rgba(239, 68, 68, 0.14); border: 1px solid #ef4444; color: #fca5a5; }
+    .tier-compare { background: rgba(168, 85, 247, 0.14); border: 1px solid #a855f7; color: #d8b4fe; }
+
+    .result-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .result-main { flex: 1; min-width: 280px; }
+
+    .idiom-pair {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .idiom-vi { color: #60a5fa; }
+    .idiom-en { color: #fbbf24; }
+
+    .gloss-text {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    .frame-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .ftag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+    }
+
+    .ftag-exact { border-color: #10b981; background: rgba(16, 185, 129, 0.15); color: #6ee7b7; }
+    .ftag-near { border-color: #f59e0b; background: rgba(245, 158, 11, 0.15); color: #fde68a; }
+    .ftag-miss { border-color: #475569; background: #0f172a; color: #94a3b8; }
+
+    .score-panel {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .score-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.38rem 0.6rem;
+      text-align: center;
+      min-width: 78px;
+    }
+
+    .score-box .lbl {
+      font-size: 0.66rem;
+      color: var(--muted);
+      display: block;
+    }
+
+    .score-box .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .score-hybrid {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.14);
+    }
+
+    .score-hybrid .val {
+      color: #34d399;
+      font-size: 1rem;
+    }
+
+    /* Comparison Table */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    table.cmp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      background: var(--card-alt);
+    }
+
+    table.cmp-table th,
+    table.cmp-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid #1e293b;
+      text-align: left;
+    }
+
+    table.cmp-table th {
+      background: #1e293b;
+      color: #cbd5e1;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    table.cmp-table td.num {
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .empty-msg {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      padding: 0.5rem 0.2rem;
+    }
+
+    .toast {
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .toast.ok { display: block; background: rgba(16, 185, 129, 0.18); border: 1px solid #10b981; color: #a7f3d0; }
+    .toast.err { display: block; background: rgba(239, 68, 68, 0.18); border: 1px solid #ef4444; color: #fecaca; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <div>
+        <h1>V-Idiom v6: Giao Diện Test Flow (LLM + LaBSE + Bản Thể Học v6)</h1>
+        <p>Thử nghiệm trực quan 6 bước trên <strong>v-idiomV6.rdf (200 câu v5 &amp; 236 tiêu chí v5)</strong>: Gọi LLM (.env) &rarr; Ghép <code>[Khung + Gloss]</code> &rarr; Đối chiếu Khung &amp; So sánh 4 phương pháp</p>
+      </div>
+      <div class="status-badges">
+        <span class="badge">LLM (.env): <strong id="infoGroqModel">qwen/qwen3.8-27b</strong></span>
+        <span class="badge">Ontology: <strong>v-idiomV6.rdf (236 mã)</strong></span>
+        <span class="badge">Embedding: <strong id="infoLabseModel">LaBSE (768d)</strong></span>
+        <span class="badge">Kho dữ liệu: <strong id="infoCorpusSize">200 cặp (v5)</strong></span>
+      </div>
+    </div>
+
+    <!-- BƯỚC 1: NHẬP THÀNH NGỮ -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-title">
+          <span class="step-num num-blue">1</span>
+          <span>BƯỚC 1: NHẬP THÀNH NGỮ MỚI (Tiếng Việt hoặc Tiếng Anh)</span>
+        </div>
+        <span id="timingBadge" class="badge">Đang khởi tạo...</span>
+      </div>
+
+      <div class="input-row">
+        <input id="idiomInput" class="input-main" type="text" placeholder="Nhập câu thành ngữ/tục ngữ cần test..." value="Mượn gió bẻ măng" />
+        <button id="btnRunFull" class="btn btn-primary" onclick="runFullPipeline()">
+          🚀 Chạy Full Flow (Gọi LLM + LaBSE + Bản thể học)
+        </button>
+      </div>
+
+      <div class="chips-bar">
+        <span class="chips-label">Click thử ngay các ca điển hình (Bộ 200 câu v5 &amp; RDF v6):</span>
+        <span class="chip" onclick="quickTest('Mượn gió bẻ măng')">🔥 Mượn gió bẻ măng (Câu mới ngoài bộ 200 câu)</span>
+        <span class="chip" onclick="quickTest('Đục nước béo cò')">✅ Đục nước béo cò (Đồng nghĩa thật trong v6)</span>
+        <span class="chip" onclick="quickTest('Nói toạc móng heo')">✅ Nói toạc móng heo (Chung khung: Thẳng như ruột ngựa)</span>
+        <span class="chip" onclick="quickTest('Ngàn cân treo sợi tóc')">✅ Ngàn cân treo sợi tóc (Chung khung: Chỉ mành treo chuông)</span>
+        <span class="chip" onclick="quickTest('Đàn gảy tai trâu')">🟢 Đàn gảy tai trâu (Phân biệt khung gần giống: Nước đổ đầu vịt)</span>
+      </div>
+      <div id="errorBox" class="toast err"></div>
+    </div>
+
+    <!-- PIPELINE OUTPUT CONTAINER -->
+    <div id="pipelineContainer">
+
+      <!-- BƯỚC 2: PHÂN TÍCH NGHĨA BÓNG & TIÊU CHÍ (LLM) -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-title">
+            <span class="step-num num-purple">2</span>
+            <span>BƯỚC 2: TRÍCH XUẤT 4 TRỤC TIÊU CHÍ &amp; NGHĨA BÓNG GLOSS (LLM)</span>
+          </div>
+          <button class="btn btn-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;" onclick="reEvaluateManual()">
+            🔄 Chạy lại Bước 3 &rarr; 5 (Sau khi tự đổi nhãn Khung / Gloss bên dưới)
+          </button>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-group">
+            <label>Thành ngữ Tiếng Việt</label>
+            <input id="fViIdiom" type="text" />
+          </div>
+          <div class="field-group">
+            <label>Thành ngữ Tiếng Anh tương đương (LLM gợi ý)</label>
+            <input id="fEnIdiom" type="text" />
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <div class="field-group">
+            <label>Trục 1: Bối cảnh (BC_)</label>
+            <select id="fBC" onchange="reEvaluateManual()"></select>
+          </div>
+          <div class="field-group">
+            <label>Trục 2: Hành động (HD_)</label>
+            <select id="fHD" onchange="reEvaluateManual()"></select>
+          </div>
+          <div class="field-group">
+            <label>Trục 3: Kết quả (KQ_)</label>
+            <select id="fKQ" onchange="reEvaluateManual()"></select>
+          </div>
+          <div class="field-group">
+            <label>Trục 4: Mục đích (MD_)</label>
+            <select id="fMD" onchange="reEvaluateManual()"></select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-group">
+            <label>Giải thích nghĩa bóng Tiếng Việt (Gloss VI)</label>
+            <textarea id="fGlossVi"></textarea>
+          </div>
+          <div class="field-group">
+            <label>Giải thích nghĩa bóng Tiếng Anh (Gloss EN)</label>
+            <textarea id="fGlossEn"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3: GHÉP CHUỖI NEO BẢN THỂ HỌC -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-title">
+            <span class="step-num num-cyan">3</span>
+            <span>BƯỚC 3: GHÉP CHUỖI ĐẦU VÀO CHO MÔ HÌNH LaBSE (ONTOLOGY-GROUNDED GLOSS)</span>
+          </div>
+          <span id="frameStatusBadge" class="badge"></span>
+        </div>
+
+        <div class="code-box">
+          <div class="code-label">1. Chuỗi [Khung Bản thể học 4 trục] + [Nghĩa bóng Gloss] (Đưa vào LaBSE tính S_LaBSE):</div>
+          <div id="strLabseFull"></div>
+        </div>
+
+        <div class="code-box" style="border-left-color: var(--amber);">
+          <div class="code-label" style="color: #fbbf24;">2. Chuỗi [Nghĩa bóng Gloss thuần] (Đưa vào LaBSE tính Sàn lọc S_Gloss &ge; 0.60 chống trùng khung giả):</div>
+          <div id="strLabseGloss"></div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 & 5: KẾT QUẢ ĐỐI SOÁT LAI GHÉP & SO SÁNH CÁC KHUNG GẦN GIỐNG -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-title">
+            <span class="step-num num-amber">4-5</span>
+            <span>BƯỚC 4 &amp; 5: ĐỐI SOÁT KHUNG GẦN GIỐNG &amp; BẢNG SO SÁNH 4 PHƯƠNG PHÁP (TỪNG CÂU ĐỘC LẬP)</span>
+          </div>
+        </div>
+
+        <div class="formula-banner">
+          <span>📐 <strong>Công thức:</strong> S_hybrid = 0.65 × S_LaBSE + 0.35 × S_onto</span>
+          <span>⚖️ <strong>Trọng số Khung:</strong> Các trục bằng nhau | Trùng khớp: +1.0 | LaBSE Tiêu chí &ge; 0.70: +0.75</span>
+          <span>🛡️ <strong>Sàn lọc:</strong> S_Gloss &ge; 0.60 | <strong>Ngưỡng Khung mềm:</strong> S_onto &ge; 0.50</span>
+        </div>
+
+        <!-- NHÁNH 1: ĐỒNG NGHĨA TUYỆT ĐỐI -->
+        <div class="tier-section">
+          <div class="tier-heading tier-exact">
+            <span>✅ NHÁNH 1: ĐỒNG NGHĨA TUYỆT ĐỐI (S_hybrid &ge; 0.80 &amp; S_onto &ge; 0.75 &amp; S_Gloss &ge; 0.60)</span>
+            <span id="countExact">0 câu</span>
+          </div>
+          <div id="listExact"></div>
+        </div>
+
+        <!-- NHÁNH 2: ĐỒNG NGHĨA MỀM / KHUNG GẦN GIỐNG -->
+        <div class="tier-section">
+          <div class="tier-heading tier-near">
+            <span>🟢 NHÁNH 2: ĐỒNG NGHĨA MỀM &amp; CÁC KHUNG GẦN GIỐNG (S_hybrid &ge; 0.62 &amp; S_onto &ge; 0.50 &amp; S_Gloss &ge; 0.60)</span>
+            <span id="countNear">0 câu</span>
+          </div>
+          <div id="listNear"></div>
+        </div>
+
+        <!-- NHÁNH 3: BỊ CHẶN DO TRÙNG KHUNG GIẢ -->
+        <div class="tier-section">
+          <div class="tier-heading tier-filtered">
+            <span>🛡️ NHÁNH 3: BỘ LỌC LOẠI BỎ "TRÙNG KHUNG GIẢ" (Trùng Khung hoặc S_hybrid &ge; 0.80 nhưng S_Gloss &lt; 0.60)</span>
+            <span id="countFiltered">0 câu</span>
+          </div>
+          <div id="listFiltered"></div>
+        </div>
+
+        <!-- BẢNG ĐỐI CHIẾU TOP KHUNG GẦN GIỐNG & SO SÁNH 4 PHƯƠNG PHÁP -->
+        <div class="tier-section">
+          <div class="tier-heading tier-compare">
+            <span>📊 BẢNG ĐỐI CHIẾU TRỰC DIỆN TỪNG CÂU THÀNH NGỮ &amp; SO SÁNH 4 PHƯƠNG PHÁP</span>
+            <span>So sánh tại sao [Khung + Gloss] + Ontology tốt hơn các cách khác</span>
+          </div>
+          <div class="table-wrap">
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th>Khung</th>
+                  <th>Câu Thành ngữ (Từng câu độc lập)</th>
+                  <th>Đối chiếu 4 trục Khung với câu nhập<br/><small>(✅ Trùng | 🟡 Gần giống | ⚪ Khác)</small></th>
+                  <th>Cách 1:<br/>Chỉ Câu gốc</th>
+                  <th>Cách 2:<br/>Câu gốc + Khung</th>
+                  <th>Cách 3:<br/>Chỉ Nghĩa Gloss</th>
+                  <th>Cách 4:<br/>Khung + Gloss</th>
+                  <th>Điểm Khung<br/>(S_onto)</th>
+                  <th>Tổng điểm<br/>(S_hybrid)</th>
+                  <th>Kết luận</th>
+                </tr>
+              </thead>
+              <tbody id="tableTopCompare"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BƯỚC 6: CẬP NHẬT DỮ LIỆU ĐỒNG BỘ -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-title">
+            <span class="step-num num-green">6</span>
+            <span>BƯỚC 6: CẬP NHẬT BẢNG DỮ LIỆU, BẢN THỂ HỌC &amp; VECTOR LaBSE (CỤC BỘ)</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0.85rem;">
+          Lưu câu thành ngữ này vào bản sao độc lập trong <code>labse_pipeline/data/</code> (CSV, RDF Ontology và tái lập chỉ mục Vector <code>.npz</code> của LaBSE).
+        </p>
+        <button class="btn btn-success" onclick="saveCurrentIdiom()">
+          💾 Lưu đồng bộ vào Bảng dữ liệu, RDF Ontology &amp; Cập nhật Vector (.npz)
+        </button>
+        <div id="saveToast" class="toast"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let catalog = {};
+
+    async function initApp() {
+      try {
+        const res = await fetch('/api/info');
+        const data = await res.json();
+        if (data.ok) {
+          document.getElementById('infoGroqModel').textContent = data.groq_model;
+          document.getElementById('infoLabseModel').textContent = data.labse_model;
+          document.getElementById('infoCorpusSize').textContent = data.corpus_size + ' câu (200 VI + 182 EN)';
+          catalog = data.criteria_catalog || {};
+          populateSelect('fBC', catalog['Bối_cảnh'] || {});
+          populateSelect('fHD', catalog['Hành_động'] || {});
+          populateSelect('fKQ', catalog['Kết_quả'] || {});
+          populateSelect('fMD', catalog['Mục_đích'] || {});
+          // Tự động chạy ngay câu mặc định khi vừa mở trang để hiển thị đầy đủ kết quả
+          runFullPipeline();
+        }
+      } catch (e) {
+        console.error('Lỗi tải thông tin hệ thống:', e);
+      }
+    }
+
+    function populateSelect(elId, itemsObj) {
+      const sel = document.getElementById(elId);
+      sel.innerHTML = '<option value="">-- Không gán (null) --</option>';
+      for (const [code, meta] of Object.entries(itemsObj)) {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = `${code} — ${meta.label_vi} (${meta.desc_vi})`;
+        sel.appendChild(opt);
+      }
+    }
+
+    function ensureOptionAndSelect(elId, val) {
+      const sel = document.getElementById(elId);
+      if (!val) {
+        sel.value = '';
+        return;
+      }
+      let exists = Array.from(sel.options).some(o => o.value === val);
+      if (!exists) {
+        const opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = `${val} (Mã mới)`;
+        sel.appendChild(opt);
+      }
+      sel.value = val;
+    }
+
+    function quickTest(text) {
+      document.getElementById('idiomInput').value = text;
+      runFullPipeline();
+    }
+
+    async function runFullPipeline() {
+      const idiom = document.getElementById('idiomInput').value.trim();
+      const errBox = document.getElementById('errorBox');
+      errBox.style.display = 'none';
+
+      if (!idiom) {
+        errBox.textContent = 'Vui lòng nhập một câu thành ngữ để phân tích!';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      const btn = document.getElementById('btnRunFull');
+      btn.disabled = true;
+      btn.textContent = '⏳ Đang gọi LLM (.env) & Mã hóa LaBSE...';
+
+      try {
+        const resp = await fetch('/api/pipeline/full-flow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idiom, top_k: 10 })
+        });
+        const data = await resp.json();
+        if (!resp.ok || !data.ok) {
+          throw new Error(data.detail || 'Có lỗi xảy ra khi gọi pipeline.');
+        }
+
+        const tb = document.getElementById('timingBadge');
+        const llm = data.llm_step;
+        if (llm.source === 'ONTOLOGY_V6') {
+          tb.innerHTML = `📚 <strong>Đã có sẵn trong Ontology (v-idiomV6.rdf — ${llm.frame_name || 'Khung'})</strong>: Lấy trực tiếp Description & 4 Tiêu chí gốc (Không qua LLM) | LaBSE + Ontology: <strong>${data.timing.labse_ontology_ms}ms</strong>`;
+        } else {
+          tb.innerHTML = `🤖 <strong>Câu mới (Chưa có trong Ontology)</strong> — LLM suy luận: <strong>${data.timing.llm_ms}ms</strong> | LaBSE + Ontology: <strong>${data.timing.labse_ontology_ms}ms</strong>`;
+        }
+        document.getElementById('fViIdiom').value = llm.thanh_ngu_vn || idiom;
+        document.getElementById('fEnIdiom').value = llm.thanh_ngu_en_goi_y || '';
+        ensureOptionAndSelect('fBC', llm.boi_canh);
+        ensureOptionAndSelect('fHD', llm.hanh_dong);
+        ensureOptionAndSelect('fKQ', llm.ket_qua);
+        ensureOptionAndSelect('fMD', llm.muc_dich);
+        document.getElementById('fGlossVi').value = llm.giai_thich_vn || '';
+        document.getElementById('fGlossEn').value = llm.giai_thich_en || '';
+
+        renderHybridResult(data.hybrid_step);
+      } catch (err) {
+        errBox.textContent = '❌ ' + err.message;
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🚀 Chạy Full Flow (Gọi LLM + LaBSE + Bản thể học)';
+      }
+    }
+
+    async function reEvaluateManual() {
+      const payload = {
+        idiom: document.getElementById('fViIdiom').value.trim(),
+        en_idiom_suggested: document.getElementById('fEnIdiom').value.trim(),
+        boi_canh: document.getElementById('fBC').value,
+        hanh_dong: document.getElementById('fHD').value,
+        ket_qua: document.getElementById('fKQ').value,
+        muc_dich: document.getElementById('fMD').value,
+        gloss_vi: document.getElementById('fGlossVi').value.trim(),
+        gloss_en: document.getElementById('fGlossEn').value.trim(),
+        lang: 'vi',
+        top_k: 10
+      };
+
+      try {
+        const resp = await fetch('/api/pipeline/re-evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (resp.ok && data.ok) {
+          const tb = document.getElementById('timingBadge');
+          tb.innerHTML = `⚡ Tính lại LaBSE + Ontology (Offline): <strong>${data.timing.labse_ontology_ms}ms</strong>`;
+          renderHybridResult(data.hybrid_step);
+        }
+      } catch (e) {
+        console.error('Lỗi tính lại:', e);
+      }
+    }
+
+    function renderAxisBadges(axisComp) {
+      if (!axisComp) return '';
+      const labels = { bc: 'BC', hd: 'HD', kq: 'KQ', md: 'MD' };
+      const html = [];
+      for (const [ax, info] of Object.entries(axisComp)) {
+        if (info.status === 'BOTH_EMPTY') continue;
+        const candVal = info.candidate || '∅';
+        const qVal = info.query || '∅';
+        if (info.status === 'EXACT_MATCH') {
+          html.push(`<span class="ftag ftag-exact" title="Trùng khớp hoàn toàn">✅ ${labels[ax]}: ${candVal}</span>`);
+        } else if (info.status.startsWith('NEAR_MATCH')) {
+          html.push(`<span class="ftag ftag-near" title="LaBSE tiêu chí &ge; 0.70 (+0.75)">🟡 ${labels[ax]}: ${candVal} (&sim;${qVal})</span>`);
+        } else {
+          html.push(`<span class="ftag ftag-miss" title="Khác nhau (${candVal} vs ${qVal})">⚪ ${labels[ax]}: ${candVal}</span>`);
+        }
+      }
+      return html.join(' ');
+    }
+
+    function renderHybridResult(h) {
+      document.getElementById('strLabseFull').textContent = h.encoded_string_for_labse || '';
+      document.getElementById('strLabseGloss').textContent = h.encoded_gloss_only_for_labse || '';
+
+      const fb = document.getElementById('frameStatusBadge');
+      if (h.frame_status === 'KHUNG_ĐÃ_TỒN_TẠI') {
+        fb.innerHTML = `Khung Bản thể học: <strong style="color:#34d399;">ĐÃ TỒN TẠI (${h.matched_frame_name})</strong>`;
+      } else {
+        fb.innerHTML = `Khung Bản thể học: <strong style="color:#fbbf24;">KHUNG MỚI / KHUNG GẦN GIỐNG (Đối chiếu mềm bên dưới)</strong>`;
+      }
+
+      const exactList = h.exact_synonyms || [];
+      const nearList = h.near_synonyms || [];
+      const filteredList = h.filtered_false_positives || [];
+      const topList = h.top_candidates || [];
+
+      document.getElementById('countExact').textContent = `${exactList.length} câu`;
+      document.getElementById('countNear').textContent = `${nearList.length} câu`;
+      document.getElementById('countFiltered').textContent = `${filteredList.length} câu`;
+
+      document.getElementById('listExact').innerHTML = exactList.length
+        ? exactList.map(item => buildResultCard(item)).join('')
+        : '<div class="empty-msg">Không có câu nào vượt ngưỡng Đồng nghĩa tuyệt đối (&ge; 0.80 &amp; S_Gloss &ge; 0.60). Xem ngay các Khung gần giống ở Nhánh 2 bên dưới!</div>';
+
+      document.getElementById('listNear').innerHTML = nearList.length
+        ? nearList.map(item => buildResultCard(item)).join('')
+        : '<div class="empty-msg">Không có câu nào thỏa mãn Đồng nghĩa mềm (S_hybrid &ge; 0.62 &amp; S_onto &ge; 0.50 &amp; S_Gloss &ge; 0.60).</div>';
+
+      document.getElementById('listFiltered').innerHTML = filteredList.length
+        ? filteredList.map(item => buildResultCard(item, true)).join('')
+        : '<div class="empty-msg">Không có câu nào bị chặn do trùng khung giả (S_Gloss &lt; 0.60) với truy vấn này.</div>';
+
+      // Render Bảng So Sánh Từng Câu Thành Ngữ & 4 Phương Pháp
+      const tbody = document.getElementById('tableTopCompare');
+      tbody.innerHTML = topList.map(item => {
+        let statusTag = '';
+        if (item.hard_onto_match) {
+          statusTag = '<span style="color:#34d399; font-weight:700;">✅ Đồng nghĩa cứng (Trùng Khung 100%)</span>';
+        } else if (item.status === 'ĐỒNG_NGHĨA_TUYỆT_ĐỐI') {
+          statusTag = '<span style="color:#34d399; font-weight:700;">✅ Đồng nghĩa tuyệt đối</span>';
+        } else if (item.status === 'ĐỒNG_NGHĨA_MỀM_CẬN_NGHĨA') {
+          statusTag = '<span style="color:#38bdf8; font-weight:700;">🟢 Khung gần giống / Cận nghĩa</span>';
+        } else if (item.status === 'LOẠI_BỎ_TRÙNG_KHUNG_GIẢ') {
+          statusTag = '<span style="color:#f87171; font-weight:700;">🛡️ Chặn (S_Gloss &lt; 0.60)</span>';
+        } else {
+          statusTag = '<span style="color:#94a3b8;">⚪ Khác nghĩa</span>';
+        }
+
+        const isVi = item.lang === 'vi';
+        const flag = isVi ? '🇻🇳 VI' : '🇬🇧 EN';
+        const color = isVi ? '#60a5fa' : '#fbbf24';
+
+        const rawCol = item.hard_onto_match ? '<span style="color:#64748b;">— (Bỏ qua)</span>' : (item.s_raw_only ?? 0).toFixed(4);
+        const rfCol = item.hard_onto_match ? '<span style="color:#64748b;">— (Bỏ qua)</span>' : (item.s_raw_frame ?? 0).toFixed(4);
+        const glossCol = item.hard_onto_match
+          ? '<span style="color:#34d399; font-weight:600;">Trùng Khung (Không tính)</span>'
+          : `<span style="color:${item.s_gloss_pure < 0.60 ? '#f87171' : '#a7f3d0'};">${item.s_gloss_pure.toFixed(4)}</span>`;
+        const labseCol = item.hard_onto_match
+          ? '<span style="color:#34d399; font-weight:600;">Trùng Khung (Không tính)</span>'
+          : item.s_labse.toFixed(4);
+
+        return `
+          <tr>
+            <td class="num"><span class="badge">${item.frame_name}</span></td>
+            <td>
+              <div style="font-weight:700; color:${color};"><span class="badge" style="font-size:0.7rem; margin-right:4px;">${flag}</span>${item.idiom}</div>
+              <div style="font-size:0.76rem; color:#94a3b8; margin-top:3px;">${item.gloss}</div>
+            </td>
+            <td>
+              <div class="frame-tags">${renderAxisBadges(item.axis_comparison)}</div>
+              <div style="font-size:0.72rem; color:#38bdf8; margin-top:4px;">${item.onto_match_type}</div>
+            </td>
+            <td class="num" style="color:#94a3b8;">${rawCol}</td>
+            <td class="num" style="color:#cbd5e1;">${rfCol}</td>
+            <td class="num">${glossCol}</td>
+            <td class="num" style="color:#38bdf8;">${labseCol}</td>
+            <td class="num" style="color:#fbbf24;">${item.s_onto.toFixed(4)}</td>
+            <td class="num" style="color:#34d399; font-size:0.95rem;">${(item.s_hybrid * 100).toFixed(1)}%</td>
+            <td>${statusTag}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function buildResultCard(item, isFiltered = false) {
+      const axisHtml = renderAxisBadges(item.axis_comparison);
+      const matchBadge = `<span class="ftag" style="color:#38bdf8; border-color:#0284c7;">${item.onto_match_type}</span>`;
+      const isVi = item.lang === 'vi';
+      const langBadge = isVi
+        ? `<span class="badge" style="background:rgba(59,130,246,0.2); border-color:#3b82f6; color:#93c5fd;">🇻🇳 Tiếng Việt</span>`
+        : `<span class="badge" style="background:rgba(245,158,11,0.2); border-color:#f59e0b; color:#fde68a;">🇬🇧 Tiếng Anh</span>`;
+      const idiomClass = isVi ? 'idiom-vi' : 'idiom-en';
+
+      const scoresHtml = item.hard_onto_match
+        ? `
+          <div class="score-box" style="min-width:155px; border-color:#10b981; background:rgba(16,185,129,0.12);" title="Khung trùng khớp 100% nên là Đồng nghĩa cứng luôn, không cần tính LaBSE">
+            <span class="lbl">LaBSE</span>
+            <span class="val" style="color:#34d399; font-size:0.82rem;">Bỏ qua (Trùng Khung)</span>
+          </div>
+          <div class="score-box" title="Điểm khớp cấu trúc 4 trục Khung Bản thể học">
+            <span class="lbl">S_onto (Khung)</span>
+            <span class="val" style="color:#fbbf24;">1.000</span>
+          </div>
+          <div class="score-box score-hybrid">
+            <span class="lbl">Đồng nghĩa cứng</span>
+            <span class="val">100.0%</span>
+          </div>
+        `
+        : `
+          <div class="score-box" title="Điểm LaBSE nếu chỉ dùng Câu gốc">
+            <span class="lbl">Chỉ Câu gốc</span>
+            <span class="val" style="color:#94a3b8;">${(item.s_raw_only ?? 0).toFixed(3)}</span>
+          </div>
+          <div class="score-box" title="Điểm LaBSE trên Nghĩa Gloss thuần (Sàn lọc >= 0.60)">
+            <span class="lbl">S_Gloss (Sàn)</span>
+            <span class="val" style="color:${item.s_gloss_pure < 0.60 ? '#f87171' : '#a7f3d0'}">${item.s_gloss_pure.toFixed(3)}</span>
+          </div>
+          <div class="score-box" title="Điểm LaBSE trên chuỗi [Khung + Gloss]">
+            <span class="lbl">S_LaBSE [K+G]</span>
+            <span class="val" style="color:#38bdf8;">${item.s_labse.toFixed(3)}</span>
+          </div>
+          <div class="score-box" title="Điểm khớp cấu trúc 4 trục Khung Bản thể học">
+            <span class="lbl">S_onto (Khung)</span>
+            <span class="val" style="color:#fbbf24;">${item.s_onto.toFixed(3)}</span>
+          </div>
+          <div class="score-box score-hybrid" style="${isFiltered ? 'border-color:#ef4444; background:rgba(239,68,68,0.15);' : ''}">
+            <span class="lbl">S_hybrid</span>
+            <span class="val" style="${isFiltered ? 'color:#f87171;' : ''}">${(item.s_hybrid * 100).toFixed(1)}%</span>
+          </div>
+        `;
+
+      return `
+        <div class="result-item" style="${isFiltered ? 'border-color:#7f1d1d; background:rgba(127,29,29,0.15);' : ''}">
+          <div class="result-main">
+            <div class="idiom-pair" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge">${item.frame_name}</span>
+              ${langBadge}
+              <span class="${idiomClass}" style="font-size:1.05rem;">${item.idiom}</span>
+            </div>
+            <div class="gloss-text">
+              <div><strong>Giải nghĩa (${isVi ? 'VI' : 'EN'}):</strong> ${item.gloss}</div>
+            </div>
+            <div class="frame-tags">${axisHtml} ${matchBadge}</div>
+          </div>
+
+          <div class="score-panel">
+            ${scoresHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    async function saveCurrentIdiom() {
+      const toast = document.getElementById('saveToast');
+      toast.style.display = 'none';
+
+      const payload = {
+        thanh_ngu_vn: document.getElementById('fViIdiom').value.trim(),
+        thanh_ngu_en: document.getElementById('fEnIdiom').value.trim(),
+        boi_canh: document.getElementById('fBC').value,
+        hanh_dong: document.getElementById('fHD').value,
+        ket_qua: document.getElementById('fKQ').value,
+        muc_dich: document.getElementById('fMD').value,
+        giai_thich_vn: document.getElementById('fGlossVi').value.trim(),
+        giai_thich_en: document.getElementById('fGlossEn').value.trim()
+      };
+
+      try {
+        const resp = await fetch('/api/pipeline/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json();
+        if (!resp.ok || !data.ok) {
+          throw new Error(data.detail || 'Lỗi khi lưu');
+        }
+        toast.className = 'toast ok';
+        toast.textContent = '✅ ' + data.msg;
+        toast.style.display = 'block';
+        document.getElementById('infoCorpusSize').textContent = data.data.total_records + ' câu';
+      } catch (e) {
+        toast.className = 'toast err';
+        toast.textContent = '❌ ' + e.message;
+        toast.style.display = 'block';
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

@@ -1,20 +1,15 @@
-from typing import Dict, Tuple
+import json
+from pathlib import Path
+from typing import Dict, Tuple, Optional
 
-# Trọng số tầm quan trọng của 4 trục trong Bản thể học
-AXIS_WEIGHTS = {
-    "bc": 0.20,  # Bối cảnh
-    "hd": 0.30,  # Hành động (Cơ chế tác động)
-    "kq": 0.35,  # Kết quả (Hệ quả nhân - quả)
-    "md": 0.15,  # Mục đích
-}
+AXES = ["bc", "hd", "kq", "md"]
 
-# Các cặp Kết quả đối lập hoàn toàn về cực tính (Opposing Polarity Pairs)
-OPPOSING_RESULTS = [
-    ({"KQ_Thành_công", "KQ_May_mắn", "KQ_Tối_ưu_hóa", "KQ_Đạt_được_thỏa_thuận"},
-     {"KQ_Thất_bại", "KQ_Tổn_thất_tài_sản", "KQ_Tổn_thương", "KQ_Gieo_tai_họa", "KQ_Gặp_trở_ngại", "KQ_Mất_quan_hệ"}),
-    ({"KQ_Bình_yên", "KQ_An_toàn", "KQ_Gắn_kết", "KQ_Hòa_nhập"},
-     {"KQ_Tổn_thương", "KQ_Gieo_tai_họa", "KQ_Mất_quan_hệ", "KQ_Hối_hận"}),
-]
+SIM_MATRIX_PATH = Path(__file__).parent.parent / "data" / "criteria_similarity_matrix.json"
+
+CRITERIA_SIM_MAP: Dict[str, float] = {}
+if SIM_MATRIX_PATH.exists():
+    with open(SIM_MATRIX_PATH, "r", encoding="utf-8") as f:
+        CRITERIA_SIM_MAP = json.load(f)
 
 
 def _norm(val: str) -> str:
@@ -24,58 +19,103 @@ def _norm(val: str) -> str:
     return "" if s.lower() in ["null", "none", "nan"] else s
 
 
-def is_opposing_result(kq1: str, kq2: str) -> bool:
-    """Kiểm tra xem 2 tiêu chí Kết quả có đối lập cực tính (Tích cực vs Tiêu cực) không."""
-    if not kq1 or not kq2 or kq1 == kq2:
-        return False
-    for pos_set, neg_set in OPPOSING_RESULTS:
-        if (kq1 in pos_set and kq2 in neg_set) or (kq1 in neg_set and kq2 in pos_set):
-            return True
-    return False
+def get_criteria_similarity(c1: str, c2: str) -> float:
+    """
+    Trả về độ tương đồng ngữ nghĩa LaBSE giữa 2 mã tiêu chí trong cùng trục:
+    - Nếu trùng mã: 1.0
+    - Nếu khác mã nhưng có độ tương đồng LaBSE >= 0.70: trả về giá trị thực >= 0.70
+    - Ngược lại: 0.0
+    """
+    c1, c2 = _norm(c1), _norm(c2)
+    if not c1 or not c2:
+        return 0.0
+    if c1 == c2:
+        return 1.0
+    key = f"{c1}|{c2}"
+    return CRITERIA_SIM_MAP.get(key, 0.0)
+
+
+def is_related_criterion(c1: str, c2: str, threshold: float = 0.70) -> bool:
+    """Kiểm tra 2 tiêu chí có độ tương đồng ngữ nghĩa LaBSE >= 0.70 không."""
+    return get_criteria_similarity(c1, c2) >= threshold
 
 
 def compute_ontology_similarity(
     frame_a: Dict[str, str],
-    frame_b: Dict[str, str]
+    frame_b: Dict[str, str],
+    related_weight: float = 0.75,
 ) -> Tuple[float, Dict[str, str]]:
     """
-    Tính điểm tương đồng cấu trúc Khung Bản thể học S_onto thuộc [0.0, 1.0].
-    Trả về: (score, details_dict)
+    Tính điểm tương đồng cấu trúc Khung Bản thể học S_onto:
+    - Trọng số các trục bằng nhau (không trục nào nhiều hơn trục nào).
+    - Mẫu số (total_axes): số lượng trục có xuất hiện tiêu chí ở ít nhất một trong hai khung.
+    - Tử số:
+      + Nếu trục trùng khớp chính xác 100%: cộng 1.0 (Exact match)
+      + Nếu trục khác mã nhưng độ tương đồng LaBSE >= 0.70: cộng 0.75 (Related match)
+      + Nếu khác mã và LaBSE < 0.70: cộng 0.0
+    - S_onto = Tử số / Mẫu số.
     """
-    a = {k: _norm(frame_a.get(k, "")) for k in ["bc", "hd", "kq", "md"]}
-    b = {k: _norm(frame_b.get(k, "")) for k in ["bc", "hd", "kq", "md"]}
+    a = {k: _norm(frame_a.get(k, "")) for k in AXES}
+    b = {k: _norm(frame_b.get(k, "")) for k in AXES}
 
-    # 1. Kiểm tra Trùng Khung Tuyệt đối (Exact Frame Match -> Property Chain Có_nghĩa)
+    # 1. Trùng Khung Tuyệt đối
     if a == b and any(a.values()):
-        return 1.0, {"match_type": "TRÙNG_KHUNG_TUYỆT_ĐỐI", "veto": False}
+        matched_axes = [k.upper() for k in AXES if a[k]]
+        return 1.0, {
+            "match_type": "TRÙNG_KHUNG_TUYỆT_ĐỐI",
+            "matched_axes": matched_axes,
+            "related_axes": [],
+            "matched_ratio": f"{len(matched_axes)}/{len(matched_axes)}",
+            "veto": False,
+        }
 
-    # 2. Kiểm tra Luật Phủ quyết Nhân - Quả (Causal Hard Veto)
-    # Nếu kết quả (KQ) đối lập trực tiếp (vd: Thành công vs Thất bại/Tai họa) -> Veto = 0
-    if is_opposing_result(a["kq"], b["kq"]):
-        return 0.0, {"match_type": "PHỦ_QUYẾT_NGƯỢC_KẾT_QUẢ", "veto": True}
+    active_axes = []
+    matched_axes = []
+    related_axes = []
+    matched_score_sum = 0.0
 
-    # Nếu cả hai đều có Hành động và Kết quả, nhưng lệch hoàn toàn cả Hành động lẫn Kết quả -> Veto = 0
-    if a["hd"] and b["hd"] and a["kq"] and b["kq"]:
-        if a["hd"] != b["hd"] and a["kq"] != b["kq"]:
-            return 0.0, {"match_type": "PHỦ_QUYẾT_KHÁC_CƠ_CHẾ_NHÂN_QUẢ", "veto": True}
-
-    # 3. Tính điểm khớp mềm có trọng số (Weighted Soft Frame Overlap)
-    active_weight_sum = 0.0
-    matched_weight_sum = 0.0
-    shared_axes = []
-
-    for axis, w in AXIS_WEIGHTS.items():
+    for axis in AXES:
         val_a, val_b = a[axis], b[axis]
         if not val_a and not val_b:
             continue
-        active_weight_sum += w
-        if val_a and val_b and val_a == val_b:
-            matched_weight_sum += w
-            shared_axes.append(axis.upper())
+        axis_name = axis.upper()
+        active_axes.append(axis_name)
 
-    if active_weight_sum == 0.0:
-        return 0.0, {"match_type": "KHÔNG_CÓ_TIÊU_CHÍ", "veto": False}
+        if val_a and val_b:
+            if val_a == val_b:
+                matched_score_sum += 1.0
+                matched_axes.append(axis_name)
+            else:
+                sim = get_criteria_similarity(val_a, val_b)
+                if sim >= 0.70:
+                    matched_score_sum += related_weight  # Nhân hệ số 0.75
+                    related_axes.append(f"~{axis_name}({sim:.2f})")
 
-    score = matched_weight_sum / active_weight_sum
-    match_type = f"KHỚP_MỀM ({','.join(shared_axes)})" if shared_axes else "KHÁC_KHUNG"
-    return round(float(score), 4), {"match_type": match_type, "veto": False}
+    total_count = len(active_axes)
+    if total_count == 0:
+        return 0.0, {
+            "match_type": "KHÔNG_CÓ_TIÊU_CHÍ",
+            "matched_axes": [],
+            "related_axes": [],
+            "matched_ratio": "0/0",
+            "veto": False,
+        }
+
+    score = round(matched_score_sum / total_count, 4)
+
+    parts = []
+    if matched_axes:
+        parts.append(f"Trùng {','.join(matched_axes)}")
+    if related_axes:
+        parts.append(f"Gần {','.join(related_axes)}")
+
+    match_desc = " + ".join(parts) if parts else "Khác khung"
+    match_type = f"{score:.2f} ({matched_score_sum:.2f}/{total_count}: {match_desc})"
+
+    return score, {
+        "match_type": match_type,
+        "matched_axes": matched_axes,
+        "related_axes": related_axes,
+        "matched_ratio": f"{matched_score_sum:.2f}/{total_count}",
+        "veto": False,
+    }

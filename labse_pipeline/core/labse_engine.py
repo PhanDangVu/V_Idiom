@@ -11,19 +11,28 @@ from .text_builder import (
     build_labse_input,
     build_frame_prefix,
 )
-from .ontology_scorer import compute_ontology_similarity
+from .ontology_scorer import compute_ontology_similarity, is_related_criterion, get_criteria_similarity
 
 DATA_DIR = Path(__file__).parent.parent / "data"
-CSV_PATH = DATA_DIR / "thanh_ngu_tuc_ngu_100_cau_v4.csv"
-RDF_PATH = DATA_DIR / "v-idiomV5_final.rdf"
+CSV_PATH = DATA_DIR / "200_idioms-v5.csv"
+RDF_PATH = DATA_DIR / "v-idiomV6.rdf"
+PROTEGE_RDF_PATH = Path(__file__).resolve().parent.parent.parent / "ontology_protege" / "v-idiomV6.rdf"
+
+
+def sanitize_iri_name(name: str) -> str:
+    """Chuẩn hóa chuỗi thành ngữ sang định danh IRI hợp lệ trong OWL/RDF."""
+    s = str(name or "").strip()
+    for ch in [",", "'", "’", "?", "!", '"', ";", ":"]:
+        s = s.replace(ch, "")
+    return "_".join(s.split())
 
 
 class LaBSEOntologyEngine:
     """
-    Hệ thống Lai ghép Neuro-Symbolic (LaBSE + Bản thể học OWL 2):
+    Hệ thống Lai ghép Neuro-Symbolic (LaBSE + Bản thể học OWL 2 v6):
+    - Biểu diễn và truy vấn TỪNG CÂU THÀNH NGỮ ĐỘC LẬP (200 câu Tiếng Việt + 182 câu Tiếng Anh = 382 cá thể trong v-idiomV6.rdf).
     - Mã hóa chuỗi '[Khung Bản thể học] : <Nghĩa bóng Gloss>' qua mô hình đa ngôn ngữ LaBSE.
-    - Kết hợp điểm ngữ nghĩa liên tục S_LaBSE và điểm cấu trúc khung S_onto.
-    - Tự động lọc bỏ các câu trùng khung giả (False Positives) và cứu các câu đồng nghĩa lệch khung (False Negatives).
+    - Áp dụng bộ lọc sàn ngữ nghĩa S_Gloss >= 0.60 đúng theo Flowchart để chặn trùng khung giả.
     """
 
     def __init__(
@@ -32,8 +41,9 @@ class LaBSEOntologyEngine:
         csv_path: Path = CSV_PATH,
         alpha: float = 0.65,
         exact_threshold: float = 0.80,
-        near_threshold: float = 0.68,
-        semantic_floor: float = 0.62,
+        near_threshold: float = 0.62,
+        semantic_floor: float = 0.60,
+        s_onto_near_threshold: float = 0.50,
     ):
         self.model_name = model_name
         self.csv_path = Path(csv_path)
@@ -41,17 +51,20 @@ class LaBSEOntologyEngine:
         self.exact_threshold = exact_threshold
         self.near_threshold = near_threshold
         self.semantic_floor = semantic_floor
+        self.s_onto_near_threshold = s_onto_near_threshold
 
         self.model = None
-        self.df = pd.read_csv(self.csv_path).fillna("")
+        self.df = pd.read_csv(self.csv_path, encoding="utf-8-sig").fillna("")
+        # Danh sách từng câu thành ngữ độc lập (Vietnamese_idiom & English_Idiom)
         self.records: List[Dict[str, Any]] = []
-        self.embeddings_cache: Dict[str, Dict[str, np.ndarray]] = {}
+        self.frame_map: Dict[str, str] = {}
+        self.embeddings_cache: Dict[str, np.ndarray] = {}
         self.criteria_embeddings: Dict[str, Dict[str, Any]] = {}
 
         self._load_records()
 
     def _ensure_model(self):
-        """Khởi tạo mô hình LaBSE (Lazy loading)."""
+        """Khởi tạo mô hình LaBSE."""
         if self.model is None:
             from sentence_transformers import SentenceTransformer
             print(f"🔄 Đang tải mô hình đa ngôn ngữ: {self.model_name} ...")
@@ -60,9 +73,9 @@ class LaBSEOntologyEngine:
 
     def _load_records(self):
         """
-        Đọc dữ liệu 100 cặp thành ngữ, 4 trục tiêu chí Khung và nghĩa Gloss.
-        Kết hợp đồng bộ từ file CSV chuẩn (thanh_ngu_tuc_ngu_100_cau_v4.csv)
-        và thuộc tính rdfs:comment (@vi, @en) trong file RDF Ontology (v-idiomV5_final.rdf).
+        Đọc dữ liệu từ 200_idioms-v5.csv và v-idiomV6.rdf, tách thành TỪNG CÂU THÀNH NGỮ ĐỘC LẬP
+        (mỗi câu Tiếng Việt là 1 cá thể Vietnamese_idiom, mỗi câu Tiếng Anh là 1 cá thể English_Idiom)
+        đúng theo cấu trúc Bản thể học v-idiomV6.rdf.
         """
         rdf_comments_vi = {}
         rdf_comments_en = {}
@@ -85,35 +98,70 @@ class LaBSEOntologyEngine:
             except Exception as e:
                 print(f"⚠️ Cảnh báo đọc RDF comment: {e}")
 
-        self.df = pd.read_csv(self.csv_path).fillna("")
+        self.df = pd.read_csv(self.csv_path, encoding="utf-8-sig").fillna("")
         self.records = []
-        for _, row in self.df.iterrows():
-            stt = int(row["STT"]) if str(row["STT"]).strip().isdigit() else len(self.records) + 1
-            bc = str(row["Bối_cảnh"]).strip()
-            hd = str(row["Hành_động"]).strip()
-            kq = str(row["Kết_quả"]).strip()
-            md = str(row["Mục_đích"]).strip()
-            vi_name = str(row["Thành_ngữ_Tiếng_Việt"]).strip()
-            en_name = str(row["Thành_ngữ_Tiếng_Anh"]).strip()
+        self.frame_map = {}
+        seen_individuals = set()
 
-            # Ưu tiên lấy nghĩa Gloss từ rdfs:comment trong RDF Ontology, đối chiếu với cột Giải_thích trong CSV
-            vi_gloss = rdf_comments_vi.get(vi_name) or str(row["Giải_thích_nghĩa_Tiếng_Việt"]).strip()
-            en_gloss = rdf_comments_en.get(en_name) or str(row["Giải_thích_nghĩa_Tiếng_Anh"]).strip()
+        for idx, row in self.df.iterrows():
+            row_num = idx + 1
+            bc = str(row.get("Bối cảnh", row.get("Bối_cảnh", ""))).strip()
+            hd = str(row.get("Hành động", row.get("Hành_động", ""))).strip()
+            kq = str(row.get("Kết quả", row.get("Kết_quả", ""))).strip()
+            md = str(row.get("Mục đích", row.get("Mục_đích", ""))).strip()
 
-            self.records.append({
-                "stt": stt,
-                "vi_name": vi_name,
-                "en_name": en_name,
-                "vi_display": vi_name.replace("_", " "),
-                "en_display": en_name.replace("_", " "),
-                "bc": bc,
-                "hd": hd,
-                "kq": kq,
-                "md": md,
-                "frame_key": f"{bc}|{hd}|{kq}|{md}",
-                "vi_gloss": vi_gloss,
-                "en_gloss": en_gloss,
-            })
+            frame_key = f"{bc}|{hd}|{kq}|{md}"
+            if frame_key not in self.frame_map:
+                self.frame_map[frame_key] = f"Khung{len(self.frame_map) + 1}"
+            frame_name = self.frame_map[frame_key]
+
+            vi_raw = str(row.get("Thành Ngữ Việt Nam", row.get("Thành_ngữ_Tiếng_Việt", ""))).strip()
+            en_raw = str(row.get("Thành ngữ Tiếng Anh", row.get("Thành_ngữ_Tiếng_Anh", ""))).strip()
+
+            csv_vi_gloss = str(row.get("Giải nghĩa tiếng Việt", row.get("Giải_thích_nghĩa_Tiếng_Việt", ""))).strip()
+            csv_en_gloss = str(row.get("giải nghĩa tiếng Anh", row.get("Giải_thích_nghĩa_Tiếng_Anh", ""))).strip()
+
+            # 1. Thêm cá thể Thành ngữ Tiếng Việt (Vietnamese_idiom)
+            if vi_raw:
+                vi_iri = sanitize_iri_name(vi_raw)
+                if ("vi", vi_iri, frame_key) not in seen_individuals:
+                    seen_individuals.add(("vi", vi_iri, frame_key))
+                    vi_gloss = csv_vi_gloss or rdf_comments_vi.get(vi_iri, "")
+                    self.records.append({
+                        "stt": len(self.records) + 1,
+                        "row_id": row_num,
+                        "lang": "vi",
+                        "idiom": vi_raw.replace("_", " "),
+                        "iri_name": vi_iri,
+                        "gloss": vi_gloss,
+                        "frame_name": frame_name,
+                        "bc": bc,
+                        "hd": hd,
+                        "kq": kq,
+                        "md": md,
+                        "frame_key": frame_key,
+                    })
+
+            # 2. Thêm cá thể Thành ngữ Tiếng Anh (English_Idiom)
+            if en_raw:
+                en_iri = sanitize_iri_name(en_raw)
+                if ("en", en_iri, frame_key) not in seen_individuals:
+                    seen_individuals.add(("en", en_iri, frame_key))
+                    en_gloss = csv_en_gloss or rdf_comments_en.get(en_iri, "")
+                    self.records.append({
+                        "stt": len(self.records) + 1,
+                        "row_id": row_num,
+                        "lang": "en",
+                        "idiom": en_raw.replace("_", " "),
+                        "iri_name": en_iri,
+                        "gloss": en_gloss,
+                        "frame_name": frame_name,
+                        "bc": bc,
+                        "hd": hd,
+                        "kq": kq,
+                        "md": md,
+                        "frame_key": frame_key,
+                    })
 
     def encode_texts(self, texts: List[str]) -> np.ndarray:
         """Mã hóa danh sách chuỗi thành ma trận vector chuẩn hóa L2 (Cosine = Dot Product)."""
@@ -126,48 +174,38 @@ class LaBSEOntologyEngine:
         )
         return vecs
 
-    def get_corpus_embeddings(self, mode: str = "frame_and_gloss", force_recompute: bool = False) -> Dict[str, np.ndarray]:
+    def get_corpus_embeddings(self, mode: str = "frame_and_gloss", force_recompute: bool = False) -> np.ndarray:
         """
-        Trả về bộ vector đã mã hóa cho toàn bộ 100 cặp thành ngữ (Tiếng Việt & Tiếng Anh)
-        theo chế độ ghép chuỗi `mode`. Có lưu cache ra đĩa để tăng tốc.
+        Trả về ma trận vector (N, 768) cho toàn bộ các câu thành ngữ độc lập (382 câu: 200 VI + 182 EN)
+        theo chế độ ghép chuỗi `mode`. Có lưu cache ra đĩa (.npz) để tăng tốc.
         """
         if mode in self.embeddings_cache and not force_recompute:
             return self.embeddings_cache[mode]
 
-        cache_file = DATA_DIR / f"labse_vectors_{mode}.npz"
+        cache_file = DATA_DIR / f"labse_single_vectors_{mode}.npz"
         if cache_file.exists() and not force_recompute:
             data = np.load(cache_file)
-            if len(data["vi_vecs"]) == len(self.records):
-                self.embeddings_cache[mode] = {
-                    "vi_vecs": data["vi_vecs"],
-                    "en_vecs": data["en_vecs"],
-                }
+            if "vecs" in data and len(data["vecs"]) == len(self.records):
+                self.embeddings_cache[mode] = data["vecs"]
                 return self.embeddings_cache[mode]
 
-        vi_texts = [
+        texts = [
             build_labse_input(
-                idiom_surface=r["vi_name"],
-                gloss=r["vi_gloss"],
-                bc=r["bc"], hd=r["hd"], kq=r["kq"], md=r["md"],
-                lang="vi", mode=mode
-            )
-            for r in self.records
-        ]
-        en_texts = [
-            build_labse_input(
-                idiom_surface=r["en_name"],
-                gloss=r["en_gloss"],
-                bc=r["bc"], hd=r["hd"], kq=r["kq"], md=r["md"],
-                lang="en", mode=mode
+                idiom_surface=r["idiom"],
+                gloss=r["gloss"],
+                bc=r["bc"],
+                hd=r["hd"],
+                kq=r["kq"],
+                md=r["md"],
+                lang=r["lang"],
+                mode=mode,
             )
             for r in self.records
         ]
 
-        vi_vecs = self.encode_texts(vi_texts)
-        en_vecs = self.encode_texts(en_texts)
-
-        np.savez_compressed(cache_file, vi_vecs=vi_vecs, en_vecs=en_vecs)
-        self.embeddings_cache[mode] = {"vi_vecs": vi_vecs, "en_vecs": en_vecs}
+        vecs = self.encode_texts(texts)
+        np.savez_compressed(cache_file, vecs=vecs)
+        self.embeddings_cache[mode] = vecs
         return self.embeddings_cache[mode]
 
     def predict_criteria_zero_shot(
@@ -175,15 +213,12 @@ class LaBSEOntologyEngine:
         gloss_text: str,
         threshold: float = 0.42
     ) -> Dict[str, Any]:
-        """
-        Dùng chính mô hình LaBSE để tự động gợi ý bộ 4 tiêu chí từ Bể tiêu chí
-        dựa trên độ tương đồng ngữ nghĩa giữa câu giải nghĩa và định nghĩa từng tiêu chí.
-        """
+        """Dùng LaBSE tự động gợi ý bộ 4 tiêu chí từ Bể tiêu chí v5 (236 mã)."""
         if not self.criteria_embeddings:
             for axis_name, items in CRITERIA_CATALOG.items():
                 codes = list(items.keys())
                 descs = [
-                    f"{meta['label_vi']}: {meta['desc_vi']} ({meta['label_en']}: {meta['desc_en']})"
+                    f"{meta['label_vi']}: {meta['desc_vi']} ({meta['label_en']})"
                     for meta in items.values()
                 ]
                 vecs = self.encode_texts(descs)
@@ -210,7 +245,6 @@ class LaBSEOntologyEngine:
                 "score": float(sims[best_idx]),
             }
 
-        # Áp dụng nguyên tắc v4: Chọn các trục >= threshold, nhưng đảm bảo tối thiểu 2 tiêu chí cao điểm nhất
         selected = {k: (v["code"] if v["score"] >= threshold else "") for k, v in best_per_axis.items()}
         non_empty = [k for k, val in selected.items() if val]
         if len(non_empty) < 2:
@@ -223,6 +257,54 @@ class LaBSEOntologyEngine:
             "axis_scores": best_per_axis,
         }
 
+    def lookup_ontology_record(self, idiom_input: str) -> Optional[Dict[str, Any]]:
+        """
+        Tra cứu xem câu thành ngữ nhập vào đã tồn tại sẵn trong Ontology (v-idiomV6.rdf) hay chưa.
+        Nếu có sẵn, trả về chính xác bản ghi (gồm description rdfs:comment và 4 trục tiêu chí của nó trong Ontology)
+        để hệ thống dùng trực tiếp chứ không gọi LLM tự suy luận lại.
+        """
+        if not idiom_input or not str(idiom_input).strip():
+            return None
+        q_raw = str(idiom_input).strip().lower()
+        q_iri = sanitize_iri_name(idiom_input).lower()
+        # Hỗ trợ biến thể phổ biến có/không có từ 'always'
+        q_alt = q_raw.replace(" always ", " ")
+
+        for rec in self.records:
+            r_disp = rec["idiom"].lower()
+            r_iri = rec["iri_name"].lower()
+            if q_raw == r_disp or q_iri == r_iri or q_alt == r_disp:
+                # Tìm câu đồng nghĩa cùng khung (nếu có) chỉ để hiển thị tham khảo tên câu tương đương
+                siblings = [
+                    s["idiom"]
+                    for s in self.records
+                    if s["frame_key"] == rec["frame_key"] and s["iri_name"] != rec["iri_name"]
+                ]
+                return {
+                    **rec,
+                    "siblings": siblings,
+                }
+        return None
+
+    @staticmethod
+    def _compare_frame_axes(q_frame: Dict[str, str], c_frame: Dict[str, str]) -> Dict[str, Dict[str, str]]:
+        """So sánh chi tiết từng trục (BC, HD, KQ, MD) giữa Khung truy vấn và Khung ứng viên."""
+        axis_details = {}
+        for ax in ["bc", "hd", "kq", "md"]:
+            qv = (q_frame.get(ax) or "").strip()
+            cv = (c_frame.get(ax) or "").strip()
+            if not qv and not cv:
+                status = "BOTH_EMPTY"
+            elif qv and cv and qv == cv:
+                status = "EXACT_MATCH"
+            elif qv and cv and is_related_criterion(qv, cv):
+                sim = get_criteria_similarity(qv, cv)
+                status = f"NEAR_MATCH ({sim:.2f})"
+            else:
+                status = "MISMATCH"
+            axis_details[ax] = {"query": qv, "candidate": cv, "status": status}
+        return axis_details
+
     def match_idiom(
         self,
         idiom_surface: str,
@@ -234,23 +316,27 @@ class LaBSEOntologyEngine:
         md: str = "",
         lang: str = "vi",
         mode: str = "frame_and_gloss",
-        top_k: int = 10,
+        top_k: int = 12,
     ) -> Dict[str, Any]:
         """
-        Thực hiện quy trình Đối soát Lai ghép (LaBSE + Bản thể học):
-        1. Nếu chưa có tiêu chí, tự động dùng LaBSE Zero-Shot gợi ý từ Bể tiêu chí.
-        2. Ghép chuỗi '[Khung Bản thể học] : <Nghĩa bóng Gloss>'.
-        3. Mã hóa bằng LaBSE lấy vector 768 chiều.
-        4. Tính điểm S_LaBSE, S_onto và điểm tổng hợp S_hybrid.
-        5. Phân loại theo ngưỡng: Đồng nghĩa tuyệt đối (>= 0.80) và Đồng nghĩa mềm (0.68 - 0.80).
+        Đối soát Lai ghép (LaBSE + Bản thể học v6) trên TỪNG CÂU THÀNH NGỮ ĐỘC LẬP:
+        - Sàn ngữ nghĩa bắt buộc: S_Gloss >= 0.60 (chặn trùng khung giả).
+        - Công thức kết hợp: S_hybrid = 0.65 * S_LaBSE + 0.35 * S_onto.
+        - Phân 3 nhánh đúng theo Flowchart:
+          1. ĐỒNG NGHĨA TUYỆT ĐỐI (S_hybrid >= 0.80 và S_Gloss >= 0.60)
+          2. ĐỒNG NGHĨA MỀM / CẬN NGHĨA (0.65 <= S_hybrid < 0.80 và S_Gloss >= 0.60)
+          3. KHÁC NGHĨA / LOẠI BỎ TRÙNG KHUNG GIẢ (S_Gloss < 0.60 hoặc S_hybrid < 0.65)
         """
-        active_gloss = gloss_vi if (lang == "vi" and gloss_vi) else (gloss_en or gloss_vi or idiom_surface)
+        has_vi = bool(gloss_vi and str(gloss_vi).strip())
+        has_en = bool(gloss_en and str(gloss_en).strip())
+        primary_lang = "en" if (has_en and not has_vi) else ("vi" if has_vi else lang)
+        primary_gloss = (gloss_vi if primary_lang == "vi" else gloss_en) or gloss_vi or gloss_en or idiom_surface
+        primary_gloss = str(primary_gloss).strip()
 
-        # Tự động gán tiêu chí bằng LaBSE nếu người dùng chưa truyền đủ tối thiểu 2 tiêu chí
         provided_criteria = [x for x in [bc, hd, kq, md] if x and str(x).strip()]
         auto_predicted = False
         if len(provided_criteria) < 2:
-            pred = self.predict_criteria_zero_shot(active_gloss)
+            pred = self.predict_criteria_zero_shot(primary_gloss)
             p_frame = pred["predicted_frame"]
             bc = bc or p_frame["bc"]
             hd = hd or p_frame["hd"]
@@ -259,93 +345,137 @@ class LaBSEOntologyEngine:
             auto_predicted = True
 
         query_frame = {"bc": bc, "hd": hd, "kq": kq, "md": md}
-        labse_input_str = build_labse_input(
-            idiom_surface=idiom_surface,
-            gloss=active_gloss,
-            bc=bc, hd=hd, kq=kq, md=md,
-            lang=lang, mode=mode,
+
+        # Chuỗi biểu diễn theo đúng ngôn ngữ có mặt (không ghép lẫn khung Anh với gloss Việt hoặc ngược lại)
+        str_fg_primary = build_labse_input(idiom_surface, primary_gloss, bc, hd, kq, md, lang=primary_lang, mode="frame_and_gloss")
+        str_gloss_primary = build_labse_input(idiom_surface, primary_gloss, bc, hd, kq, md, lang=primary_lang, mode="gloss_only")
+        str_rf_primary = build_labse_input(idiom_surface, primary_gloss, bc, hd, kq, md, lang=primary_lang, mode="raw_and_frame")
+        str_raw_primary = build_labse_input(idiom_surface, primary_gloss, bc, hd, kq, md, lang=primary_lang, mode="raw_only")
+
+        if has_vi and has_en:
+            str_fg_vi = build_labse_input(idiom_surface, str(gloss_vi).strip(), bc, hd, kq, md, lang="vi", mode="frame_and_gloss")
+            str_fg_en = build_labse_input(idiom_surface, str(gloss_en).strip(), bc, hd, kq, md, lang="en", mode="frame_and_gloss")
+            str_gloss_vi = build_labse_input(idiom_surface, str(gloss_vi).strip(), bc, hd, kq, md, lang="vi", mode="gloss_only")
+            str_gloss_en = build_labse_input(idiom_surface, str(gloss_en).strip(), bc, hd, kq, md, lang="en", mode="gloss_only")
+        else:
+            str_fg_vi = str_fg_primary
+            str_fg_en = str_fg_primary
+            str_gloss_vi = str_gloss_primary
+            str_gloss_en = str_gloss_primary
+
+        q_vecs = self.encode_texts([str_fg_vi, str_fg_en, str_gloss_vi, str_gloss_en, str_rf_primary, str_raw_primary])
+        q_fg_vi, q_fg_en, q_gloss_vi, q_gloss_en, q_rf_vec, q_raw_vec = (
+            q_vecs[0],
+            q_vecs[1],
+            q_vecs[2],
+            q_vecs[3],
+            q_vecs[4],
+            q_vecs[5],
         )
 
-        # Mã hóa chuỗi đầu vào bằng LaBSE (cả bản Khung+Gloss và bản Gloss thuần để kiểm tra sàn ngữ nghĩa)
-        gloss_only_str = build_labse_input(
-            idiom_surface=idiom_surface,
-            gloss=active_gloss,
-            bc=bc, hd=hd, kq=kq, md=md,
-            lang=lang, mode="gloss_only",
-        )
-        encoded_pair = self.encode_texts([labse_input_str, gloss_only_str])
-        q_vec = encoded_pair[0]
-        q_gloss_vec = encoded_pair[1]
-
-        # Lấy ma trận vector của toàn bộ kho dữ liệu (đã cache sẵn)
-        corpus = self.get_corpus_embeddings(mode=mode)
+        corpus_fg = self.get_corpus_embeddings(mode="frame_and_gloss")
         corpus_gloss = self.get_corpus_embeddings(mode="gloss_only")
+        corpus_rf = self.get_corpus_embeddings(mode="raw_and_frame")
+        corpus_raw = self.get_corpus_embeddings(mode="raw_only")
 
-        sims_vi = np.dot(corpus["vi_vecs"], q_vec)
-        sims_en = np.dot(corpus["en_vecs"], q_vec)
+        sims_fg_vi = np.dot(corpus_fg, q_fg_vi)
+        sims_fg_en = np.dot(corpus_fg, q_fg_en)
 
-        sims_gloss_vi = np.dot(corpus_gloss["vi_vecs"], q_gloss_vec)
-        sims_gloss_en = np.dot(corpus_gloss["en_vecs"], q_gloss_vec)
+        sims_gloss_vi = np.dot(corpus_gloss, q_gloss_vi)
+        sims_gloss_en = np.dot(corpus_gloss, q_gloss_en)
+
+        sims_rf = np.dot(corpus_rf, q_rf_vec)
+        sims_raw = np.dot(corpus_raw, q_raw_vec)
 
         exact_synonyms = []
         near_synonyms = []
         filtered_false_positives = []
         all_candidates = []
 
-        norm_input_name = idiom_surface.strip().lower().replace(" ", "_")
+        norm_input_iri = sanitize_iri_name(idiom_surface).lower()
+        norm_input_disp = idiom_surface.strip().lower()
 
         for idx, rec in enumerate(self.records):
-            # Bỏ qua chính câu đó nếu trùng tên hoàn toàn
-            if norm_input_name in [rec["vi_name"].lower(), rec["en_name"].lower()]:
+            # Không tự so sánh câu nhập tiếng Việt/Anh với chính bản thân nó trong kho
+            if norm_input_iri == rec["iri_name"].lower() or norm_input_disp == rec["idiom"].lower():
                 continue
 
-            # Điểm LaBSE trên chuỗi [Khung + Gloss]
-            s_labse_vi = float(sims_vi[idx])
-            s_labse_en = float(sims_en[idx])
-            s_labse = max(s_labse_vi, s_labse_en)
-
-            # Điểm LaBSE trên Nghĩa Gloss thuần (dùng làm Bộ lọc Sàn Ngữ Nghĩa chống trùng khung giả)
-            s_gloss_pure = max(float(sims_gloss_vi[idx]), float(sims_gloss_en[idx]))
-
-            # Điểm cấu trúc Khung Bản thể học
             cand_frame = {"bc": rec["bc"], "hd": rec["hd"], "kq": rec["kq"], "md": rec["md"]}
             s_onto, onto_meta = compute_ontology_similarity(query_frame, cand_frame)
+            axis_comparison = self._compare_frame_axes(query_frame, cand_frame)
 
-            # Tính điểm Lai ghép S_hybrid
+            # Nếu Khung Bản thể học trùng khớp hoàn toàn 100% (s_onto == 1.0):
+            # -> Kết luận ĐỒNG NGHĨA CỨNG / ĐỒNG NGHĨA TUYỆT ĐỐI ngay lập tức, không cần tính toán LaBSE nữa
+            if s_onto == 1.0 and onto_meta["match_type"] == "TRÙNG_KHUNG_TUYỆT_ĐỐI":
+                item_result = {
+                    "stt": rec["stt"],
+                    "row_id": rec["row_id"],
+                    "lang": rec["lang"],
+                    "idiom": rec["idiom"],
+                    "iri_name": rec["iri_name"],
+                    "frame_name": rec["frame_name"],
+                    "frame": cand_frame,
+                    "axis_comparison": axis_comparison,
+                    "gloss": rec["gloss"],
+                    "hard_onto_match": True,
+                    "s_raw_only": None,
+                    "s_raw_frame": None,
+                    "s_gloss_pure": None,
+                    "s_labse": None,
+                    "s_onto": 1.0,
+                    "s_hybrid": 1.0,
+                    "onto_match_type": "TRÙNG_KHUNG_TUYỆT_ĐỐI (Đồng nghĩa cứng — Không cần tính LaBSE)",
+                    "status": "ĐỒNG_NGHĨA_TUYỆT_ĐỐI",
+                }
+                exact_synonyms.append(item_result)
+                all_candidates.append(item_result)
+                continue
+
+            # Chỉ khi Khung KHÔNG trùng hoàn toàn (s_onto < 1.0) mới tính toán khoảng cách LaBSE
+            s_labse = max(float(sims_fg_vi[idx]), float(sims_fg_en[idx]))
+            s_gloss_pure = max(float(sims_gloss_vi[idx]), float(sims_gloss_en[idx]))
+            s_raw_frame = float(sims_rf[idx])
+            s_raw_only = float(sims_raw[idx])
+
             if onto_meta["veto"]:
-                # Bị phủ quyết do ngược Kết quả hoặc khác hoàn toàn cơ chế Nhân-Quả
                 s_hybrid = 0.45 * s_labse
             else:
                 s_hybrid = self.alpha * s_labse + (1.0 - self.alpha) * s_onto
 
             item_result = {
                 "stt": rec["stt"],
-                "vi_idiom": rec["vi_display"],
-                "en_idiom": rec["en_display"],
+                "row_id": rec["row_id"],
+                "lang": rec["lang"],
+                "idiom": rec["idiom"],
+                "iri_name": rec["iri_name"],
+                "frame_name": rec["frame_name"],
                 "frame": cand_frame,
-                "vi_gloss": rec["vi_gloss"],
-                "en_gloss": rec["en_gloss"],
-                "s_labse": round(s_labse, 4),
+                "axis_comparison": axis_comparison,
+                "gloss": rec["gloss"],
+                "hard_onto_match": False,
+                "s_raw_only": round(s_raw_only, 4),
+                "s_raw_frame": round(s_raw_frame, 4),
                 "s_gloss_pure": round(s_gloss_pure, 4),
-                "s_labse_vi": round(s_labse_vi, 4),
-                "s_labse_en": round(s_labse_en, 4),
+                "s_labse": round(s_labse, 4),
                 "s_onto": round(s_onto, 4),
                 "s_hybrid": round(s_hybrid, 4),
                 "onto_match_type": onto_meta["match_type"],
             }
 
-            # Kiểm tra hiện tượng "Trùng Khung Giả" (Ontology = 1.0 nhưng nghĩa Gloss thuần < semantic_floor)
-            if s_onto == 1.0 and s_gloss_pure < self.semantic_floor:
+            # 1. Bộ lọc sàn ngữ nghĩa S_Gloss >= 0.60 khi S_hybrid >= 0.80 nhưng S_Gloss < 0.60
+            if s_hybrid >= self.exact_threshold and s_gloss_pure < self.semantic_floor:
                 item_result["status"] = "LOẠI_BỎ_TRÙNG_KHUNG_GIẢ"
                 filtered_false_positives.append(item_result)
                 all_candidates.append(item_result)
                 continue
 
-            # Phân tầng theo Ngưỡng (Threshold)
-            if s_hybrid >= self.exact_threshold and s_gloss_pure >= self.semantic_floor and not onto_meta["veto"]:
+            # 2. Phân tầng theo Ngưỡng:
+            # - Nhánh 1 (Đồng nghĩa tuyệt đối): S_hybrid >= 0.80 & S_onto >= 0.75 & S_Gloss >= 0.60
+            # - Nhánh 2 (Đồng nghĩa mềm / Cận nghĩa): S_hybrid >= 0.62 & S_onto >= 0.50 & S_Gloss >= 0.60
+            if s_hybrid >= self.exact_threshold and s_onto >= 0.75 and s_gloss_pure >= self.semantic_floor and not onto_meta["veto"]:
                 item_result["status"] = "ĐỒNG_NGHĨA_TUYỆT_ĐỐI"
                 exact_synonyms.append(item_result)
-            elif s_hybrid >= self.near_threshold and s_gloss_pure >= 0.48 and not onto_meta["veto"]:
+            elif s_hybrid >= self.near_threshold and s_onto >= self.s_onto_near_threshold and s_gloss_pure >= self.semantic_floor and not onto_meta["veto"]:
                 item_result["status"] = "ĐỒNG_NGHĨA_MỀM_CẬN_NGHĨA"
                 near_synonyms.append(item_result)
             else:
@@ -355,29 +485,138 @@ class LaBSEOntologyEngine:
 
         exact_synonyms.sort(key=lambda x: x["s_hybrid"], reverse=True)
         near_synonyms.sort(key=lambda x: x["s_hybrid"], reverse=True)
+        filtered_false_positives.sort(key=lambda x: x["s_hybrid"], reverse=True)
         all_candidates.sort(key=lambda x: x["s_hybrid"], reverse=True)
 
-        # Kiểm tra xem Khung 4 trục đã tồn tại trong CSDL chưa
         q_frame_key = f"{bc}|{hd}|{kq}|{md}"
-        existing_frame_stts = [r["stt"] for r in self.records if r["frame_key"] == q_frame_key]
-        frame_status = "KHUNG_ĐÃ_TỒN_TẠI" if existing_frame_stts else "KHUNG_MỚI"
+        matched_frame_name = self.frame_map.get(q_frame_key, "")
+        frame_status = "KHUNG_ĐÃ_TỒN_TẠI" if matched_frame_name else "KHUNG_MỚI"
 
         return {
             "input_idiom": idiom_surface,
-            "encoded_string_for_labse": labse_input_str,
+            "encoded_string_for_labse": str_fg_primary,
+            "encoded_gloss_only_for_labse": str_gloss_primary,
+            "encoded_raw_and_frame": str_rf_primary,
             "auto_predicted_criteria": auto_predicted,
             "frame_status": frame_status,
-            "matched_frame_stts": existing_frame_stts,
+            "matched_frame_name": matched_frame_name,
             "query_frame": query_frame,
             "thresholds": {
                 "alpha_labse_weight": self.alpha,
                 "ontology_weight": round(1.0 - self.alpha, 2),
                 "exact_synonym_threshold": self.exact_threshold,
                 "near_synonym_threshold": self.near_threshold,
+                "s_onto_near_threshold": self.s_onto_near_threshold,
                 "semantic_floor": self.semantic_floor,
             },
             "exact_synonyms": exact_synonyms[:top_k],
             "near_synonyms": near_synonyms[:top_k],
-            "filtered_false_positives": filtered_false_positives,
+            "filtered_false_positives": filtered_false_positives[:top_k],
             "top_candidates": all_candidates[:top_k],
+        }
+
+    def save_idiom_to_local_store(
+        self,
+        vi_name: str,
+        en_name: str,
+        bc: str = "",
+        hd: str = "",
+        kq: str = "",
+        md: str = "",
+        vi_gloss: str = "",
+        en_gloss: str = "",
+    ) -> Dict[str, Any]:
+        import csv
+        import shutil
+        vi_surface = vi_name.strip().replace("_", " ")
+        en_surface = en_name.strip().replace("_", " ")
+        vi_clean = sanitize_iri_name(vi_surface)
+        en_clean = sanitize_iri_name(en_surface)
+        bc = (bc or "").strip()
+        hd = (hd or "").strip()
+        kq = (kq or "").strip()
+        md = (md or "").strip()
+        vi_gloss = (vi_gloss or "").strip()
+        en_gloss = (en_gloss or "").strip()
+
+        with open(self.csv_path, mode="a", encoding="utf-8", newline="") as f:
+            writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+            writer.writerow([vi_surface, vi_gloss, en_gloss, bc, md, hd, kq, en_surface])
+
+        frame_name = ""
+        if RDF_PATH.exists():
+            try:
+                from owlready2 import World, locstr
+                BASE_IRI = "http://www.semanticweb.org/phandangvu/ontologies/2026/8/v-idiomv2#"
+                w = World()
+                onto = w.get_ontology(str(RDF_PATH)).load()
+                Khung_cls = w[BASE_IRI + "Khung_Bản_Thể_học"]
+                VN_cls = w[BASE_IRI + "Vietnamese_idiom"]
+                EN_cls = w[BASE_IRI + "English_Idiom"]
+                BC_cls = w[BASE_IRI + "Bối_cảnh"]
+                HD_cls = w[BASE_IRI + "Hành_động"]
+                KQ_cls = w[BASE_IRI + "Kết_quả"]
+                MD_cls = w[BASE_IRI + "Mục_đích"]
+
+                with onto:
+                    bc_inst = (w[BASE_IRI + bc] or BC_cls(bc)) if bc else None
+                    hd_inst = (w[BASE_IRI + hd] or HD_cls(hd)) if hd else None
+                    kq_inst = (w[BASE_IRI + kq] or KQ_cls(kq)) if kq else None
+                    md_inst = (w[BASE_IRI + md] or MD_cls(md)) if md else None
+
+                    target_frame = None
+                    for f_inst in Khung_cls.instances():
+                        f_bc = f_inst.Có_bối_cảnh[0].name if f_inst.Có_bối_cảnh else ""
+                        f_hd = f_inst.Có_hành_động[0].name if f_inst.Có_hành_động else ""
+                        f_kq = f_inst.Có_kết_quả[0].name if f_inst.Có_kết_quả else ""
+                        f_md = f_inst.Có_mục_đích[0].name if f_inst.Có_mục_đích else ""
+                        if (f_bc, f_hd, f_kq, f_md) == (bc, hd, kq, md):
+                            target_frame = f_inst
+                            break
+
+                    if not target_frame:
+                        max_num = 0
+                        for f_inst in Khung_cls.instances():
+                            digits = "".join(filter(str.isdigit, f_inst.name))
+                            if digits:
+                                max_num = max(max_num, int(digits))
+                        frame_name = f"Khung{max_num + 1}"
+                        target_frame = Khung_cls(frame_name)
+                        if bc_inst: target_frame.Có_bối_cảnh.append(bc_inst)
+                        if hd_inst: target_frame.Có_hành_động.append(hd_inst)
+                        if kq_inst: target_frame.Có_kết_quả.append(kq_inst)
+                        if md_inst: target_frame.Có_mục_đích.append(md_inst)
+                    else:
+                        frame_name = target_frame.name
+
+                    if vi_clean:
+                        vi_inst = w[BASE_IRI + vi_clean] or VN_cls(vi_clean)
+                        if target_frame not in vi_inst.Có_khung:
+                            vi_inst.Có_khung.append(target_frame)
+                        if vi_gloss:
+                            vi_inst.comment = [locstr(vi_gloss, lang="vi")]
+
+                    if en_clean:
+                        en_inst = w[BASE_IRI + en_clean] or EN_cls(en_clean)
+                        if target_frame not in en_inst.Có_khung:
+                            en_inst.Có_khung.append(target_frame)
+                        if en_gloss:
+                            en_inst.comment = [locstr(en_gloss, lang="en")]
+
+                    onto.save(file=str(RDF_PATH), format="rdfxml")
+                    if PROTEGE_RDF_PATH.parent.exists():
+                        shutil.copy2(RDF_PATH, PROTEGE_RDF_PATH)
+            except Exception as e:
+                print(f"⚠️ Cảnh báo lưu RDF: {e}")
+
+        self._load_records()
+        self.get_corpus_embeddings(mode="frame_and_gloss", force_recompute=True)
+        self.get_corpus_embeddings(mode="gloss_only", force_recompute=True)
+        self.get_corpus_embeddings(mode="raw_and_frame", force_recompute=True)
+        self.get_corpus_embeddings(mode="raw_only", force_recompute=True)
+
+        return {
+            "stt": len(self.records),
+            "frame_name": frame_name,
+            "total_records": len(self.records),
         }
